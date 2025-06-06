@@ -1,0 +1,51 @@
+# Benchmark configuration for RaA pipeline
+
+# Unique name for this experiment, used to create results subdirectory
+experiment_name: "exp_005"
+
+# Input data settings
+input_dir: "data/coco_subset"
+
+# Output settings
+output_dir: "results/{{experiment_name}}"
+
+# Loop configuration
+loop:
+  # Type of recursive loop: I-T-I, T-I-T etc.
+  type: "I-T-I"
+  # Number of full recursion iterations to perform (excluding initial input)
+  num_iterations: 4
+  # Whether to treat each iteration as stateless (reset any context)
+  stateless: true
+
+# Models to use for each stage of the loop
+models:
+  caption_model:
+    name: "gemini-2.5-flash"   # Example: model for generating captions from images
+    params:
+      version: "v1"       # Model version or other hyperparameters
+  image_model:
+    name: "imagen-3"  # Example: model for generating images from text
+    params:
+      steps: 50
+      guidance_scale: 7.5
+
+# Prompt template files for different modes of operation
+prompts:
+  naive: "prompts/naive.json"
+  raa_aware: "prompts/raa_aware.json"
+
+# Logging and metadata
+logging:
+  # Log verbosity level (DEBUG, INFO, WARNING, ERROR)
+  level: "INFO"
+  # Whether to save a snapshot of the full config in the output folder
+  save_config_snapshot: true
+
+# Metadata settings (e.g., random seed for reproducibility)
+metadata:
+  random_seed: 42
+
+# Placeholder fields for future evaluation or reporting
+evaluation: {}
+reporting: {}
