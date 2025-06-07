@@ -83,11 +83,9 @@ class BenchmarkConfig:
 
         loop_dict = raw["loop"]
         loop_cfg = LoopConfig(
-            type=loop_dict.get("type", LoopConfig.type),
-            num_iterations=int(
-                loop_dict.get("num_iterations", LoopConfig.num_iterations)
-            ),
-            stateless=bool(loop_dict.get("stateless", LoopConfig.stateless)),
+            type=loop_dict["type"],
+            num_iterations=int(loop_dict["num_iterations"]),
+            stateless=bool(loop_dict["stateless"]),
         )
 
         models_dict = raw.get("models", {})
@@ -95,7 +93,8 @@ class BenchmarkConfig:
         img_dict = models_dict.get("image_model", {})
 
         cap_spec = ModelSpec(
-            name=cap_dict.get("name", ModelSpec.name), params=cap_dict.get("params", {})
+            name=cap_dict.get("name", "dummy-captioner"),
+            params=cap_dict.get("params", {}),
         )
         img_spec = ModelSpec(
             name=img_dict.get("name", "dummy-imagegen"),
@@ -105,16 +104,14 @@ class BenchmarkConfig:
 
         prompts_dict = raw.get("prompts", {})
         prompts_cfg = PromptsConfig(
-            naive=prompts_dict.get("naive", PromptsConfig.naive),
-            raa_aware=prompts_dict.get("raa_aware", PromptsConfig.raa_aware),
+            naive=prompts_dict.get("naive", "prompts/naive.json"),
+            raa_aware=prompts_dict.get("raa_aware", "prompts/raa_aware.json"),
         )
 
         log_dict = raw.get("logging", {})
         logging_cfg = LoggingConfig(
-            level=log_dict.get("level", LoggingConfig.level),
-            save_config_snapshot=bool(
-                log_dict.get("save_config_snapshot", LoggingConfig.save_config_snapshot)
-            ),
+            level=log_dict.get("level", "INFO"),
+            save_config_snapshot=bool(log_dict.get("save_config_snapshot", True)),
         )
 
         meta_dict = raw.get("metadata", {})
