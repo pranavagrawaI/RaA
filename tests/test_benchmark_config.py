@@ -29,6 +29,16 @@ evaluation: {}
 reporting: {}
 """
 
+MINIMAL_YAML = """
+experiment_name: "exp_minimal"
+input_dir: "data/somefolder"
+
+loop:
+  type: "I-T-I"
+  num_iterations: 1
+  stateless: true
+"""
+
 
 @pytest.fixture
 def valid_cfg_file(tmp_path):
@@ -45,6 +55,21 @@ def test_valid_config_loads(valid_cfg_file):
     assert cfg.output_dir.endswith("bar/exp_test")
     assert cfg.loop.num_iterations == 3
     assert cfg.logging.level == "DEBUG"
+
+
+def test_minimal_config_loads(tmp_path):
+    cfg_file = tmp_path / "cfg.yaml"
+    cfg_file.write_text(MINIMAL_YAML)
+    cfg = BenchmarkConfig.from_yaml(str(cfg_file))
+
+    assert cfg.experiment_name == "exp_minimal"
+    assert cfg.input_dir == "data/somefolder"
+    # Defaults:
+    assert cfg.output_dir.endswith("results/exp_minimal")
+    assert cfg.loop.type == "I-T-I"
+    assert cfg.loop.num_iterations == 1
+    assert cfg.models.caption_model.name == "dummy-captioner"
+    assert cfg.logging.level == "INFO"
 
 
 def test_missing_key_raises(tmp_path):
