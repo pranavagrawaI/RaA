@@ -4,7 +4,6 @@ Dry-run recursive loop controller (I-T-I, T-I-T, etc.) that produces placeholder
 Stores outputs in results/exp_name/<identifier>/
 """
 import os
-import json
 import shutil
 import errno
 from glob import glob
