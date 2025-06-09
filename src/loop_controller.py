@@ -3,9 +3,11 @@
 Dry-run recursive loop controller (I-T-I, T-I-T, etc.) that produces placeholders.
 Stores outputs in results/exp_name/<identifier>/
 """
+
 import os
 import shutil
 import errno
+import time
 from glob import glob
 from pathlib import Path
 from typing import Dict, Any
@@ -67,8 +69,8 @@ class LoopController:
             om.save_image(blank, img_name)
             record[f"iter{i}_img"] = img_name
 
-            if not self.cfg.loop.stateless:
-                current_img_path = os.path.join(om.root_dir, img_name)
+            # Always update current_img_path to the newly generated image for the next iteration
+            current_img_path = os.path.join(om.root_dir, img_name)
 
         self.meta[stem] = record
 
@@ -104,21 +106,53 @@ class LoopController:
 
             # I → T: placeholder image back to placeholder text
             img_path = os.path.join(om.root_dir, img_name)
-            caption = generate_caption(img_path, prompt="This is a placeholder caption.")
+            caption = generate_caption(
+                img_path, prompt="This is a placeholder caption."
+            )
             txt_name = f"text_iter{i}.txt"
             om.save_text(caption, txt_name)
             record[f"iter{i}_text"] = txt_name
 
-            if not self.cfg.loop.stateless:
-                current_text_path = os.path.join(om.root_dir, txt_name)
+            # Always update current_text_path to the newly generated text for the next iteration
+            current_text_path = os.path.join(om.root_dir, txt_name)
 
         self.meta[stem] = record
 
     def _link_file(self, src: str, dst: str) -> None:
         """Create a symlink; fall back to copy if symlink fails."""
+        # First, ensure the destination directory exists
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+
+        # Remove the destination file if it exists
+        if os.path.exists(dst):
+            try:
+                os.remove(dst)
+            except (PermissionError, OSError):
+                # If we can't remove it, wait a bit and try again
+                time.sleep(1)
+                try:
+                    os.remove(dst)
+                except (PermissionError, OSError) as e:
+                    print(f"Warning: Could not remove existing file {dst}: {e}")
+                    return
+
+        # Try to create symlink first
         try:
             os.symlink(os.path.abspath(src), dst)
+            return
         except (AttributeError, NotImplementedError, OSError) as e:
-            if isinstance(e, (OSError,)) and e.errno not in (errno.EEXIST, errno.EPERM):
+            if isinstance(e, OSError) and e.errno not in (errno.EEXIST, errno.EPERM):
                 raise
-            shutil.copy2(src, dst)
+
+        # If symlink fails, try to copy with retries
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                shutil.copy2(src, dst)
+                return
+            except (PermissionError, OSError) as e:
+                if attempt < max_retries - 1:
+                    time.sleep(1)  # Wait a second before retrying
+                    continue
+                print(f"Warning: Could not copy file {src} to {dst}: {e}")
+                return

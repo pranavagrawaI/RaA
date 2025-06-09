@@ -9,7 +9,6 @@ import yaml
 class LoopConfig:
     type: str
     num_iterations: int
-    stateless: bool
 
 
 @dataclass
@@ -85,7 +84,6 @@ class BenchmarkConfig:
         loop_cfg = LoopConfig(
             type=loop_dict["type"],
             num_iterations=int(loop_dict["num_iterations"]),
-            stateless=bool(loop_dict["stateless"]),
         )
 
         models_dict = raw.get("models", {})
