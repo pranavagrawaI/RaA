@@ -56,7 +56,7 @@ class LoopController:
         current_img_path = dest_input
         for i in range(1, self.cfg.loop.num_iterations + 1):
             # I → T: image to placeholder text
-            caption = generate_caption(current_img_path)
+            caption = generate_caption(current_img_path, prompt="Describe this image.")
             txt_name = f"text_iter{i}.txt"
             om.save_text(caption, txt_name)
             record[f"iter{i}_text"] = txt_name
@@ -104,7 +104,7 @@ class LoopController:
 
             # I → T: placeholder image back to placeholder text
             img_path = os.path.join(om.root_dir, img_name)
-            caption = generate_caption(img_path)
+            caption = generate_caption(img_path, prompt="This is a placeholder caption.")
             txt_name = f"text_iter{i}.txt"
             om.save_text(caption, txt_name)
             record[f"iter{i}_text"] = txt_name
