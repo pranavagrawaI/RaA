@@ -9,7 +9,6 @@ output_dir: "bar/{{experiment_name}}"
 loop:
   type: "I-T-I"
   num_iterations: 3
-  stateless: false
 models:
   caption_model:
     name: "m1"
@@ -36,7 +35,6 @@ input_dir: "data/somefolder"
 loop:
   type: "I-T-I"
   num_iterations: 1
-  stateless: true
 """
 
 
