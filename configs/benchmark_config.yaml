@@ -1,7 +1,7 @@
 # Benchmark configuration for RaA pipeline
 
 # Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_008"
+experiment_name: "exp_010"
 
 # Input data settings
 input_dir: "data/coco_subset"
@@ -28,10 +28,10 @@ models:
       steps: 50
       guidance_scale: 7.5
 
-# Prompt template files for different modes of operation
+# Prompt template for image captioning and generation
 prompts:
-  naive: "prompts/naive.json"
-  raa_aware: "prompts/raa_aware.json"
+  caption: "If you can read this prompt say: I read you captain."
+  image: "Generate an image of a pirate captain standing on a ship."
 
 # Logging and metadata
 logging:
