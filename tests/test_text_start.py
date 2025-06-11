@@ -1,4 +1,3 @@
-import os
 import json
 from pathlib import Path
 import pytest
@@ -11,7 +10,9 @@ def _create_dummy_texts(directory: Path):
     """Populate *directory* with two placeholder .txt prompts."""
     directory.mkdir(parents=True, exist_ok=True)
     for stem in ("a", "b"):
-        (directory / f"{stem}.txt").write_text(f"Initial prompt for {stem}.", encoding="utf-8")
+        (directory / f"{stem}.txt").write_text(
+            f"Initial prompt for {stem}.", encoding="utf-8"
+        )
 
 
 @pytest.fixture
@@ -22,16 +23,14 @@ def tit_config(tmp_path):
 
     out_dir = tmp_path / "out_results"
 
-    # Use *single quotes* in YAML so Windows backslashes are interpreted literally.
     yaml_content = f"""
-experiment_name: 'tit_test'
-input_dir: '{input_dir}'
-output_dir: '{out_dir}'
-loop:
-  type: 'T-I-T'
-  num_iterations: 2
-  stateless: true
-"""
+        experiment_name: 'tit_test'
+        input_dir: '{input_dir}'
+        output_dir: '{out_dir}'
+        loop:
+          type: 'T-I-T'
+          num_iterations: 2
+        """
 
     cfg_file = tmp_path / "cfg.yaml"
     cfg_file.write_text(yaml_content)

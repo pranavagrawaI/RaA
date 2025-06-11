@@ -14,7 +14,6 @@ output_dir: "{output_dir}"
 loop:
   type: "I-T-I"
   num_iterations: {num_iter}
-  stateless: {stateless}
 models:
   caption_model:
     name: "m1"
@@ -46,13 +45,12 @@ def two_dummy_images(tmp_path):
     return str(d)
 
 
-def make_config(tmp_path, input_dir, num_iter=1, stateless=True):
+def make_config(tmp_path, input_dir, num_iter=1):
     out_dir = str(tmp_path / "out_data")
     text = DUMMY_YAML.format(
         input_dir=input_dir.replace("\\", "\\\\"),  # escape backslashes on Windows
         output_dir=out_dir.replace("\\", "\\\\"),
         num_iter=num_iter,
-        stateless=str(stateless).lower(),
     )
     cfg_file = tmp_path / "cfg.yaml"
     cfg_file.write_text(text)
@@ -65,7 +63,7 @@ def test_single_image_one_iter(tmp_path, two_dummy_images, monkeypatch):
     # Temporarily rename so only "a.png" is seen
     os.remove(os.path.join(img_dir, "b.png"))
 
-    cfg_path, out_dir = make_config(tmp_path, img_dir, num_iter=1, stateless=True)
+    cfg_path, out_dir = make_config(tmp_path, img_dir, num_iter=1)
     config = BenchmarkConfig.from_yaml(cfg_path)
     lc = LoopController(config)
     lc.run()
@@ -91,7 +89,7 @@ def test_single_image_one_iter(tmp_path, two_dummy_images, monkeypatch):
 
 def test_two_images_two_iters_stateful(tmp_path, two_dummy_images):
     cfg_path, out_dir = make_config(
-        tmp_path, two_dummy_images, num_iter=2, stateless=False
+        tmp_path, two_dummy_images, num_iter=2
     )
     config = BenchmarkConfig.from_yaml(cfg_path)
     lc = LoopController(config)
@@ -121,7 +119,7 @@ def test_symlink_fallback(monkeypatch, tmp_path, two_dummy_images):
     monkeypatch.setattr(os, "symlink", fake_symlink)
 
     cfg_path, out_dir = make_config(
-        tmp_path, two_dummy_images, num_iter=1, stateless=True
+        tmp_path, two_dummy_images, num_iter=1
     )
     config = BenchmarkConfig.from_yaml(cfg_path)
     lc = LoopController(config)

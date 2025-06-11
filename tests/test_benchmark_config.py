@@ -9,7 +9,6 @@ output_dir: "bar/{{experiment_name}}"
 loop:
   type: "I-T-I"
   num_iterations: 3
-  stateless: false
 models:
   caption_model:
     name: "m1"
@@ -18,8 +17,8 @@ models:
     name: "m2"
     params: {}
 prompts:
-  naive: "p1"
-  raa_aware: "p2"
+  caption: "Test caption prompt"
+  image: "Test image prompt"
 logging:
   level: "DEBUG"
   save_config_snapshot: false
@@ -36,7 +35,6 @@ input_dir: "data/somefolder"
 loop:
   type: "I-T-I"
   num_iterations: 1
-  stateless: true
 """
 
 
@@ -49,12 +47,36 @@ def valid_cfg_file(tmp_path):
 
 def test_valid_config_loads(valid_cfg_file):
     cfg = BenchmarkConfig.from_yaml(valid_cfg_file)
+
+    # Core settings
     assert cfg.experiment_name == "exp_test"
     assert cfg.input_dir == "foo"
-    # Double-brace renders to single brace, then format → "bar/exp_test"
     assert cfg.output_dir.endswith("bar/exp_test")
+
+    # Loop configuration
+    assert cfg.loop.type == "I-T-I"
     assert cfg.loop.num_iterations == 3
+
+    # Model configurations
+    assert cfg.models.caption_model.name == "m1"
+    assert cfg.models.caption_model.params == {}
+    assert cfg.models.image_model.name == "m2"
+    assert cfg.models.image_model.params == {}
+
+    # Prompt configurations
+    assert cfg.prompts.caption == "Test caption prompt"
+    assert cfg.prompts.image == "Test image prompt"
+
+    # Logging settings
     assert cfg.logging.level == "DEBUG"
+    assert not cfg.logging.save_config_snapshot
+
+    # Metadata
+    assert cfg.metadata.random_seed == 123
+
+    # Optional configurations
+    assert cfg.evaluation == {}
+    assert cfg.reporting == {}
 
 
 def test_minimal_config_loads(tmp_path):
