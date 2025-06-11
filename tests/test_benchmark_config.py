@@ -38,8 +38,8 @@ loop:
 """
 
 
-@pytest.fixture
-def valid_cfg_file(tmp_path):
+@pytest.fixture(name="valid_cfg_file")
+def valid_cfg_path(tmp_path):
     path = tmp_path / "cfg.yaml"
     path.write_text(VALID_YAML)
     return str(path)
