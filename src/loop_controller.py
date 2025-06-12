@@ -60,7 +60,7 @@ class LoopController:
             om.save_text(caption, txt_name)
             record[f"iter{i}_text"] = txt_name
 
-            generated_img = generate_image(caption)
+            generated_img = generate_image(self.cfg.prompts.image, caption)
             img_name = f"image_iter{i}.jpg"
             om.save_image(generated_img, img_name)
             record[f"iter{i}_img"] = img_name
@@ -90,7 +90,7 @@ class LoopController:
         for i in range(1, self.cfg.loop.num_iterations + 1):
             with open(current_text_path, "r", encoding="utf-8") as f:
                 text_content = f.read()
-            generated_img = generate_image(text_content)
+            generated_img = generate_image(self.cfg.prompts.image, text_content)
             img_name = f"image_iter{i}.jpg"
             om.save_image(generated_img, img_name)
             record[f"iter{i}_img"] = img_name

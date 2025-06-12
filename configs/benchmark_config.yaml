@@ -1,7 +1,7 @@
 # Benchmark configuration for RaA pipeline
 
 # Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_010"
+experiment_name: "exp_013"
 
 # Input data settings
 input_dir: "data/coco_subset"
@@ -14,7 +14,7 @@ loop:
   # Type of recursive loop: I-T-I, T-I-T etc.
   type: "I-T-I"
   # Number of full recursion iterations to perform (excluding initial input)
-  num_iterations: 4
+  num_iterations: 2
 
 # Models to use for each stage of the loop
 models:
@@ -30,9 +30,8 @@ models:
 
 # Prompt template for image captioning and generation
 prompts:
-  caption: "If you can read this prompt say: I read you captain."
-  image: "Generate an image of a pirate captain standing on a ship."
-
+  caption: "Describe this image in a single, descriptive sentence, focusing on the main subject and its immediate surroundings."
+  image: "Generate an image based from the following description:"
 # Logging and metadata
 logging:
   # Log verbosity level (DEBUG, INFO, WARNING, ERROR)

@@ -1,5 +1,6 @@
-import os
 import errno
+import json
+import os
 
 import pytest
 from PIL import Image
@@ -34,8 +35,8 @@ reporting: {{}}
 """
 
 
-@pytest.fixture
-def two_dummy_images(tmp_path):
+@pytest.fixture(name="two_dummy_images")
+def dummy_images_2(tmp_path):
     d = tmp_path / "input_data"
     d.mkdir()
     # Create two tiny PNGs
@@ -57,7 +58,7 @@ def make_config(tmp_path, input_dir, num_iter=1):
     return str(cfg_file), out_dir
 
 
-def test_single_image_one_iter(tmp_path, two_dummy_images, monkeypatch):
+def test_single_image_one_iter(tmp_path, two_dummy_images):
     # Use only the first image for simplicity
     img_dir = two_dummy_images
     # Temporarily rename so only "a.png" is seen
@@ -78,19 +79,16 @@ def test_single_image_one_iter(tmp_path, two_dummy_images, monkeypatch):
     assert os.path.exists(os.path.join(sub, "text_iter1.txt"))
     assert os.path.exists(os.path.join(sub, "image_iter1.jpg"))
 
-    # metadata.json should map "a" → {…}
-    import json
-
-    meta = json.loads(open(os.path.join(out_dir, "metadata.json"), 'r', encoding='utf-8').read())
+    meta = json.loads(
+        open(os.path.join(out_dir, "metadata.json"), "r", encoding="utf-8").read()
+    )
     assert "a" in meta
     assert meta["a"]["iter1_text"] == "text_iter1.txt"
     assert meta["a"]["iter1_img"] == "image_iter1.jpg"
 
 
 def test_two_images_two_iters_stateful(tmp_path, two_dummy_images):
-    cfg_path, out_dir = make_config(
-        tmp_path, two_dummy_images, num_iter=2
-    )
+    cfg_path, out_dir = make_config(tmp_path, two_dummy_images, num_iter=2)
     config = BenchmarkConfig.from_yaml(cfg_path)
     lc = LoopController(config)
     lc.run()
@@ -118,9 +116,7 @@ def test_symlink_fallback(monkeypatch, tmp_path, two_dummy_images):
 
     monkeypatch.setattr(os, "symlink", fake_symlink)
 
-    cfg_path, out_dir = make_config(
-        tmp_path, two_dummy_images, num_iter=1
-    )
+    cfg_path, out_dir = make_config(tmp_path, two_dummy_images, num_iter=1)
     config = BenchmarkConfig.from_yaml(cfg_path)
     lc = LoopController(config)
     lc.run()
