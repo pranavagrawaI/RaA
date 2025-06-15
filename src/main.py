@@ -6,6 +6,7 @@ import yaml
 
 from loop_controller import LoopController
 from benchmark_config import BenchmarkConfig
+from evaluation_engine import EvaluationEngine
 
 
 def parse_args():
@@ -39,6 +40,13 @@ def main():
     # 4) Instantiate & run the LoopController
     controller = LoopController(config)
     controller.run()
+
+    if config.evaluation.get("enabled", True):
+        engine = EvaluationEngine(
+            config.output_dir, mode=config.evaluation.get("mode", "llm")
+        )
+        engine.run()
+        print("[INFO] Evaluation complete.")
 
     print(f"[INFO] Dry loop complete. Outputs are in `{config.output_dir}`.")
 
