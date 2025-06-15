@@ -24,7 +24,9 @@ logging:
   save_config_snapshot: false
 metadata:
   random_seed: 123
-evaluation: {}
+evaluation:
+  enabled: true
+  mode: "llm"
 reporting: {}
 """
 
@@ -35,6 +37,9 @@ input_dir: "data/somefolder"
 loop:
   type: "I-T-I"
   num_iterations: 1
+evaluation:
+  enabled: true
+  mode: "llm"
 """
 
 
@@ -74,8 +79,8 @@ def test_valid_config_loads(valid_cfg_file):
     # Metadata
     assert cfg.metadata.random_seed == 123
 
-    # Optional configurations
-    assert cfg.evaluation == {}
+    assert cfg.evaluation.enabled is True
+    assert cfg.evaluation.mode == "llm"
     assert cfg.reporting == {}
 
 
@@ -92,11 +97,21 @@ def test_minimal_config_loads(tmp_path):
     assert cfg.loop.num_iterations == 1
     assert cfg.models.caption_model.name == "dummy-captioner"
     assert cfg.logging.level == "INFO"
+    assert cfg.evaluation.enabled is True
+    assert cfg.evaluation.mode == "llm"
 
 
 def test_missing_key_raises(tmp_path):
     bad_yaml = VALID_YAML.replace('input_dir: "foo"', "")
     path = tmp_path / "bad.yaml"
+    path.write_text(bad_yaml)
+    with pytest.raises(KeyError):
+        BenchmarkConfig.from_yaml(str(path))
+
+
+def test_missing_evaluation_raises(tmp_path):
+    bad_yaml = VALID_YAML.replace("evaluation:\n  enabled: true\n  mode: \"llm\"\n", "")
+    path = tmp_path / "bad_eval.yaml"
     path.write_text(bad_yaml)
     with pytest.raises(KeyError):
         BenchmarkConfig.from_yaml(str(path))

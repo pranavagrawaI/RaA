@@ -44,5 +44,7 @@ metadata:
   random_seed: 42
 
 # Placeholder fields for future evaluation or reporting
-evaluation: {}
+evaluation:
+  enabled: true
+  mode: "llm"
 reporting: {}

@@ -43,6 +43,12 @@ class _MetadataConfig:
 
 
 @dataclass
+class _EvaluationConfig:
+    enabled: bool
+    mode: str
+
+
+@dataclass
 class BenchmarkConfig:
     """Configuration for the benchmark.
 
@@ -59,13 +65,14 @@ class BenchmarkConfig:
     input_dir: str
     loop: _LoopConfig
 
+    evaluation: _EvaluationConfig
+
     # OPTIONAL fields (with defaults):
     output_dir: str = "results/{{experiment_name}}"
     models: _ModelsConfig = field(default_factory=_ModelsConfig)
     prompts: _PromptsConfig = field(default_factory=_PromptsConfig)
     logging: _LoggingConfig = field(default_factory=_LoggingConfig)
     metadata: _MetadataConfig = field(default_factory=_MetadataConfig)
-    evaluation: Dict[str, Any] = field(default_factory=dict)
     reporting: Dict[str, Any] = field(default_factory=dict)
 
     @staticmethod
@@ -79,7 +86,7 @@ class BenchmarkConfig:
         with open(path, "r", encoding="utf-8") as f:
             raw = yaml.safe_load(f) or {}
 
-        for key in ["experiment_name", "input_dir", "loop"]:
+        for key in ["experiment_name", "input_dir", "loop", "evaluation"]:
             if key not in raw:
                 raise KeyError(f"Missing required key: '{key}'")
 
@@ -94,8 +101,7 @@ class BenchmarkConfig:
         prompts_cfg = BenchmarkConfig._load_prompts_config(raw.get("prompts", {}))
         logging_cfg = BenchmarkConfig._load_logging_config(raw.get("logging", {}))
         metadata_cfg = BenchmarkConfig._load_metadata_config(raw.get("metadata", {}))
-
-        eval_cfg = raw.get("evaluation", {})
+        eval_cfg = BenchmarkConfig._load_evaluation_config(raw["evaluation"])
         rep_cfg = raw.get("reporting", {})
 
         return BenchmarkConfig(
@@ -149,6 +155,15 @@ class BenchmarkConfig:
         return _LoggingConfig(
             level=log_dict.get("level", "INFO"),
             save_config_snapshot=bool(log_dict.get("save_config_snapshot", True)),
+        )
+
+    @staticmethod
+    def _load_evaluation_config(eval_dict: Dict[str, Any]) -> _EvaluationConfig:
+        if "enabled" not in eval_dict or "mode" not in eval_dict:
+            raise KeyError("evaluation.enabled and evaluation.mode are required")
+        return _EvaluationConfig(
+            enabled=bool(eval_dict["enabled"]),
+            mode=str(eval_dict["mode"]),
         )
 
     @staticmethod

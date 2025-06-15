@@ -30,6 +30,9 @@ def tit_config(tmp_path):
         loop:
           type: 'T-I-T'
           num_iterations: 2
+        evaluation:
+          enabled: true
+          mode: 'llm'
         """
 
     cfg_file = tmp_path / "cfg.yaml"
