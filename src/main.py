@@ -41,9 +41,9 @@ def main():
     controller = LoopController(config)
     controller.run()
 
-    if config.evaluation.get("enabled", True):
+    if config.evaluation.enabled:
         engine = EvaluationEngine(
-            config.output_dir, mode=config.evaluation.get("mode", "llm")
+            config.output_dir, mode=config.evaluation.mode
         )
         engine.run()
         print("[INFO] Evaluation complete.")
