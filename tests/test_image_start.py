@@ -30,7 +30,9 @@ logging:
   save_config_snapshot: false
 metadata:
   random_seed: 0
-evaluation: {{}}
+evaluation:
+  enabled: true
+  mode: "llm"
 reporting: {{}}
 """
 
