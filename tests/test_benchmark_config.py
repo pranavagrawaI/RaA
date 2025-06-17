@@ -110,7 +110,7 @@ def test_missing_key_raises(tmp_path):
 
 
 def test_missing_evaluation_raises(tmp_path):
-    bad_yaml = VALID_YAML.replace("evaluation:\n  enabled: true\n  mode: \"llm\"\n", "")
+    bad_yaml = VALID_YAML.replace('evaluation:\n  enabled: true\n  mode: "llm"\n', "")
     path = tmp_path / "bad_eval.yaml"
     path.write_text(bad_yaml)
     with pytest.raises(KeyError):

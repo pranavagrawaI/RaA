@@ -3,6 +3,7 @@ from PIL import Image
 import prompt_engine
 from prompt_engine import generate_caption
 
+
 def test_generate_caption_returns_nonempty_string(tmp_path):
     fake_path = str(tmp_path / "some_image.jpg")
     # Create a valid image file instead of writing text

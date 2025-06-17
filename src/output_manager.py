@@ -31,7 +31,9 @@ class OutputManager:
         image.save(path)
         return path
 
-    def write_json(self, obj: Dict[str, Any] | List[Any], fname: str = "metadata.json") -> None:
+    def write_json(
+        self, obj: Dict[str, Any] | List[Any], fname: str = "metadata.json"
+    ) -> None:
         with open(self._full(fname), "w", encoding="utf-8") as f:
             json.dump(obj, f, indent=2)
 

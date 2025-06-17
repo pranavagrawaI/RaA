@@ -121,7 +121,9 @@ class EvaluationEngine:
         self, item: str, step: int, img_a: str, img_b: str, anchor: str
     ) -> List[Dict[str, Any]]:
         rating = self._run_rater("image-image", img_a, img_b)
-        return [self._package("image-image", item, step, anchor, rating, [img_a, img_b])]
+        return [
+            self._package("image-image", item, step, anchor, rating, [img_a, img_b])
+        ]
 
     def _compare_texts(
         self, item: str, step: int, txt_a: str, txt_b: str, anchor: str
@@ -299,7 +301,13 @@ Text 2: {text2}"""
             return {"score": 3, "reason": f"Error: {str(e)}"}
 
     def _package(
-        self, typ: str, item: str, step: int, anchor: str, rating: Rating, items: List[str]
+        self,
+        typ: str,
+        item: str,
+        step: int,
+        anchor: str,
+        rating: Rating,
+        items: List[str],
     ) -> Dict[str, Any]:
         # Convert absolute paths to relative paths for cleaner output
         rel_items = [os.path.basename(item) for item in items]
