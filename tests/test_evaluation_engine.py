@@ -24,7 +24,7 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
     monkeypatch.setattr(
         EvaluationEngine,
         "_run_rater",
-        lambda self, prompt: {"score": 5, "reason": "ok"},
+        lambda self, kind, a, b: {"score": 5, "reason": "ok"},
     )
 
     engine = EvaluationEngine(str(exp))
