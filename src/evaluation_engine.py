@@ -24,9 +24,14 @@ Rating = Dict[str, Any]
 class EvaluationEngine:
     """Evaluate semantic drift across loop iterations."""
 
-    def __init__(self, exp_root: str, mode: Literal["llm", "human"] = "llm") -> None:
+    def __init__(
+        self, exp_root: str, mode: Literal["llm", "human"] = "llm", config=None
+    ) -> None:
         self.exp_root = pathlib.Path(exp_root)
         self.mode = mode
+        self.loop_type = (
+            config.loop.type.upper() if config else ""
+        )  # Will do all comparisons if config not provided
 
     def run(self) -> None:
         meta_path = self.exp_root / "metadata.json"
@@ -46,7 +51,7 @@ class EvaluationEngine:
         ]
         iters = sorted({int(idx.replace("iter", "")) for idx in iters})
 
-        start_with_image = "input.jpg" in rec
+        start_with_image = "input.jpg" in rec or self.loop_type == "I-T-I"
         base_img = (
             _path("input.jpg") if start_with_image else _path(rec.get("iter1_img", ""))
         )
@@ -59,13 +64,54 @@ class EvaluationEngine:
         for i in iters:
             curr_img = _path(rec[f"iter{i}_img"])
             curr_txt = _path(rec[f"iter{i}_text"])
-            prev_img = _path(rec[f"iter{i - 1}_img"]) if i > 1 else base_img
-            prev_txt = _path(rec[f"iter{i - 1}_text"]) if i > 1 else base_txt
 
-            evals += self._compare_images(item_id, i, curr_img, base_img, "original")
-            evals += self._compare_images(item_id, i, curr_img, prev_img, "previous")
-            evals += self._compare_texts(item_id, i, curr_txt, base_txt, "original")
-            evals += self._compare_texts(item_id, i, curr_txt, prev_txt, "previous")
+            # Compare with original (base) content
+            if self.loop_type == "I-T-I":
+                # For I-T-I: Always compare current image with original
+                evals += self._compare_images(
+                    item_id, i, curr_img, base_img, "original"
+                )
+            elif self.loop_type == "T-I-T":
+                # For T-I-T: Always compare current text with original
+                evals += self._compare_texts(item_id, i, curr_txt, base_txt, "original")
+            else:
+                # If loop type unknown, do both comparisons
+                evals += self._compare_images(
+                    item_id, i, curr_img, base_img, "original"
+                )
+                evals += self._compare_texts(item_id, i, curr_txt, base_txt, "original")
+
+            # Compare with previous iteration (only for iterations after the first)
+            if i > 1:
+                prev_img = _path(rec[f"iter{i - 1}_img"])
+                prev_txt = _path(rec[f"iter{i - 1}_text"])
+
+                if self.loop_type == "I-T-I":
+                    # For I-T-I: Compare both images and texts with previous iteration
+                    evals += self._compare_images(
+                        item_id, i, curr_img, prev_img, "previous"
+                    )
+                    evals += self._compare_texts(
+                        item_id, i, curr_txt, prev_txt, "previous"
+                    )
+                elif self.loop_type == "T-I-T":
+                    # For T-I-T: Compare both texts and images with previous iteration
+                    evals += self._compare_texts(
+                        item_id, i, curr_txt, prev_txt, "previous"
+                    )
+                    evals += self._compare_images(
+                        item_id, i, curr_img, prev_img, "previous"
+                    )
+                else:
+                    # If loop type unknown, do both comparisons
+                    evals += self._compare_images(
+                        item_id, i, curr_img, prev_img, "previous"
+                    )
+                    evals += self._compare_texts(
+                        item_id, i, curr_txt, prev_txt, "previous"
+                    )
+
+            # Always do image-text comparison for current iteration
             evals += self._compare_cross(item_id, i, curr_img, curr_txt, "same-step")
 
         om.write_json(evals, "ratings.json")
@@ -75,19 +121,19 @@ class EvaluationEngine:
         self, item: str, step: int, img_a: str, img_b: str, anchor: str
     ) -> List[Dict[str, Any]]:
         rating = self._run_rater("image-image", img_a, img_b)
-        return [self._package("image-image", item, step, anchor, rating)]
+        return [self._package("image-image", item, step, anchor, rating, [img_a, img_b])]
 
     def _compare_texts(
         self, item: str, step: int, txt_a: str, txt_b: str, anchor: str
     ) -> List[Dict[str, Any]]:
         rating = self._run_rater("text-text", txt_a, txt_b)
-        return [self._package("text-text", item, step, anchor, rating)]
+        return [self._package("text-text", item, step, anchor, rating, [txt_a, txt_b])]
 
     def _compare_cross(
         self, item: str, step: int, img: str, txt: str, anchor: str
     ) -> List[Dict[str, Any]]:
         rating = self._run_rater("image-text", img, txt)
-        return [self._package("image-text", item, step, anchor, rating)]
+        return [self._package("image-text", item, step, anchor, rating, [img, txt])]
 
     # ------------------------------------------------------------------
     def _format_prompt(self, kind: str, a: str, b: str) -> str:
@@ -121,42 +167,131 @@ class EvaluationEngine:
             return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
 
         client = genai.Client(api_key=api_key)
-        prompt = 'Rate the semantic similarity from 1 (very different) to 5 (identical) and justify. Respond in JSON {"score": int, "reason": str}.'
-
+        base_prompt = """You are an expert in analyzing semantic similarity between content. 
+Rate the similarity from 1 (very different) to 5 (identical) and explain your rating.
+Always format your response as a JSON object with exactly two fields: "score" (integer 1-5) and "reason" (string).
+Example: {"score": 4, "reason": "The images are highly similar in composition and subject matter."}
+"""
         try:
             if kind == "image-image":
-                img1 = Image.open(a)
-                img2 = Image.open(b)
-                contents = [img1, img2, prompt]
+                # Ensure both files exist and can be opened as images
+                if not (os.path.exists(a) and os.path.exists(b)):
+                    raise FileNotFoundError(f"Missing image file(s): {a} or {b}")
+
+                with Image.open(a) as img1, Image.open(b) as img2:
+                    # Convert to RGB mode if needed
+                    if img1.mode != "RGB":
+                        img1 = img1.convert("RGB")
+                    if img2.mode != "RGB":
+                        img2 = img2.convert("RGB")
+
+                    prompt_part = """Compare these two images:"""
+                    response = client.models.generate_content(
+                        model="gemini-2.0-flash-lite",
+                        contents=[base_prompt, prompt_part, img1, img2],
+                    )
+
             elif kind == "text-text":
-                text1 = open(a, "r", encoding="utf-8").read()
-                text2 = open(b, "r", encoding="utf-8").read()
-                contents = [text1, text2, prompt]
+                # Handle missing text files by using placeholders
+                text1 = "No text available"
+                text2 = "No text available"
+
+                if os.path.exists(a):
+                    with open(a, "r", encoding="utf-8") as f:
+                        text1 = f.read().strip()
+                if os.path.exists(b):
+                    with open(b, "r", encoding="utf-8") as f:
+                        text2 = f.read().strip()
+
+                prompt_text = f"""Compare these two texts:
+Text 1: {text1}
+Text 2: {text2}"""
+                response = client.models.generate_content(
+                    model="gemini-2.0-flash-lite",
+                    contents=[base_prompt + "\n" + prompt_text],
+                )
+
             elif kind == "image-text":
+                # Determine which is image and which is text
                 if a.lower().endswith((".jpg", ".jpeg", ".png")):
-                    img = Image.open(a)
-                    text = open(b, "r", encoding="utf-8").read()
+                    img_path, txt_path = a, b
                 else:
-                    img = Image.open(b)
-                    text = open(a, "r", encoding="utf-8").read()
-                contents = [img, text, prompt]
+                    img_path, txt_path = b, a
+
+                if not os.path.exists(img_path):
+                    raise FileNotFoundError(f"Missing image file: {img_path}")
+
+                text = "No text available"
+                if os.path.exists(txt_path):
+                    with open(txt_path, "r", encoding="utf-8") as f:
+                        text = f.read().strip()
+
+                with Image.open(img_path) as img:
+                    if img.mode != "RGB":
+                        img = img.convert("RGB")
+
+                    prompt_part = """Compare this image to the following text:"""
+                    response = client.models.generate_content(
+                        model="gemini-2.0-flash-lite",
+                        contents=[base_prompt, prompt_part, img, f"Text: {text}"],
+                    )
+
             else:
                 raise ValueError(f"Unknown comparison type: {kind}")
 
-            resp = client.models.generate_content(
-                model="gemini-2.0-flash-lite", contents=contents
-            )
-            return json.loads(resp.text)
-        except Exception as e:  # noqa: BLE001
-            return {"score": 3, "reason": f"LLM error: {e}"}
+            try:
+                # Check if response.text exists and is not None
+                if hasattr(response, "text") and response.text is not None:
+                    response_text = response.text.strip()
+                    # Try to extract JSON from the response text
+                    try:
+                        # Look for JSON object in the text
+                        start_idx = response_text.find("{")
+                        end_idx = response_text.rfind("}") + 1
+                        if start_idx >= 0 and end_idx > start_idx:
+                            json_str = response_text[start_idx:end_idx]
+                            result = json.loads(json_str)
+                            # Validate the result has required fields
+                            if isinstance(
+                                result.get("score"), (int, float)
+                            ) and isinstance(result.get("reason"), str):
+                                return {
+                                    "score": int(result["score"]),
+                                    "reason": result["reason"][:280],
+                                }
+                    except (json.JSONDecodeError, KeyError, ValueError):
+                        pass
+
+                    # Fallback: Try to extract score and reason from text
+                    try:
+                        words = response_text.lower().split()
+                        # Look for a number 1-5 in the text
+                        score = 3  # default
+                        for word in words:
+                            if word.isdigit() and 1 <= int(word) <= 5:
+                                score = int(word)
+                                break
+                        return {"score": score, "reason": response_text[:280]}
+                    except Exception:
+                        pass
+
+                return {"score": 3, "reason": "Could not parse response"}
+            except Exception:
+                return {"score": 3, "reason": "Error processing response"}
+
+        except Exception as e:
+            return {"score": 3, "reason": f"Error: {str(e)}"}
 
     def _package(
-        self, typ: str, item: str, step: int, anchor: str, rating: Rating
+        self, typ: str, item: str, step: int, anchor: str, rating: Rating, items: List[str]
     ) -> Dict[str, Any]:
+        # Convert absolute paths to relative paths for cleaner output
+        rel_items = [os.path.basename(item) for item in items]
         return {
             "item_id": item,
             "step": step,
             "anchor": anchor,
             "comparison_type": typ,
+            "comparison_items": rel_items,
             **rating,
         }

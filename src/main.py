@@ -43,7 +43,7 @@ def main():
 
     if config.evaluation.enabled:
         engine = EvaluationEngine(
-            config.output_dir, mode=config.evaluation.mode
+            config.output_dir, mode=config.evaluation.mode, config=config
         )
         engine.run()
         print("[INFO] Evaluation complete.")

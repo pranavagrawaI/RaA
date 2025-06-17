@@ -6,7 +6,7 @@ Supports creating sub-managers rooted at results/exp_name/<image_stem>/.
 
 import json
 import os
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 import yaml
 from PIL import Image
@@ -31,7 +31,7 @@ class OutputManager:
         image.save(path)
         return path
 
-    def write_json(self, obj: Dict[str, Any], fname: str = "metadata.json") -> None:
+    def write_json(self, obj: Dict[str, Any] | List[Any], fname: str = "metadata.json") -> None:
         with open(self._full(fname), "w", encoding="utf-8") as f:
             json.dump(obj, f, indent=2)
 
