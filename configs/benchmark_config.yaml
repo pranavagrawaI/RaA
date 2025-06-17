@@ -1,7 +1,7 @@
 # Benchmark configuration for RaA pipeline
 
 # Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_013"
+experiment_name: "exp_016"
 
 # Input data settings
 input_dir: "data/coco_subset"

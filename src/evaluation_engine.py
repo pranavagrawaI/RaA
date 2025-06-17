@@ -13,10 +13,10 @@ import os
 import pathlib
 from typing import Any, Dict, List, Literal
 
-from output_manager import OutputManager
-from prompt_engine import generate_caption  # noqa: F401  # optional reuse
 from google import genai
 from PIL import Image
+
+from output_manager import OutputManager
 
 Rating = Dict[str, Any]
 
@@ -41,18 +41,26 @@ class EvaluationEngine:
         def _path(rel: str) -> str:
             return os.path.join(self.exp_root, item_id, rel)
 
-        iters = [k.split("_")[0] for k in rec if k.startswith("iter") and k.endswith("_img")]
+        iters = [
+            k.split("_")[0] for k in rec if k.startswith("iter") and k.endswith("_img")
+        ]
         iters = sorted({int(idx.replace("iter", "")) for idx in iters})
 
         start_with_image = "input.jpg" in rec
-        base_img = _path("input.jpg") if start_with_image else _path(rec.get("iter1_img", ""))
-        base_txt = _path("input.txt") if not start_with_image else _path(rec.get("iter1_text", ""))
+        base_img = (
+            _path("input.jpg") if start_with_image else _path(rec.get("iter1_img", ""))
+        )
+        base_txt = (
+            _path("input.txt")
+            if not start_with_image
+            else _path(rec.get("iter1_text", ""))
+        )
 
         for i in iters:
             curr_img = _path(rec[f"iter{i}_img"])
             curr_txt = _path(rec[f"iter{i}_text"])
-            prev_img = _path(rec[f"iter{i-1}_img"]) if i > 1 else base_img
-            prev_txt = _path(rec[f"iter{i-1}_text"]) if i > 1 else base_txt
+            prev_img = _path(rec[f"iter{i - 1}_img"]) if i > 1 else base_img
+            prev_txt = _path(rec[f"iter{i - 1}_text"]) if i > 1 else base_txt
 
             evals += self._compare_images(item_id, i, curr_img, base_img, "original")
             evals += self._compare_images(item_id, i, curr_img, prev_img, "previous")
@@ -63,15 +71,21 @@ class EvaluationEngine:
         om.write_json(evals, "ratings.json")
 
     # ------------------------------------------------------------------
-    def _compare_images(self, item: str, step: int, img_a: str, img_b: str, anchor: str) -> List[Dict[str, Any]]:
+    def _compare_images(
+        self, item: str, step: int, img_a: str, img_b: str, anchor: str
+    ) -> List[Dict[str, Any]]:
         rating = self._run_rater("image-image", img_a, img_b)
         return [self._package("image-image", item, step, anchor, rating)]
 
-    def _compare_texts(self, item: str, step: int, txt_a: str, txt_b: str, anchor: str) -> List[Dict[str, Any]]:
+    def _compare_texts(
+        self, item: str, step: int, txt_a: str, txt_b: str, anchor: str
+    ) -> List[Dict[str, Any]]:
         rating = self._run_rater("text-text", txt_a, txt_b)
         return [self._package("text-text", item, step, anchor, rating)]
 
-    def _compare_cross(self, item: str, step: int, img: str, txt: str, anchor: str) -> List[Dict[str, Any]]:
+    def _compare_cross(
+        self, item: str, step: int, img: str, txt: str, anchor: str
+    ) -> List[Dict[str, Any]]:
         rating = self._run_rater("image-text", img, txt)
         return [self._package("image-text", item, step, anchor, rating)]
 
@@ -107,7 +121,7 @@ class EvaluationEngine:
             return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
 
         client = genai.Client(api_key=api_key)
-        prompt = "Rate the semantic similarity from 1 (very different) to 5 (identical) and justify. Respond in JSON {\"score\": int, \"reason\": str}."
+        prompt = 'Rate the semantic similarity from 1 (very different) to 5 (identical) and justify. Respond in JSON {"score": int, "reason": str}.'
 
         try:
             if kind == "image-image":
@@ -129,12 +143,16 @@ class EvaluationEngine:
             else:
                 raise ValueError(f"Unknown comparison type: {kind}")
 
-            resp = client.models.generate_content(model="gemini-2.0-pro", contents=contents)
+            resp = client.models.generate_content(
+                model="gemini-2.0-flash-lite", contents=contents
+            )
             return json.loads(resp.text)
         except Exception as e:  # noqa: BLE001
             return {"score": 3, "reason": f"LLM error: {e}"}
 
-    def _package(self, typ: str, item: str, step: int, anchor: str, rating: Rating) -> Dict[str, Any]:
+    def _package(
+        self, typ: str, item: str, step: int, anchor: str, rating: Rating
+    ) -> Dict[str, Any]:
         return {
             "item_id": item,
             "step": step,
