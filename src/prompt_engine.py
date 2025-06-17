@@ -6,11 +6,9 @@ from google import genai
 from google.genai import types
 from PIL import Image
 
-api_key = os.getenv("GOOGLE_API_KEY")
-
 
 def generate_caption(image_path: str, prompt: str) -> str:
-    """Return a caption for image_path"""
+    """Return a caption for ``image_path``."""
 
     caption = _caption_with_gemini(image_path, prompt)
     if caption:
@@ -21,8 +19,9 @@ def generate_caption(image_path: str, prompt: str) -> str:
 
 
 def _caption_with_gemini(image_path: str, prompt: str) -> Optional[str]:
-    """Return a caption for *image_path* using Gemini if available."""
+    """Return a caption for ``image_path`` using Gemini if possible."""
 
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         return None
 
@@ -36,9 +35,12 @@ def _caption_with_gemini(image_path: str, prompt: str) -> Optional[str]:
 
 
 def generate_image(prompt: str, text: str) -> Image.Image:
-    """
-    Generate an image from text prompt using Gemini's image generation capabilities.
-    """
+    """Generate an image from ``text`` using Gemini."""
+
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        return Image.new("RGB", (32, 32), color="gray")
+
     client = genai.Client(api_key=api_key)
 
     response = client.models.generate_images(
