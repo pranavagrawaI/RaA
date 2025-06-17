@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import os
 import pathlib
+import re
 from typing import Any, Dict, List, Literal
 
 from google import genai
@@ -108,6 +109,22 @@ class EvaluationEngine:
             return f"[IMAGE-TEXT]\nImage: {img}\nText: {text}\n{base}"
         return f"{base}"
 
+    def _extract_response_text(self, resp: Any) -> str | None:
+        """Return the textual content from a Gemini response."""
+        if resp is None:
+            return None
+        if hasattr(resp, "text"):
+            return resp.text
+        if hasattr(resp, "candidates") and resp.candidates:
+            cand = resp.candidates[0]
+            parts = getattr(getattr(cand, "content", None), "parts", None)
+            if parts:
+                for part in parts:
+                    text = getattr(part, "text", None)
+                    if text:
+                        return text
+        return None
+
     def _run_rater(self, kind: str, a: str, b: str) -> Rating:
         if self.mode == "human":
             prompt = self._format_prompt(kind, a, b)
@@ -121,7 +138,10 @@ class EvaluationEngine:
             return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
 
         client = genai.Client(api_key=api_key)
-        prompt = 'Rate the semantic similarity from 1 (very different) to 5 (identical) and justify. Respond in JSON {"score": int, "reason": str}.'
+        prompt = (
+            'Rate the semantic similarity from 1 (very different) to 5 '
+            '(identical) and justify. Respond in JSON {"score": int, "reason": str}.'
+        )
 
         try:
             if kind == "image-image":
@@ -146,7 +166,16 @@ class EvaluationEngine:
             resp = client.models.generate_content(
                 model="gemini-2.0-flash-lite", contents=contents
             )
-            return json.loads(resp.text)
+            text = self._extract_response_text(resp)
+            if not text:
+                raise ValueError("Empty response")
+            try:
+                return json.loads(text)
+            except json.JSONDecodeError:
+                match = re.search(r"\{.*\}", text, re.DOTALL)
+                if match:
+                    return json.loads(match.group(0))
+                raise
         except Exception as e:  # noqa: BLE001
             return {"score": 3, "reason": f"LLM error: {e}"}
 
