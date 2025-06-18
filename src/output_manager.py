@@ -5,7 +5,7 @@ Supports creating sub-managers rooted at results/exp_name/<image_stem>/.
 """
 
 import json
-import os
+from pathlib import Path
 from typing import Any, Dict, List
 
 import yaml
@@ -13,20 +13,19 @@ from PIL import Image
 
 
 class OutputManager:
-    def __init__(self, root_dir: str):
-        self.root_dir = root_dir  # e.g. results/exp_001  OR  results/exp_001/input_0
-        os.makedirs(self.root_dir, exist_ok=True)
+    def __init__(self, root_dir: str | Path):
+        self.root_dir = Path(root_dir)
+        self.root_dir.mkdir(parents=True, exist_ok=True)
 
-    def _full(self, fname: str) -> str:
-        return os.path.join(self.root_dir, fname)
+    def _full(self, fname: str) -> Path:
+        return self.root_dir / fname
 
-    def save_text(self, text: str, fname: str) -> str:
+    def save_text(self, text: str, fname: str) -> Path:
         path = self._full(fname)
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(text)
+        path.write_text(text, encoding="utf-8")
         return path
 
-    def save_image(self, image: Image.Image, fname: str) -> str:
+    def save_image(self, image: Image.Image, fname: str) -> Path:
         path = self._full(fname)
         image.save(path)
         return path
@@ -43,4 +42,4 @@ class OutputManager:
 
     def subdir(self, subfolder: str) -> "OutputManager":
         """Return a new OutputManager rooted at <root_dir>/<subfolder>."""
-        return OutputManager(os.path.join(self.root_dir, subfolder))
+        return OutputManager(self.root_dir / subfolder)
