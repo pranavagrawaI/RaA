@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Dry-run recursive loop controller (I-T-I, T-I-T, etc.) that produces placeholders.
-Stores outputs in results/exp_name/<identifier>/
+Recursive loop controller.
+Stores outputs in results/<exp_name>/<identifier>/
 """
 
 import os

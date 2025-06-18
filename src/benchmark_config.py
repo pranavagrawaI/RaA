@@ -64,7 +64,6 @@ class BenchmarkConfig:
     experiment_name: str
     input_dir: str
     loop: _LoopConfig
-
     evaluation: _EvaluationConfig
 
     # OPTIONAL fields (with defaults):

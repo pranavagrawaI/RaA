@@ -185,7 +185,7 @@ class EvaluationEngine:
             return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
 
         client = genai.Client(api_key=api_key)
-        base_prompt = """You are an expert in analyzing semantic similarity between content. 
+        base_prompt = """You are an expert in analyzing semantic similarity between content.
 Rate the similarity from 1 (very different) to 5 (identical) and explain your rating.
 Always format your response as a JSON object with exactly two fields: "score" (integer 1-5) and "reason" (string).
 Example: {"score": 4, "reason": "The images are highly similar in composition and subject matter."}
