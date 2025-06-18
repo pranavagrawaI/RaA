@@ -14,3 +14,27 @@ def test_generate_caption_no_api_key(test_image, monkeypatch):
     caption = generate_caption(str(test_image), prompt="This is a test prompt")
     assert "placeholder caption" in caption.lower()
     assert test_image.name in caption  # contains filename
+
+
+def test_image_context_manager_used(test_image, mock_google_api, monkeypatch):
+    """Ensure Image.open is used as a context manager."""
+
+    closed = {"flag": False}
+
+    class DummyImage:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, tb):
+            closed["flag"] = True
+
+        def copy(self):
+            return self
+
+    def dummy_open(path):
+        return DummyImage()
+
+    monkeypatch.setattr("prompt_engine.Image.open", dummy_open)
+
+    generate_caption(str(test_image), prompt="Prompt")
+    assert closed["flag"]
