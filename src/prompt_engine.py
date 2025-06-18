@@ -26,10 +26,12 @@ def _caption_with_gemini(image_path: str, prompt: str) -> Optional[str]:
         return None
 
     client = genai.Client(api_key=api_key)
-    image = Image.open(image_path)
+
+    with Image.open(image_path) as img:
+        image_data = img.copy()
 
     response = client.models.generate_content(
-        model="gemini-2.0-flash", contents=[image, prompt]
+        model="gemini-2.0-flash", contents=[image_data, prompt]
     )
     return response.text if response and hasattr(response, "text") else None
 

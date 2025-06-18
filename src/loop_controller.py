@@ -36,23 +36,23 @@ class LoopController:
         self.rootOM.write_json(self.meta, "metadata.json")
 
     def _run_i_t_i(self) -> None:
-        images = sorted(glob(os.path.join(self.cfg.input_dir, "*.[jp][pn]g")))
+        images = sorted(Path(self.cfg.input_dir).glob("*.[jp][pn]g"))
         if not images:
             raise RuntimeError(f"No .jpg/.png found in {self.cfg.input_dir}")
 
         for path in images:
             stem = Path(path).stem
-            self._process_i_t_i_for_image(path, stem)
+            self._process_i_t_i_for_image(str(path), stem)
 
     def _process_i_t_i_for_image(self, img_path: str, stem: str) -> None:
         om = self.rootOM.subdir(stem)
         record: Dict[str, str] = {}
 
-        dest_input = os.path.join(om.root_dir, "input.jpg")
-        self._link_file(img_path, dest_input)
+        dest_input = om.root_dir / "input.jpg"
+        self._link_file(img_path, str(dest_input))
         record["input"] = "input.jpg"
 
-        current_img_path = dest_input
+        current_img_path = str(dest_input)
         for i in range(1, self.cfg.loop.num_iterations + 1):
             caption = generate_caption(
                 current_img_path, prompt=self.cfg.prompts.caption
@@ -66,28 +66,28 @@ class LoopController:
             om.save_image(generated_img, img_name)
             record[f"iter{i}_img"] = img_name
 
-            current_img_path = os.path.join(om.root_dir, img_name)
+            current_img_path = str(om.root_dir / img_name)
 
         self.meta[stem] = record
 
     def _run_t_i_t(self) -> None:
-        texts = sorted(glob(os.path.join(self.cfg.input_dir, "*.txt")))
+        texts = sorted(Path(self.cfg.input_dir).glob("*.txt"))
         if not texts:
             raise RuntimeError(f"No .txt found in {self.cfg.input_dir}")
 
         for path in texts:
             stem = Path(path).stem
-            self._process_t_i_t_for_text(path, stem)
+            self._process_t_i_t_for_text(str(path), stem)
 
     def _process_t_i_t_for_text(self, txt_path: str, stem: str) -> None:
         om = self.rootOM.subdir(stem)
         record: Dict[str, str] = {}
 
-        dest_input = os.path.join(om.root_dir, "input.txt")
-        self._link_file(txt_path, dest_input)
+        dest_input = om.root_dir / "input.txt"
+        self._link_file(txt_path, str(dest_input))
         record["input"] = "input.txt"
 
-        current_text_path = dest_input
+        current_text_path = str(dest_input)
         for i in range(1, self.cfg.loop.num_iterations + 1):
             with open(current_text_path, "r", encoding="utf-8") as f:
                 text_content = f.read()
@@ -96,33 +96,34 @@ class LoopController:
             om.save_image(generated_img, img_name)
             record[f"iter{i}_img"] = img_name
 
-            img_path = os.path.join(om.root_dir, img_name)
+            img_path = str(om.root_dir / img_name)
             caption = generate_caption(img_path, prompt=self.cfg.prompts.caption)
             txt_name = f"text_iter{i}.txt"
             om.save_text(caption, txt_name)
             record[f"iter{i}_text"] = txt_name
 
-            current_text_path = os.path.join(om.root_dir, txt_name)
+            current_text_path = str(om.root_dir / txt_name)
 
         self.meta[stem] = record
 
     def _link_file(self, src: str, dst: str) -> None:
         """Create a symlink; fall back to copy if symlink fails."""
-        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        dst_path = Path(dst)
+        dst_path.parent.mkdir(parents=True, exist_ok=True)
 
-        if os.path.exists(dst):
+        if dst_path.exists():
             try:
-                os.remove(dst)
+                dst_path.unlink()
             except (PermissionError, OSError):
                 time.sleep(1)
                 try:
-                    os.remove(dst)
+                    dst_path.unlink()
                 except (PermissionError, OSError) as e:
                     print(f"Warning: Could not remove existing file {dst}: {e}")
                     return
 
         try:
-            os.symlink(os.path.abspath(src), dst)
+            os.symlink(os.path.abspath(src), dst_path)
             return
         except (AttributeError, NotImplementedError, OSError) as e:
             if isinstance(e, OSError) and e.errno not in (errno.EEXIST, errno.EPERM):
@@ -153,3 +154,4 @@ class LoopController:
                     continue
                 logging.warning("Could not copy file %s to %s: %s", src, dst, e)
                 return
+
