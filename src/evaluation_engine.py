@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 import os
-import pathlib
+from pathlib import Path
 from typing import Any, Dict, List, Literal
 
 from google import genai
@@ -27,7 +27,7 @@ class EvaluationEngine:
     def __init__(
         self, exp_root: str, mode: Literal["llm", "human"] = "llm", config=None
     ) -> None:
-        self.exp_root = pathlib.Path(exp_root)
+        self.exp_root = Path(exp_root)
         self.mode = mode
         self.loop_type = (
             config.loop.type.upper() if config else ""
@@ -40,11 +40,11 @@ class EvaluationEngine:
             self._eval_single_item(item_id, record)
 
     def _eval_single_item(self, item_id: str, rec: Dict[str, str]) -> None:
-        om = OutputManager(os.path.join(self.exp_root, item_id, "eval"))
+        om = OutputManager(self.exp_root / item_id / "eval")
         evals: List[Dict[str, Any]] = []
 
         def _path(rel: str) -> str:
-            return os.path.join(self.exp_root, item_id, rel)
+            return str(self.exp_root / item_id / rel)
 
         iters = [
             k.split("_")[0] for k in rec if k.startswith("iter") and k.endswith("_img")
@@ -193,7 +193,7 @@ Example: {"score": 4, "reason": "The images are highly similar in composition an
         try:
             if kind == "image-image":
                 # Ensure both files exist and can be opened as images
-                if not (os.path.exists(a) and os.path.exists(b)):
+                if not (Path(a).exists() and Path(b).exists()):
                     raise FileNotFoundError(f"Missing image file(s): {a} or {b}")
 
                 with Image.open(a) as img1, Image.open(b) as img2:
@@ -214,10 +214,10 @@ Example: {"score": 4, "reason": "The images are highly similar in composition an
                 text1 = "No text available"
                 text2 = "No text available"
 
-                if os.path.exists(a):
+                if Path(a).exists():
                     with open(a, "r", encoding="utf-8") as f:
                         text1 = f.read().strip()
-                if os.path.exists(b):
+                if Path(b).exists():
                     with open(b, "r", encoding="utf-8") as f:
                         text2 = f.read().strip()
 
@@ -236,11 +236,11 @@ Text 2: {text2}"""
                 else:
                     img_path, txt_path = b, a
 
-                if not os.path.exists(img_path):
+                if not Path(img_path).exists():
                     raise FileNotFoundError(f"Missing image file: {img_path}")
 
                 text = "No text available"
-                if os.path.exists(txt_path):
+                if Path(txt_path).exists():
                     with open(txt_path, "r", encoding="utf-8") as f:
                         text = f.read().strip()
 
@@ -310,7 +310,7 @@ Text 2: {text2}"""
         items: List[str],
     ) -> Dict[str, Any]:
         # Convert absolute paths to relative paths for cleaner output
-        rel_items = [os.path.basename(item) for item in items]
+        rel_items = [Path(item).name for item in items]
         return {
             "item_id": item,
             "step": step,
