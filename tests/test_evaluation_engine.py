@@ -26,7 +26,11 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
         lambda self, kind, a, b: {"score": 5, "reason": "ok"},
     )
 
-    engine = EvaluationEngine(str(exp))
+    class DummyClient:
+        pass
+
+    engine = EvaluationEngine(str(exp), client=DummyClient())
+    assert isinstance(engine.client, DummyClient)
     engine.run()
 
     ratings_path = item / "eval" / "ratings.json"

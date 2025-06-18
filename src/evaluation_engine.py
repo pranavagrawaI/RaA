@@ -25,13 +25,24 @@ class EvaluationEngine:
     """Evaluate semantic drift across loop iterations."""
 
     def __init__(
-        self, exp_root: str, mode: Literal["llm", "human"] = "llm", config=None
+        self,
+        exp_root: str,
+        mode: Literal["llm", "human"] = "llm",
+        config=None,
+        client: genai.Client | None = None,
     ) -> None:
         self.exp_root = Path(exp_root)
         self.mode = mode
         self.loop_type = (
             config.loop.type.upper() if config else ""
         )  # Will do all comparisons if config not provided
+        if client is not None:
+            self.client = client
+        elif self.mode == "llm":
+            api_key = os.getenv("GOOGLE_API_KEY")
+            self.client = genai.Client(api_key=api_key) if api_key else None
+        else:
+            self.client = None
 
     def run(self) -> None:
         meta_path = self.exp_root / "metadata.json"
@@ -180,11 +191,10 @@ class EvaluationEngine:
             reason = input("Reason? ")[:280]
             return {"score": score, "reason": reason}
 
-        api_key = os.getenv("GOOGLE_API_KEY")
-        if not api_key:
+        if not self.client:
             return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
 
-        client = genai.Client(api_key=api_key)
+        client = self.client
         base_prompt = """You are an expert in analyzing semantic similarity between content.
 Rate the similarity from 1 (very different) to 5 (identical) and explain your rating.
 Always format your response as a JSON object with exactly two fields: "score" (integer 1-5) and "reason" (string).
