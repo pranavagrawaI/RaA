@@ -8,6 +8,7 @@ import os
 import shutil
 import errno
 import time
+import logging
 from glob import glob
 from pathlib import Path
 from typing import Dict, Any
@@ -128,14 +129,29 @@ class LoopController:
             if isinstance(e, OSError) and e.errno not in (errno.EEXIST, errno.EPERM):
                 raise
 
-        max_retries = 3
+        max_retries_env = os.getenv("RAA_COPY_RETRIES")
+        try:
+            max_retries = int(max_retries_env) if max_retries_env else 2
+        except ValueError:
+            max_retries = 2
+
         for attempt in range(max_retries):
             try:
-                shutil.copy2(src, dst_path)
+                shutil.copy2(src, dst)
                 return
             except (PermissionError, OSError) as e:
                 if attempt < max_retries - 1:
-                    time.sleep(1)
+                    delay = 2 ** attempt
+                    logging.warning(
+                        "Retrying copy %s to %s after error: %s (attempt %d/%d)",
+                        src,
+                        dst,
+                        e,
+                        attempt + 1,
+                        max_retries,
+                    )
+                    time.sleep(delay)
                     continue
-                print(f"Warning: Could not copy file {src} to {dst}: {e}")
+                logging.warning("Could not copy file %s to %s: %s", src, dst, e)
                 return
+
