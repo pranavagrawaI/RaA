@@ -268,21 +268,16 @@ Text 2: {text2}"""
                 raise ValueError(f"Unknown comparison type: {kind}")
 
             try:
-                # Check if response.text exists and is not None
-                if hasattr(response, "text") and response.text is not None:
-                    response_text = response.text.strip()
-                    # Try to extract JSON from the response text
+                response_text = self._extract_response_text(response)
+                if response_text:
+                    response_text = response_text.strip()
                     try:
-                        # Look for JSON object in the text
                         start_idx = response_text.find("{")
                         end_idx = response_text.rfind("}") + 1
                         if start_idx >= 0 and end_idx > start_idx:
                             json_str = response_text[start_idx:end_idx]
                             result = json.loads(json_str)
-                            # Validate the result has required fields
-                            if isinstance(
-                                result.get("score"), (int, float)
-                            ) and isinstance(result.get("reason"), str):
+                            if isinstance(result.get("score"), (int, float)) and isinstance(result.get("reason"), str):
                                 return {
                                     "score": int(result["score"]),
                                     "reason": result["reason"][:280],
@@ -290,11 +285,9 @@ Text 2: {text2}"""
                     except (json.JSONDecodeError, KeyError, ValueError):
                         pass
 
-                    # Fallback: Try to extract score and reason from text
                     try:
                         words = response_text.lower().split()
-                        # Look for a number 1-5 in the text
-                        score = 3  # default
+                        score = 3
                         for word in words:
                             if word.isdigit() and 1 <= int(word) <= 5:
                                 score = int(word)
