@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 import os
-import pathlib
+from pathlib import Path
 from typing import Any, Dict, List, Literal
 
 from google import genai
@@ -25,13 +25,24 @@ class EvaluationEngine:
     """Evaluate semantic drift across loop iterations."""
 
     def __init__(
-        self, exp_root: str, mode: Literal["llm", "human"] = "llm", config=None
+        self,
+        exp_root: str,
+        mode: Literal["llm", "human"] = "llm",
+        config=None,
+        client: genai.Client | None = None,
     ) -> None:
-        self.exp_root = pathlib.Path(exp_root)
+        self.exp_root = Path(exp_root)
         self.mode = mode
         self.loop_type = (
             config.loop.type.upper() if config else ""
         )  # Will do all comparisons if config not provided
+        if client is not None:
+            self.client = client
+        elif self.mode == "llm":
+            api_key = os.getenv("GOOGLE_API_KEY")
+            self.client = genai.Client(api_key=api_key) if api_key else None
+        else:
+            self.client = None
 
     def run(self) -> None:
         meta_path = self.exp_root / "metadata.json"
@@ -40,11 +51,11 @@ class EvaluationEngine:
             self._eval_single_item(item_id, record)
 
     def _eval_single_item(self, item_id: str, rec: Dict[str, str]) -> None:
-        om = OutputManager(os.path.join(self.exp_root, item_id, "eval"))
+        om = OutputManager(self.exp_root / item_id / "eval")
         evals: List[Dict[str, Any]] = []
 
         def _path(rel: str) -> str:
-            return os.path.join(self.exp_root, item_id, rel)
+            return str(self.exp_root / item_id / rel)
 
         iters = [
             k.split("_")[0] for k in rec if k.startswith("iter") and k.endswith("_img")
@@ -180,11 +191,10 @@ class EvaluationEngine:
             reason = input("Reason? ")[:280]
             return {"score": score, "reason": reason}
 
-        api_key = os.getenv("GOOGLE_API_KEY")
-        if not api_key:
+        if not self.client:
             return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
 
-        client = genai.Client(api_key=api_key)
+        client = self.client
         base_prompt = """You are an expert in analyzing semantic similarity between content.
 Rate the similarity from 1 (very different) to 5 (identical) and explain your rating.
 Always format your response as a JSON object with exactly two fields: "score" (integer 1-5) and "reason" (string).
@@ -193,7 +203,7 @@ Example: {"score": 4, "reason": "The images are highly similar in composition an
         try:
             if kind == "image-image":
                 # Ensure both files exist and can be opened as images
-                if not (os.path.exists(a) and os.path.exists(b)):
+                if not (Path(a).exists() and Path(b).exists()):
                     raise FileNotFoundError(f"Missing image file(s): {a} or {b}")
 
                 with Image.open(a) as img1, Image.open(b) as img2:
@@ -214,10 +224,10 @@ Example: {"score": 4, "reason": "The images are highly similar in composition an
                 text1 = "No text available"
                 text2 = "No text available"
 
-                if os.path.exists(a):
+                if Path(a).exists():
                     with open(a, "r", encoding="utf-8") as f:
                         text1 = f.read().strip()
-                if os.path.exists(b):
+                if Path(b).exists():
                     with open(b, "r", encoding="utf-8") as f:
                         text2 = f.read().strip()
 
@@ -236,11 +246,11 @@ Text 2: {text2}"""
                 else:
                     img_path, txt_path = b, a
 
-                if not os.path.exists(img_path):
+                if not Path(img_path).exists():
                     raise FileNotFoundError(f"Missing image file: {img_path}")
 
                 text = "No text available"
-                if os.path.exists(txt_path):
+                if Path(txt_path).exists():
                     with open(txt_path, "r", encoding="utf-8") as f:
                         text = f.read().strip()
 
@@ -258,21 +268,16 @@ Text 2: {text2}"""
                 raise ValueError(f"Unknown comparison type: {kind}")
 
             try:
-                # Check if response.text exists and is not None
-                if hasattr(response, "text") and response.text is not None:
-                    response_text = response.text.strip()
-                    # Try to extract JSON from the response text
+                response_text = self._extract_response_text(response)
+                if response_text:
+                    response_text = response_text.strip()
                     try:
-                        # Look for JSON object in the text
                         start_idx = response_text.find("{")
                         end_idx = response_text.rfind("}") + 1
                         if start_idx >= 0 and end_idx > start_idx:
                             json_str = response_text[start_idx:end_idx]
                             result = json.loads(json_str)
-                            # Validate the result has required fields
-                            if isinstance(
-                                result.get("score"), (int, float)
-                            ) and isinstance(result.get("reason"), str):
+                            if isinstance(result.get("score"), (int, float)) and isinstance(result.get("reason"), str):
                                 return {
                                     "score": int(result["score"]),
                                     "reason": result["reason"][:280],
@@ -280,11 +285,9 @@ Text 2: {text2}"""
                     except (json.JSONDecodeError, KeyError, ValueError):
                         pass
 
-                    # Fallback: Try to extract score and reason from text
                     try:
                         words = response_text.lower().split()
-                        # Look for a number 1-5 in the text
-                        score = 3  # default
+                        score = 3
                         for word in words:
                             if word.isdigit() and 1 <= int(word) <= 5:
                                 score = int(word)
@@ -310,7 +313,7 @@ Text 2: {text2}"""
         items: List[str],
     ) -> Dict[str, Any]:
         # Convert absolute paths to relative paths for cleaner output
-        rel_items = [os.path.basename(item) for item in items]
+        rel_items = [Path(item).name for item in items]
         return {
             "item_id": item,
             "step": step,

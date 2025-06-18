@@ -123,3 +123,19 @@ def test_malformed_output_template(tmp_path):
     path.write_text(malformed)
     with pytest.raises(ValueError):
         BenchmarkConfig.from_yaml(str(path))
+
+
+def test_zero_iterations_raises(tmp_path):
+    bad_yaml = VALID_YAML.replace("num_iterations: 3", "num_iterations: 0")
+    path = tmp_path / "zero.yaml"
+    path.write_text(bad_yaml)
+    with pytest.raises(ValueError):
+        BenchmarkConfig.from_yaml(str(path))
+
+
+def test_negative_iterations_raises(tmp_path):
+    bad_yaml = VALID_YAML.replace("num_iterations: 3", "num_iterations: -1")
+    path = tmp_path / "negative.yaml"
+    path.write_text(bad_yaml)
+    with pytest.raises(ValueError):
+        BenchmarkConfig.from_yaml(str(path))
