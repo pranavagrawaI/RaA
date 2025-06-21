@@ -127,7 +127,6 @@ class EvaluationEngine:
 
         om.write_json(evals, "ratings.json")
 
-    # ------------------------------------------------------------------
     def _compare_images(
         self, item: str, step: int, img_a: str, img_b: str, anchor: str
     ) -> List[Dict[str, Any]]:
@@ -148,9 +147,10 @@ class EvaluationEngine:
         rating = self._run_rater("image-text", img, txt)
         return [self._package("image-text", item, step, anchor, rating, [img, txt])]
 
-    # ------------------------------------------------------------------
     def _format_prompt(self, kind: str, a: str, b: str) -> str:
-        base = "Rate the semantic similarity of the following items on a scale of 1 (very different) to 5 (identical)."
+        base = """Rate the semantic similarity of the following items on 
+        a scale of 1 (very different) to 5 (identical)."""
+
         if kind == "text-text":
             text_a = open(a, "r", encoding="utf-8").read()
             text_b = open(b, "r", encoding="utf-8").read()
@@ -196,10 +196,11 @@ class EvaluationEngine:
 
         client = self.client
         base_prompt = """You are an expert in analyzing semantic similarity between content.
-Rate the similarity from 1 (very different) to 5 (identical) and explain your rating.
-Always format your response as a JSON object with exactly two fields: "score" (integer 1-5) and "reason" (string).
-Example: {"score": 4, "reason": "The images are highly similar in composition and subject matter."}
-"""
+        Rate the similarity from 1 (very different) to 5 (identical) and explain your rating.
+        Always format your response as a JSON object with exactly two fields: "score" (integer 1-5) and "reason" (string).
+        Example: {"score": 4, "reason": "The images are highly similar in composition and subject matter."}
+        """
+
         try:
             if kind == "image-image":
                 # Ensure both files exist and can be opened as images
@@ -232,8 +233,9 @@ Example: {"score": 4, "reason": "The images are highly similar in composition an
                         text2 = f.read().strip()
 
                 prompt_text = f"""Compare these two texts:
-Text 1: {text1}
-Text 2: {text2}"""
+                Text 1: {text1}
+                Text 2: {text2}"""
+
                 response = client.models.generate_content(
                     model="gemini-2.0-flash-lite",
                     contents=[base_prompt + "\n" + prompt_text],
@@ -277,7 +279,9 @@ Text 2: {text2}"""
                         if start_idx >= 0 and end_idx > start_idx:
                             json_str = response_text[start_idx:end_idx]
                             result = json.loads(json_str)
-                            if isinstance(result.get("score"), (int, float)) and isinstance(result.get("reason"), str):
+                            if isinstance(
+                                result.get("score"), (int, float)
+                            ) and isinstance(result.get("reason"), str):
                                 return {
                                     "score": int(result["score"]),
                                     "reason": result["reason"][:280],
@@ -296,12 +300,12 @@ Text 2: {text2}"""
                     except Exception:
                         pass
 
-                return {"score": 3, "reason": "Could not parse response"}
+                return {"score": -1, "reason": "Could not parse response"}
             except Exception:
-                return {"score": 3, "reason": "Error processing response"}
+                return {"score": -1, "reason": "Error processing response"}
 
         except Exception as e:
-            return {"score": 3, "reason": f"Error: {str(e)}"}
+            return {"score": -1, "reason": f"Error: {str(e)}"}
 
     def _package(
         self,

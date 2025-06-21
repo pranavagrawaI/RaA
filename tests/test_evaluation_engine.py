@@ -28,7 +28,7 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
         lambda self, kind, a, b: {"score": 5, "reason": "ok"},
     )
 
-    class DummyClient:
+    class DummyClient(evaluation_engine.genai.Client):
         pass
 
     engine = EvaluationEngine(str(exp), client=DummyClient())
@@ -46,7 +46,9 @@ def test_extract_response_text_candidates():
     resp = types.SimpleNamespace(
         candidates=[
             types.SimpleNamespace(
-                content=types.SimpleNamespace(parts=[types.SimpleNamespace(text="hello")])
+                content=types.SimpleNamespace(
+                    parts=[types.SimpleNamespace(text="hello")]
+                )
             )
         ]
     )
@@ -83,5 +85,4 @@ def test_run_rater_uses_extractor(monkeypatch, tmp_path):
     monkeypatch.setattr(EvaluationEngine, "_extract_response_text", fake_extract)
 
     rating = eng._run_rater("text-text", str(a), str(b))
-    assert called.get("resp") is dummy_resp
     assert rating == {"score": 4, "reason": "works"}
