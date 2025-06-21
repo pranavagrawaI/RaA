@@ -1,6 +1,9 @@
 import json
 from pathlib import Path
+from unittest.mock import patch
+
 import pytest
+from test_utils import mock_generate_caption, mock_generate_image
 
 from benchmark_config import BenchmarkConfig
 from loop_controller import LoopController
@@ -41,21 +44,21 @@ def tit_config(tmp_path):
     return BenchmarkConfig.from_yaml(str(cfg_file))
 
 
-def test_tit_loop_generates_expected_files(tit_config):
+@patch("loop_controller.generate_image", side_effect=mock_generate_image)
+@patch("loop_controller.generate_caption", side_effect=mock_generate_caption)
+def test_tit_loop_generates_expected_files(mock_caption, mock_image, tit_config):
     """Run LoopController in T-I-T mode and assert placeholder outputs exist."""
     controller = LoopController(tit_config)
     controller.run()
 
     out_dir = Path(tit_config.output_dir)
 
-    # Global metadata
     meta_path = out_dir / "metadata.json"
     assert meta_path.is_file()
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
 
     assert set(meta.keys()) == {"a", "b"}
 
-    # Each subfolder should have input.txt, image_iter{i}.jpg, text_iter{i}.txt
     for stem in ("a", "b"):
         subdir = out_dir / stem
         assert subdir.is_dir()
@@ -63,3 +66,6 @@ def test_tit_loop_generates_expected_files(tit_config):
         for i in (1, 2):
             assert (subdir / f"image_iter{i}.jpg").exists()
             assert (subdir / f"text_iter{i}.txt").exists()
+
+    assert mock_image.call_count == 4
+    assert mock_caption.call_count == 4

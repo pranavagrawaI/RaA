@@ -1,7 +1,7 @@
 # Benchmark configuration for RaA pipeline
 
 # Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_013"
+experiment_name: "exp_021"
 
 # Input data settings
 input_dir: "data/coco_subset"
@@ -19,11 +19,11 @@ loop:
 # Models to use for each stage of the loop
 models:
   caption_model:
-    name: "gemini-2.5-flash"   # Example: model for generating captions from images
+    name: "gemini-2.5-flash" # Example: model for generating captions from images
     params:
-      version: "v1"       # Model version or other hyperparameters
+      version: "v1" # Model version or other hyperparameters
   image_model:
-    name: "imagen-3"  # Example: model for generating images from text
+    name: "imagen-3" # Example: model for generating images from text
     params:
       steps: 50
       guidance_scale: 7.5

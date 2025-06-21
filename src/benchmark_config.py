@@ -64,7 +64,6 @@ class BenchmarkConfig:
     experiment_name: str
     input_dir: str
     loop: _LoopConfig
-
     evaluation: _EvaluationConfig
 
     # OPTIONAL fields (with defaults):
@@ -119,10 +118,10 @@ class BenchmarkConfig:
 
     @staticmethod
     def _load_loop_config(loop_dict: Dict[str, Any]) -> _LoopConfig:
-        return _LoopConfig(
-            type=loop_dict["type"],
-            num_iterations=int(loop_dict["num_iterations"]),
-        )
+        num = loop_dict.get("num_iterations")
+        if not isinstance(num, int) or num <= 0:
+            raise ValueError("num_iterations must be an integer greater than zero")
+        return _LoopConfig(type=loop_dict["type"], num_iterations=num)
 
     @staticmethod
     def _load_models_config(models_dict: Dict[str, Any]) -> _ModelsConfig:
