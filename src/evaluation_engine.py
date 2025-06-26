@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import types
 from pathlib import Path
 from typing import Any, Dict, List, Literal
 
@@ -18,6 +19,62 @@ from PIL import Image
 
 from output_manager import OutputManager
 from prompt_engine import embed_asset
+
+# criteria used for rating different comparison types.
+CRITERIA = {
+    "image-image": [
+        {
+            "id": "content",
+            "question": "How similar are the main objects and their arrangement?",
+        },
+        {
+            "id": "style",
+            "question": (
+                "How similar are the artistic or visual styles (colours, "
+                "textures, lighting)?"
+            ),
+        },
+        {
+            "id": "overall",
+            "question": "Overall, how visually similar are A and B?",
+        },
+    ],
+    "text-text": [
+        {
+            "id": "facts",
+            "question": "Do both texts express the same core facts?",
+        },
+        {
+            "id": "details",
+            "question": "Are the specific details (names, numbers, attributes) preserved?",
+        },
+        {
+            "id": "overall",
+            "question": "Overall semantic similarity of A and B?",
+        },
+    ],
+    "image-text": [
+        {
+            "id": "objects_match",
+            "question": (
+                "Does the image accurately depict the entities and actions "
+                "described in the text?"
+            ),
+        },
+        {
+            "id": "missing_or_extra",
+            "question": (
+                "Are important elements missing from the image that are "
+                "mentioned in the text (or vice-versa)?"
+            ),
+        },
+        {
+            "id": "overall_align",
+            "question": "Overall alignment between image and text?",
+        },
+    ],
+}
+
 
 Rating = Dict[str, Any]
 
@@ -37,12 +94,14 @@ class EvaluationEngine:
         self.loop_type = (
             config.loop.type.upper() if config else ""
         )  # Will do all comparisons if config not provided
-        # ``client`` is typically injected during testing. The engine no longer
-        # attempts to auto-create a Google client from the environment to avoid
-        # unexpected network calls in tests. If a client is not provided,
-        # ``self.client`` remains ``None`` and ``_run_rater`` will fall back to
-        # default scoring.
-        self.client = client
+        if self.mode == "llm":
+            if client is None:
+                raise ValueError(
+                    "LLM mode requires a genai.Client instance to be passed as `client`."
+                )
+            self.client = client
+        else:
+            self.client = None
 
     def run(self) -> None:
         meta_path = self.exp_root / "metadata.json"
@@ -195,10 +254,7 @@ class EvaluationEngine:
             return {"score": 3, "reason": f"Missing image file(s): {a} or {b}"}
 
         if not self.client:
-            api_key = os.getenv("GOOGLE_API_KEY")
-            if not api_key:
-                return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
-            self.client = genai.Client(api_key=api_key)
+            return {"score": -1, "reason": "No LLM client provided"}
 
         client = self.client
         base_prompt = """You are an expert in analyzing semantic similarity between content.
@@ -297,7 +353,7 @@ class EvaluationEngine:
 
                     try:
                         words = response_text.lower().split()
-                        score = 3
+                        score = -1
                         for word in words:
                             if word.isdigit() and 1 <= int(word) <= 5:
                                 score = int(word)
