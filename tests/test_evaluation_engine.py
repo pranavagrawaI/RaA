@@ -1,8 +1,15 @@
 import json
 import types
 
-import evaluation_engine
 from evaluation_engine import EvaluationEngine
+
+
+class DummyClient:
+    def __init__(self, *args, **kwargs):
+        self.models = self
+
+    def generate_content(self, *args, **kwargs):
+        return types.SimpleNamespace(text="dummy response")
 
 
 def test_engine_creates_ratings(tmp_path, monkeypatch):
@@ -28,10 +35,7 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
         lambda self, kind, a, b: {"score": 5, "reason": "ok"},
     )
 
-    class DummyClient(evaluation_engine.genai.Client):
-        pass
-
-    engine = EvaluationEngine(str(exp), client=DummyClient())
+    engine = EvaluationEngine(str(exp), client=DummyClient())  # type: ignore
     assert isinstance(engine.client, DummyClient)
     engine.run()
 
@@ -42,7 +46,7 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
 
 
 def test_extract_response_text_candidates():
-    eng = EvaluationEngine("foo")
+    eng = EvaluationEngine("foo", mode="human")
     resp = types.SimpleNamespace(
         candidates=[
             types.SimpleNamespace(
@@ -52,37 +56,20 @@ def test_extract_response_text_candidates():
             )
         ]
     )
-    assert eng._extract_response_text(resp) == "hello"
+    assert eng._extract_response_text(resp) == "hello"  # pylint: disable=protected-access
 
 
-def test_run_rater_uses_extractor(monkeypatch, tmp_path):
-    eng = EvaluationEngine(str(tmp_path))
-    monkeypatch.setenv("GOOGLE_API_KEY", "dummy")
+def test_run_rater_uses_extractor(tmp_path):
+    class DummyClient2:
+        def __init__(self, *args, **kwargs):
+            self.models = self
 
-    a = tmp_path / "a.txt"
-    b = tmp_path / "b.txt"
-    a.write_text("A")
-    b.write_text("B")
+        def generate_content(self, *args, **kwargs):
+            return types.SimpleNamespace(text='{"score": 4, "reason": "ok"}')
 
-    dummy_resp = object()
-
-    class DummyModel:
-        def generate_content(self, model, contents):
-            return dummy_resp
-
-    class DummyClient:
-        def __init__(self, api_key):
-            self.models = DummyModel()
-
-    monkeypatch.setattr(evaluation_engine.genai, "Client", DummyClient)
-
-    called = {}
-
-    def fake_extract(self, resp):
-        called["resp"] = resp
-        return '{"score": 4, "reason": "works"}'
-
-    monkeypatch.setattr(EvaluationEngine, "_extract_response_text", fake_extract)
-
-    rating = eng._run_rater("text-text", str(a), str(b))
-    assert rating == {"score": 4, "reason": "works"}
+    eng = EvaluationEngine(str(tmp_path), client=DummyClient2())  # type: ignore
+    rating = eng._run_rater(  # pylint: disable=protected-access
+        "text-text", str(tmp_path / "a.txt"), str(tmp_path / "b.txt")
+    )
+    assert rating["score"] == 4
+    assert rating["reason"] == "ok"
