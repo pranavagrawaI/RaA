@@ -251,7 +251,7 @@ class EvaluationEngine:
             return {"score": score, "reason": reason}
 
         if kind == "image-image" and not (Path(a).exists() and Path(b).exists()):
-            return {"score": 3, "reason": f"Missing image file(s): {a} or {b}"}
+            return {"score": -1, "reason": f"Missing image file(s): {a} or {b}"}
 
         if not self.client:
             return {"score": -1, "reason": "No LLM client provided"}
