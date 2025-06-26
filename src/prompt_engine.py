@@ -80,3 +80,19 @@ def generate_image(prompt: str, text: str) -> Image.Image:
         raise RuntimeError(f"Failed to decode or open generated image data: {e}") from e
 
     return image
+
+
+def embed_asset(path: str) -> str:
+    """Return the embedded representation for ``path``.
+
+    If *path* points to a text file, this function reads and returns its
+    contents. If it is an image (``.png``, ``.jpg`` or ``.jpeg``), the path
+    itself is returned so callers can reference the file directly.
+    """
+
+    lowered = path.lower()
+    if lowered.endswith(('.png', '.jpg', '.jpeg')):
+        return path
+
+    with open(path, 'r', encoding='utf-8') as f:
+        return f.read()

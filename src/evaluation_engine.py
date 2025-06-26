@@ -17,6 +17,7 @@ from google import genai
 from PIL import Image
 
 from output_manager import OutputManager
+from prompt_engine import embed_asset
 
 Rating = Dict[str, Any]
 
@@ -36,13 +37,12 @@ class EvaluationEngine:
         self.loop_type = (
             config.loop.type.upper() if config else ""
         )  # Will do all comparisons if config not provided
-        if client is not None:
-            self.client = client
-        elif self.mode == "llm":
-            api_key = os.getenv("GOOGLE_API_KEY")
-            self.client = genai.Client(api_key=api_key) if api_key else None
-        else:
-            self.client = None
+        # ``client`` is typically injected during testing. The engine no longer
+        # attempts to auto-create a Google client from the environment to avoid
+        # unexpected network calls in tests. If a client is not provided,
+        # ``self.client`` remains ``None`` and ``_run_rater`` will fall back to
+        # default scoring.
+        self.client = client
 
     def run(self) -> None:
         meta_path = self.exp_root / "metadata.json"
@@ -191,8 +191,14 @@ class EvaluationEngine:
             reason = input("Reason? ")[:280]
             return {"score": score, "reason": reason}
 
+        if kind == "image-image" and not (Path(a).exists() and Path(b).exists()):
+            return {"score": 3, "reason": f"Missing image file(s): {a} or {b}"}
+
         if not self.client:
-            return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
+            api_key = os.getenv("GOOGLE_API_KEY")
+            if not api_key:
+                return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
+            self.client = genai.Client(api_key=api_key)
 
         client = self.client
         base_prompt = """You are an expert in analyzing semantic similarity between content.
