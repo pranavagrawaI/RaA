@@ -10,15 +10,16 @@ from __future__ import annotations
 
 import json
 import os
+import types
 from pathlib import Path
 from typing import Any, Dict, List, Literal
 
 from google import genai
 from PIL import Image
-import types
 
+from output_manager import OutputManager
 
-# Fallback criteria used for rating different comparison types.
+# criteria used for rating different comparison types.
 CRITERIA = {
     "image-image": [
         {
@@ -74,29 +75,6 @@ CRITERIA = {
 }
 
 
-_RealGenaiClient = genai.Client
-
-
-class _SafeGenaiClient:
-    """Wrapper around ``genai.Client`` that tolerates missing API keys."""
-
-    def __init__(self, *args, **kwargs):
-        try:
-            self._client = _RealGenaiClient(*args, **kwargs)
-        except Exception:
-            self._client = None
-            self.models = types.SimpleNamespace(generate_content=lambda *_, **__: None)
-
-    def __getattr__(self, name):
-        if self._client is not None:
-            return getattr(self._client, name)
-        raise AttributeError(name)
-
-
-genai.Client = _SafeGenaiClient
-
-from output_manager import OutputManager
-
 Rating = Dict[str, Any]
 
 
@@ -115,11 +93,13 @@ class EvaluationEngine:
         self.loop_type = (
             config.loop.type.upper() if config else ""
         )  # Will do all comparisons if config not provided
-        if client is not None:
+
+        if self.mode == "llm":
+            if client is None:
+                raise ValueError(
+                    "LLM mode requires a genai.Client instance to be passed as `client`."
+                )
             self.client = client
-        elif self.mode == "llm":
-            api_key = os.getenv("GOOGLE_API_KEY")
-            self.client = genai.Client(api_key=api_key) if api_key else None
         else:
             self.client = None
 
@@ -270,16 +250,8 @@ class EvaluationEngine:
             reason = input("Reason? ")[:280]
             return {"score": score, "reason": reason}
 
-        if not self.client and self.mode == "llm":
-            api_key = os.getenv("GOOGLE_API_KEY")
-            if api_key:
-                try:
-                    self.client = genai.Client(api_key=api_key)
-                except Exception:
-                    self.client = genai.Client()
-
         if not self.client:
-            return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
+            return {"score": -1, "reason": "No LLM client provided"}
 
         client = self.client
         base_prompt = """You are an expert in analyzing semantic similarity between content.
@@ -378,7 +350,7 @@ class EvaluationEngine:
 
                     try:
                         words = response_text.lower().split()
-                        score = 3
+                        score = -1
                         for word in words:
                             if word.isdigit() and 1 <= int(word) <= 5:
                                 score = int(word)
