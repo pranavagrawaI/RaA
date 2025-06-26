@@ -89,6 +89,7 @@ class EvaluationEngine:
         mode: Literal["llm", "human"] = "llm",
         config=None,
         client: genai.Client | None = None,
+        model: str = "gemini-2.5-flash-lite-preview-06-17",
     ) -> None:
         self.exp_root = Path(exp_root)
         self.mode = mode
@@ -103,6 +104,7 @@ class EvaluationEngine:
             self.client = client
         else:
             self.client = None
+        self.model = model
 
     def run(self) -> None:
         meta_path = self.exp_root / "metadata.json"
@@ -285,7 +287,7 @@ class EvaluationEngine:
 
                     prompt_part = """Compare these two images:"""
                     response = client.models.generate_content(
-                        model="gemini-2.0-flash-lite",
+                        model=self.model,
                         contents=[base_prompt, prompt_part, img1, img2],
                     )
 
@@ -306,7 +308,7 @@ class EvaluationEngine:
                 Text 2: {text2}"""
 
                 response = client.models.generate_content(
-                    model="gemini-2.0-flash-lite",
+                    model=self.model,
                     contents=[base_prompt + "\n" + prompt_text],
                 )
 
@@ -331,7 +333,7 @@ class EvaluationEngine:
 
                     prompt_part = """Compare this image to the following text:"""
                     response = client.models.generate_content(
-                        model="gemini-2.0-flash-lite",
+                        model=self.model,
                         contents=[base_prompt, prompt_part, img, f"Text: {text}"],
                     )
 
