@@ -18,6 +18,7 @@ from google import genai
 from PIL import Image
 
 from output_manager import OutputManager
+from prompt_engine import embed_asset
 
 # criteria used for rating different comparison types.
 CRITERIA = {
@@ -93,7 +94,6 @@ class EvaluationEngine:
         self.loop_type = (
             config.loop.type.upper() if config else ""
         )  # Will do all comparisons if config not provided
-
         if self.mode == "llm":
             if client is None:
                 raise ValueError(
@@ -249,6 +249,9 @@ class EvaluationEngine:
             score = int(input("Score 1-5? "))
             reason = input("Reason? ")[:280]
             return {"score": score, "reason": reason}
+
+        if kind == "image-image" and not (Path(a).exists() and Path(b).exists()):
+            return {"score": 3, "reason": f"Missing image file(s): {a} or {b}"}
 
         if not self.client:
             return {"score": -1, "reason": "No LLM client provided"}
