@@ -19,6 +19,7 @@ from PIL import Image
 
 from output_manager import OutputManager
 from prompt_engine import embed_asset
+from textwrap import indent
 
 # criteria used for rating different comparison types.
 CRITERIA = {
@@ -206,25 +207,31 @@ class EvaluationEngine:
         rating = self._run_rater("image-text", img, txt)
         return [self._package("image-text", item, step, anchor, rating, [img, txt])]
 
-    def _format_prompt(self, kind: str, a: str, b: str) -> str:
-        base = """Rate the semantic similarity of the following items on 
-        a scale of 1 (very different) to 5 (identical)."""
+    def _format_prompt(self, kind: str, A: str, B: str) -> str:
+        """Return a single prompt asking *all* questions for ``kind``."""
 
-        if kind == "text-text":
-            text_a = open(a, "r", encoding="utf-8").read()
-            text_b = open(b, "r", encoding="utf-8").read()
-            return f"[TEXT-TEXT]\nA: {text_a}\nB: {text_b}\n{base}"
-        if kind == "image-image":
-            return f"[IMAGE-IMAGE]\nA: {a}\nB: {b}\n{base}"
-        if kind == "image-text":
-            if a.lower().endswith((".jpg", ".jpeg", ".png")):
-                text = open(b, "r", encoding="utf-8").read()
-                img = a
-            else:
-                text = open(a, "r", encoding="utf-8").read()
-                img = b
-            return f"[IMAGE-TEXT]\nImage: {img}\nText: {text}\n{base}"
-        return f"{base}"
+        header = (
+            "You will rate the semantic similarity on a scale of 1 (completely different)"
+            " to 5 (nearly identical). After each score give ONE short sentence of reason.\n"
+            'Return a STRICT JSON object whose keys are the criterion ids.\n'
+            'Example format:\n'
+            '{\n  "content": {"score": 4, "reason": "Objects same"},\n'
+            '  "style":   {"score": 3, "reason": "Colour shift"}\n}'
+        )
+
+        lines = [
+            header,
+            "\nITEM A:",
+            embed_asset(A),
+            "\nITEM B:",
+            embed_asset(B),
+            "\n",
+        ]
+
+        for c in CRITERIA[kind]:
+            lines.append(f'Q ({c["id"]}): {c["question"]}')
+
+        return "\n".join(lines)
 
     def _extract_response_text(self, resp: Any) -> str | None:
         """Return the textual content from a Gemini response."""
