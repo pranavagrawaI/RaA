@@ -9,8 +9,6 @@ backend, and persists the results under each item's ``eval`` folder.
 from __future__ import annotations
 
 import json
-import os
-import types
 from pathlib import Path
 from typing import Any, Dict, List, Literal
 
@@ -19,7 +17,6 @@ from PIL import Image
 
 from output_manager import OutputManager
 from prompt_engine import embed_asset
-from textwrap import indent
 
 # criteria used for rating different comparison types.
 CRITERIA = {
