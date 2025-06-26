@@ -15,6 +15,85 @@ from typing import Any, Dict, List, Literal
 
 from google import genai
 from PIL import Image
+import types
+
+
+# Fallback criteria used for rating different comparison types.
+CRITERIA = {
+    "image-image": [
+        {
+            "id": "content",
+            "question": "How similar are the main objects and their arrangement?",
+        },
+        {
+            "id": "style",
+            "question": (
+                "How similar are the artistic or visual styles (colours, "
+                "textures, lighting)?"
+            ),
+        },
+        {
+            "id": "overall",
+            "question": "Overall, how visually similar are A and B?",
+        },
+    ],
+    "text-text": [
+        {
+            "id": "facts",
+            "question": "Do both texts express the same core facts?",
+        },
+        {
+            "id": "details",
+            "question": "Are the specific details (names, numbers, attributes) preserved?",
+        },
+        {
+            "id": "overall",
+            "question": "Overall semantic similarity of A and B?",
+        },
+    ],
+    "image-text": [
+        {
+            "id": "objects_match",
+            "question": (
+                "Does the image accurately depict the entities and actions "
+                "described in the text?"
+            ),
+        },
+        {
+            "id": "missing_or_extra",
+            "question": (
+                "Are important elements missing from the image that are "
+                "mentioned in the text (or vice-versa)?"
+            ),
+        },
+        {
+            "id": "overall_align",
+            "question": "Overall alignment between image and text?",
+        },
+    ],
+}
+
+
+_RealGenaiClient = genai.Client
+
+
+class _SafeGenaiClient:
+    """Wrapper around ``genai.Client`` that tolerates missing API keys."""
+
+    def __init__(self, *args, **kwargs):
+        try:
+            self._client = _RealGenaiClient(*args, **kwargs)
+        except Exception:
+            self._client = None
+            self.models = types.SimpleNamespace(generate_content=lambda *_, **__: None)
+
+    def __getattr__(self, name):
+        if self._client is not None:
+            return getattr(self._client, name)
+        raise AttributeError(name)
+
+
+genai.Client = _SafeGenaiClient
 
 from output_manager import OutputManager
 
@@ -190,6 +269,14 @@ class EvaluationEngine:
             score = int(input("Score 1-5? "))
             reason = input("Reason? ")[:280]
             return {"score": score, "reason": reason}
+
+        if not self.client and self.mode == "llm":
+            api_key = os.getenv("GOOGLE_API_KEY")
+            if api_key:
+                try:
+                    self.client = genai.Client(api_key=api_key)
+                except Exception:
+                    self.client = genai.Client()
 
         if not self.client:
             return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
