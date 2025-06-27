@@ -14,9 +14,30 @@ from pathlib import Path
 from typing import Any, Dict, List, Literal
 
 from google import genai
+from google.genai import types
 from PIL import Image
 
 from output_manager import OutputManager
+
+SYSTEM_INSTRUCTION = """You are an expert multimodal evaluator.
+
+Your role is to compare two items (images, texts, or an image and a text) and rate their similarity based on clearly defined criteria.
+
+You will always be provided with:
+- A description of the comparison type (image-image, text-text, or image-text)
+- Five precise evaluation criteria
+- A fixed output schema that you must follow exactly
+
+Your job is to return a JSON object with one entry for each criterion. Each entry must include:
+- A score from 1 to 5 (1 = completely different, 5 = nearly identical)
+- A short one-sentence reason justifying the score
+
+❗Important:
+- **Only return the JSON object.** No extra text or explanation outside the JSON.
+- Ensure your JSON is valid and adheres to the given schema.
+- Be precise, concise, and rigorous in both your scores and justifications.
+"""
+MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
 
 Rating = Dict[str, Any]
 
@@ -43,6 +64,15 @@ class EvaluationEngine:
             self.client = genai.Client(api_key=api_key) if api_key else None
         else:
             self.client = None
+        self.prompts = self._load_prompts()
+
+    def _load_prompts(self) -> Dict[str, str]:
+        prompts_dir = Path(__file__).parent.parent / "prompts"
+        prompts = {}
+        for prompt_file in prompts_dir.glob("*.txt"):
+            with open(prompt_file, "r", encoding="utf-8") as f:
+                prompts[prompt_file.stem] = f.read()
+        return prompts
 
     def run(self) -> None:
         meta_path = self.exp_root / "metadata.json"
@@ -192,14 +222,9 @@ class EvaluationEngine:
             return {"score": score, "reason": reason}
 
         if not self.client:
-            return {"score": 3, "reason": "Missing GOOGLE_API_KEY"}
+            return {"score": -1, "reason": "Missing GOOGLE_API_KEY"}
 
         client = self.client
-        base_prompt = """You are an expert in analyzing semantic similarity between content.
-        Rate the similarity from 1 (very different) to 5 (identical) and explain your rating.
-        Always format your response as a JSON object with exactly two fields: "score" (integer 1-5) and "reason" (string).
-        Example: {"score": 4, "reason": "The images are highly similar in composition and subject matter."}
-        """
 
         try:
             if kind == "image-image":
@@ -214,10 +239,12 @@ class EvaluationEngine:
                     if img2.mode != "RGB":
                         img2 = img2.convert("RGB")
 
-                    prompt_part = """Compare these two images:"""
                     response = client.models.generate_content(
-                        model="gemini-2.0-flash-lite",
-                        contents=[base_prompt, prompt_part, img1, img2],
+                        model=MODEL_NAME,
+                        config=types.GenerateContentConfig(
+                            system_instruction=SYSTEM_INSTRUCTION
+                        ),
+                        contents=[self.prompts["image_image_prompt"], img1, img2],
                     )
 
             elif kind == "text-text":
@@ -237,8 +264,11 @@ class EvaluationEngine:
                 Text 2: {text2}"""
 
                 response = client.models.generate_content(
-                    model="gemini-2.0-flash-lite",
-                    contents=[base_prompt + "\n" + prompt_text],
+                    model=MODEL_NAME,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_INSTRUCTION
+                    ),
+                    contents=[self.prompts["text_text_prompt"], prompt_text],
                 )
 
             elif kind == "image-text":
@@ -260,10 +290,16 @@ class EvaluationEngine:
                     if img.mode != "RGB":
                         img = img.convert("RGB")
 
-                    prompt_part = """Compare this image to the following text:"""
                     response = client.models.generate_content(
-                        model="gemini-2.0-flash-lite",
-                        contents=[base_prompt, prompt_part, img, f"Text: {text}"],
+                        model=MODEL_NAME,
+                        config=types.GenerateContentConfig(
+                            system_instruction=SYSTEM_INSTRUCTION
+                        ),
+                        contents=[
+                            self.prompts["image_text_prompt"],
+                            img,
+                            f"Text: {text}",
+                        ],
                     )
 
             else:
@@ -274,35 +310,42 @@ class EvaluationEngine:
                 if response_text:
                     response_text = response_text.strip()
                     try:
+                        # Extract the JSON string from the response
                         start_idx = response_text.find("{")
                         end_idx = response_text.rfind("}") + 1
                         if start_idx >= 0 and end_idx > start_idx:
                             json_str = response_text[start_idx:end_idx]
                             result = json.loads(json_str)
-                            if isinstance(
-                                result.get("score"), (int, float)
-                            ) and isinstance(result.get("reason"), str):
-                                return {
-                                    "score": int(result["score"]),
-                                    "reason": result["reason"][:280],
-                                }
-                    except (json.JSONDecodeError, KeyError, ValueError):
-                        pass
 
-                    try:
-                        words = response_text.lower().split()
-                        score = 3
-                        for word in words:
-                            if word.isdigit() and 1 <= int(word) <= 5:
-                                score = int(word)
-                                break
-                        return {"score": score, "reason": response_text[:280]}
-                    except Exception:
-                        pass
-
-                return {"score": -1, "reason": "Could not parse response"}
-            except Exception:
-                return {"score": -1, "reason": "Error processing response"}
+                            # Validate the structure of the parsed JSON
+                            expected_keys = [
+                                "content",
+                                "missing",
+                                "style",
+                                "meaning",
+                                "overall",
+                            ]
+                            if all(key in result for key in expected_keys):
+                                for key in expected_keys:
+                                    if not (
+                                        isinstance(
+                                            result[key].get("score"), (int, float)
+                                        )
+                                        and isinstance(result[key].get("reason"), str)
+                                    ):
+                                        raise ValueError(
+                                            f"Invalid score or reason for key: {key}"
+                                        )
+                                return result
+                            else:
+                                raise ValueError(
+                                    "Missing expected keys in JSON response"
+                                )
+                    except (json.JSONDecodeError, KeyError, ValueError) as e:
+                        return {"score": -1, "reason": f"JSON parsing error: {e}"}
+                return {"score": -1, "reason": "Empty or invalid response"}
+            except Exception as e:
+                return {"score": -1, "reason": f"Error processing response: {e}"}
 
         except Exception as e:
             return {"score": -1, "reason": f"Error: {str(e)}"}

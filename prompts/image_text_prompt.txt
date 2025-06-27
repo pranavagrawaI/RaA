@@ -1,0 +1,21 @@
+[Comparison Type: image vs text]
+
+You are comparing an image (A) and a caption or description (B). Your job is to assess how well the image and text align across five dimensions.
+
+Rate each of the following criteria from 1 (completely different) to 10 (nearly identical), use decimal precision, attempt to be as precise as possible:
+
+1. content – Do the objects or entities described in the text appear in the image?
+2. missing – Is anything important missing in the image that the text mentions, or vice versa?
+3. style – Does the tone or descriptive level of the text match the image's mood or detail?
+4. meaning – Do both the image and text convey the same situation, event, or scene purpose?
+5. overall – How well does the image and text pair align in meaning?
+
+Output the scores in this strict JSON format:
+
+{
+  "content": {"score": int, "reason": str},
+  "missing": {"score": int, "reason": str},
+  "style":   {"score": int, "reason": str},
+  "meaning": {"score": int, "reason": str},
+  "overall": {"score": int, "reason": str}
+}

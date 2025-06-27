@@ -5,7 +5,7 @@ from evaluation_engine import EvaluationEngine
 def test_run_rater_missing_image_returns_default(tmp_path):
     engine = EvaluationEngine(str(tmp_path))
     rating = engine._run_rater("image-image", str(tmp_path / "a.jpg"), str(tmp_path / "b.jpg"))
-    assert rating["score"] == 3
+    assert rating["score"] == -1
     assert "missing" in rating["reason"].lower()
 
 
@@ -26,5 +26,5 @@ def test_run_rater_invalid_json_from_gemini(tmp_path, monkeypatch):
 
     engine = EvaluationEngine(str(tmp_path))
     rating = engine._run_rater("text-text", str(text_a), str(missing))
-    assert rating["score"] == 3
+    assert rating["score"] == -1
     assert isinstance(rating.get("reason"), str) and rating["reason"]

@@ -1,0 +1,21 @@
+[Comparison Type: image vs image]
+
+You are comparing two images, A and B. Your task is to rate their similarity on five specific dimensions.
+
+Rate each of the following criteria from 1 (completely different) to 10 (nearly identical), use decimal precision, attempt to be as precise as possible:
+
+1. content – Are the main objects and their layout the same?
+2. missing – Are any important elements missing or unexpectedly added?
+3. style – Are lighting, color scheme, textures, and artistic style consistent?
+4. meaning – Do the images convey the same idea, narrative, or scene purpose?
+5. overall – Your overall similarity judgment of A and B.
+
+Use this exact JSON format (no extra text):
+
+{
+  "content": {"score": int, "reason": str},
+  "missing": {"score": int, "reason": str},
+  "style":   {"score": int, "reason": str},
+  "meaning": {"score": int, "reason": str},
+  "overall": {"score": int, "reason": str}
+}

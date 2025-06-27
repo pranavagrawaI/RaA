@@ -1,0 +1,21 @@
+[Comparison Type: text vs text]
+
+You are comparing two texts, A and B. Your task is to rate how similar they are in meaning and detail across five categories.
+
+Rate each of the following criteria from 1 (completely different) to 10 (nearly identical), use decimal precision, attempt to be as precise as possible:
+
+1. content – Are the main entities, actions, and structure the same?
+2. missing – Are any important facts or phrases missing or added?
+3. style – Are tone, vocabulary, sentence structure, and form consistent?
+4. meaning – Do both texts express the same meaning or message?
+5. overall – Overall semantic similarity of A and B.
+
+Use this strict JSON format:
+
+{
+  "content": {"score": int, "reason": str},
+  "missing": {"score": int, "reason": str},
+  "style":   {"score": int, "reason": str},
+  "meaning": {"score": int, "reason": str},
+  "overall": {"score": int, "reason": str}
+}
