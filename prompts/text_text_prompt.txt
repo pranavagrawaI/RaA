@@ -13,9 +13,9 @@ Rate each of the following criteria from 1 (completely different) to 10 (nearly 
 Use this strict JSON format:
 
 {
-  "content": {"score": int, "reason": str},
-  "missing": {"score": int, "reason": str},
-  "style":   {"score": int, "reason": str},
-  "meaning": {"score": int, "reason": str},
-  "overall": {"score": int, "reason": str}
+  "content": {"score": float, "reason": str},
+  "missing": {"score": float, "reason": str},
+  "style":   {"score": float, "reason": str},
+  "meaning": {"score": float, "reason": str},
+  "overall": {"score": float, "reason": str}
 }
