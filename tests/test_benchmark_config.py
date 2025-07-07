@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pytest
 
 from benchmark_config import BenchmarkConfig
@@ -17,8 +19,10 @@ models:
     name: "m2"
     params: {}
 prompts:
-  caption: "Test caption prompt"
-  image: "Test image prompt"
+  caption: |-
+    Test caption prompt
+  image: |-
+    Test image prompt
 logging:
   level: "DEBUG"
   save_config_snapshot: false

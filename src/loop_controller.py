@@ -4,14 +4,13 @@ Recursive loop controller.
 Stores outputs in results/<exp_name>/<identifier>/
 """
 
+import errno
+import logging
 import os
 import shutil
-import errno
 import time
-import logging
-from glob import glob
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict
 
 from benchmark_config import BenchmarkConfig
 from output_manager import OutputManager
@@ -21,7 +20,7 @@ from prompt_engine import generate_caption, generate_image
 class LoopController:
     def __init__(self, config: BenchmarkConfig):
         self.cfg = config
-        self.rootOM = OutputManager(config.output_dir)
+        self.root_om = OutputManager(config.output_dir)
         self.meta: Dict[str, Any] = {}
 
     def run(self) -> None:
@@ -33,7 +32,7 @@ class LoopController:
         else:
             raise ValueError(f"Unsupported loop type: {loop_type}")
 
-        self.rootOM.write_json(self.meta, "metadata.json")
+        self.root_om.write_json(self.meta, "metadata.json")
 
     def _run_i_t_i(self) -> None:
         images = sorted(Path(self.cfg.input_dir).glob("*.[jp][pn]g"))
@@ -45,7 +44,7 @@ class LoopController:
             self._process_i_t_i_for_image(str(path), stem)
 
     def _process_i_t_i_for_image(self, img_path: str, stem: str) -> None:
-        om = self.rootOM.subdir(stem)
+        om = self.root_om.subdir(stem)
         record: Dict[str, str] = {}
 
         dest_input = om.root_dir / "input.jpg"
@@ -80,7 +79,7 @@ class LoopController:
             self._process_t_i_t_for_text(str(path), stem)
 
     def _process_t_i_t_for_text(self, txt_path: str, stem: str) -> None:
-        om = self.rootOM.subdir(stem)
+        om = self.root_om.subdir(stem)
         record: Dict[str, str] = {}
 
         dest_input = om.root_dir / "input.txt"
@@ -129,19 +128,14 @@ class LoopController:
             if isinstance(e, OSError) and e.errno not in (errno.EEXIST, errno.EPERM):
                 raise
 
-        max_retries_env = os.getenv("RAA_COPY_RETRIES")
-        try:
-            max_retries = int(max_retries_env) if max_retries_env else 2
-        except ValueError:
-            max_retries = 2
-
+        max_retries = 2
         for attempt in range(max_retries):
             try:
                 shutil.copy2(src, dst)
                 return
             except (PermissionError, OSError) as e:
                 if attempt < max_retries - 1:
-                    delay = 2 ** attempt
+                    delay = 2**attempt
                     logging.warning(
                         "Retrying copy %s to %s after error: %s (attempt %d/%d)",
                         src,
@@ -154,4 +148,3 @@ class LoopController:
                     continue
                 logging.warning("Could not copy file %s to %s: %s", src, dst, e)
                 return
-

@@ -1,21 +1,29 @@
-[Comparison Type: image vs text]
+You will act as an expert human analyst comparing a text prompt (A) and an image (B). Your evaluation must follow the criteria and examples provided below.
 
-You are comparing an image (A) and a caption or description (B). Your job is to assess how well the image and text align across five dimensions.
+## Evaluation Criteria
 
-Rate each of the following criteria from 1 (completely different) to 10 (nearly identical), use decimal precision, attempt to be as precise as possible:
+Rate each of the following five criteria on a scale from 1.0 (Completely Different) to 10.0 (Nearly Identical).
 
-1. content – Do the objects or entities described in the text appear in the image?
-2. missing – Is anything important missing in the image that the text mentions, or vice versa?
-3. style – Does the tone or descriptive level of the text match the image's mood or detail?
-4. meaning – Do both the image and text convey the same situation, event, or scene purpose?
-5. overall – How well does the image and text pair align in meaning?
+1.  **Content Correspondence (The "What"):** Does the image (B) contain the primary subjects and objects described in the text (A)?
 
-Output the scores in this strict JSON format:
+2.  **Compositional Alignment (The "How"):** Does the image accurately render the specific relationships, actions, and spatial arrangements described in the text? This is a critical criterion.
 
+3.  **Fidelity & Completeness (The "Detail"):** Does the image include all details from the text without adding significant unrequested elements?
+
+4.  **Stylistic Congruence (The "Feel"):** Does the image's style match the style requested in the text (e.g., "photorealistic," "cartoon," "watercolor")?
+
+5.  **Overall Semantic Intent (The "Message"):** After considering all of the above, does the image successfully fulfill the core request of the text prompt?
+
+## Evaluation Example
+
+* **A (Text):** "A photorealistic image of a small, red toy car on top of a large, open book."
+* **B (Image):** A photorealistic image showing a small, red toy car sitting *next to* a large, open book on a wooden table.
+
+```json
 {
-  "content": {"score": float, "reason": str},
-  "missing": {"score": float, "reason": str},
-  "style":   {"score": float, "reason": str},
-  "meaning": {"score": float, "reason": str},
-  "overall": {"score": float, "reason": str}
+  "content_correspondence": {"score": 9.5, "reason": "The image correctly depicts all the key subjects mentioned in the text: a small, red toy car and a large, open book."},
+  "compositional_alignment": {"score": 1.0, "reason": "The image completely fails to render the critical spatial relationship 'on top of', which was the core compositional instruction."},
+  "fidelity_completeness": {"score": 7.0, "reason": "The image adds an unmentioned element (the wooden table), making it less faithful to the prompt, but it is a minor background detail."},
+  "stylistic_congruence": {"score": 10.0, "reason": "The image correctly matches the requested 'photorealistic' style."},
+  "overall_semantic_intent": {"score": 3.0, "reason": "Despite getting the objects and style right, the image failed the most important part of the compositional instruction. Therefore, it does not fulfill the semantic intent of the prompt."}
 }

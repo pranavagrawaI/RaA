@@ -1,21 +1,29 @@
-[Comparison Type: text vs text]
+You will act as an expert human analyst comparing two texts, A and B. Your evaluation must follow the criteria and examples provided below.
 
-You are comparing two texts, A and B. Your task is to rate how similar they are in meaning and detail across five categories.
+## Evaluation Criteria
 
-Rate each of the following criteria from 1 (completely different) to 10 (nearly identical), use decimal precision, attempt to be as precise as possible:
+Rate each of the following five criteria on a scale from 1.0 (Completely Different) to 10.0 (Nearly Identical).
 
-1. content – Are the main entities, actions, and structure the same?
-2. missing – Are any important facts or phrases missing or added?
-3. style – Are tone, vocabulary, sentence structure, and form consistent?
-4. meaning – Do both texts express the same meaning or message?
-5. overall – Overall semantic similarity of A and B.
+1.  **Content Correspondence (The "What"):** Do A and B feature the same primary subjects, topics, and entities?
 
-Use this strict JSON format:
+2.  **Compositional Alignment (The "How"):** Is the logical structure, flow of argument, and relationship between claims the same? For example, is the cause-and-effect relationship inverted?
 
+3.  **Fidelity & Completeness (The "Detail"):** Do A and B contain the same amount of information, or is one a summary or elaboration of the other?
+
+4.  **Stylistic Congruence (The "Feel"):** Is the style, tone, diction, and sentence structure consistent? For example, is one formal and the other casual?
+
+5.  **Overall Semantic Intent (The "Message"):** After considering all of the above, do A and B ultimately serve the same purpose or convey the same essential message?
+
+## Evaluation Example
+
+* **A:** "The official Q3 financial report indicates a 15% year-over-year revenue increase, primarily driven by strong performance in our international markets and the successful launch of the new 'Odyssey' product line."
+* **B:** "Hey team, great news - we made a lot more money than last year! Sales are up 15%. Looks like the international folks are killing it and everyone loves the new Odyssey stuff."
+
+```json
 {
-  "content": {"score": float, "reason": str},
-  "missing": {"score": float, "reason": str},
-  "style":   {"score": float, "reason": str},
-  "meaning": {"score": float, "reason": str},
-  "overall": {"score": float, "reason": str}
+  "content_correspondence": {"score": 9.8, "reason": "Both texts state the same core facts: 15% revenue increase, international markets, and the Odyssey product."},
+  "compositional_alignment": {"score": 9.5, "reason": "The logical structure is the same: main result followed by the two primary causes."},
+  "fidelity_completeness": {"score": 8.0, "reason": "Text A is slightly more complete with the formal name 'Q3 financial report' and 'year-over-year', while B is a summary."},
+  "stylistic_congruence": {"score": 2.5, "reason": "The styles are highly divergent: A is formal and professional, while B is extremely casual and informal."},
+  "overall_semantic_intent": {"score": 9.0, "reason": "Despite the major stylistic difference, both texts serve the identical purpose of communicating positive financial results to an internal audience."}
 }

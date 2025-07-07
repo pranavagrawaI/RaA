@@ -1,5 +1,6 @@
+from test_utils import mock_google_api, test_image
+
 from prompt_engine import generate_caption
-from test_utils import test_image, mock_google_api
 
 
 def test_generate_caption_returns_nonempty_string(test_image, mock_google_api):

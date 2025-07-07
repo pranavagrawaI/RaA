@@ -11,35 +11,54 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Literal
+from typing import Any, Dict, List, Literal, cast
 
 from google import genai
 from google.genai import types
+from pydantic import BaseModel
 from PIL import Image
 
 from output_manager import OutputManager
 
-SYSTEM_INSTRUCTION = """You are an expert multimodal evaluator.
 
-Your role is to compare two items (images, texts, or an image and a text) and rate their similarity based on clearly defined criteria.
+class _Criterion(BaseModel):
+    score: float
+    reason: str
 
-You will always be provided with:
-- A description of the comparison type (image-image, text-text, or image-text)
-- Five precise evaluation criteria
-- A fixed output schema that you must follow exactly
 
-Your job is to return a JSON object with one entry for each criterion. Each entry must include:
-- A score from 1 to 5 (1 = completely different, 5 = nearly identical)
-- A short one-sentence reason justifying the score
+class _RatingModel(BaseModel):
+    content_correspondence: _Criterion
+    compositional_alignment: _Criterion
+    fidelity_completeness: _Criterion
+    stylistic_congruence: _Criterion
+    overall_semantic_intent: _Criterion
 
-❗Important:
-- **Only return the JSON object.** No extra text or explanation outside the JSON.
-- Ensure your JSON is valid and adheres to the given schema.
-- Be precise, concise, and rigorous in both your scores and justifications.
+
+SYSTEM_INSTRUCTION = """
+You are an Expert Multimodal Analyst.Your task is to compare two inputs (A and B) with the nuanced judgment of a human specialist. You will evaluate them across five universal criteria and provide a single, consistent JSON output.
+
+Adhere to these four Guiding Principles in all evaluations:
+
+1.  **Deconstruct, Then Compare:** Before scoring, mentally break down each input into its core components: the subjects, the actions, the relationships between them, and the overall mood or style. Do not make a holistic judgment until you have analyzed the parts.
+
+2.  **Prioritize Core Meaning:** The most important question is "Do A and B tell the same fundamental story or convey the same core message?" A stylistic change (e.g., photo vs. painting) is less significant than a change in the central action or relationship (e.g., a cat chasing a mouse vs. a mouse chasing a cat).
+
+3.  **Score the *Difference*, Not the Quality:** Your task is to measure similarity, not to judge which input is "better." A low-quality photo of a subject is a near-perfect match to a high-quality photo of the *same subject*. Your scores must reflect the degree of transformation between A and B, not their intrinsic quality.
+
+4.  **Justify with Specifics:** Your "reason" for each score is critical. It must be concise and point to concrete evidence in the inputs. Avoid vague justifications. Instead of "The style is different," write "A is a photorealistic image, while B is an abstract watercolor painting."
 """
+
 MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
 
-Rating = Dict[str, Any]
+Rating = Dict[str, Dict[str, Any]]  # Updated to match new schema
+
+DEFAULT_RATING = {
+    "content_correspondence": {"score": -1.0, "reason": "Rating unavailable"},
+    "compositional_alignment": {"score": -1.0, "reason": "Rating unavailable"},
+    "fidelity_completeness": {"score": -1.0, "reason": "Rating unavailable"},
+    "stylistic_congruence": {"score": -1.0, "reason": "Rating unavailable"},
+    "overall_semantic_intent": {"score": -1.0, "reason": "Rating unavailable"},
+}
 
 
 class EvaluationEngine:
@@ -177,178 +196,102 @@ class EvaluationEngine:
         rating = self._run_rater("image-text", img, txt)
         return [self._package("image-text", item, step, anchor, rating, [img, txt])]
 
-    def _format_prompt(self, kind: str, a: str, b: str) -> str:
-        base = """Rate the semantic similarity of the following items on 
-        a scale of 1 (very different) to 5 (identical)."""
+    def _prepare_contents(self, kind: str, a: str, b: str) -> List[Any]:
+        """Prepare the contents list for the Gemini API call based on comparison kind."""
+        if kind == "image-image":
+            if not (Path(a).exists() and Path(b).exists()):
+                raise FileNotFoundError(f"Missing image file(s): {a} or {b}")
+            img1 = Image.open(a)
+            img2 = Image.open(b)
+            if img1.mode != "RGB":
+                img1 = img1.convert("RGB")
+            if img2.mode != "RGB":
+                img2 = img2.convert("RGB")
+            return [self.prompts["image_image_prompt"], img1, img2]
 
         if kind == "text-text":
-            text_a = open(a, "r", encoding="utf-8").read()
-            text_b = open(b, "r", encoding="utf-8").read()
-            return f"[TEXT-TEXT]\nA: {text_a}\nB: {text_b}\n{base}"
-        if kind == "image-image":
-            return f"[IMAGE-IMAGE]\nA: {a}\nB: {b}\n{base}"
-        if kind == "image-text":
-            if a.lower().endswith((".jpg", ".jpeg", ".png")):
-                text = open(b, "r", encoding="utf-8").read()
-                img = a
-            else:
-                text = open(a, "r", encoding="utf-8").read()
-                img = b
-            return f"[IMAGE-TEXT]\nImage: {img}\nText: {text}\n{base}"
-        return f"{base}"
+            text1 = (
+                Path(a).read_text(encoding="utf-8").strip()
+                if Path(a).exists()
+                else "No text available"
+            )
+            text2 = (
+                Path(b).read_text(encoding="utf-8").strip()
+                if Path(b).exists()
+                else "No text available"
+            )
+            prompt_text = f"Compare these two texts:\nText 1: {text1}\nText 2: {text2}"
+            return [self.prompts["text_text_prompt"], prompt_text]
 
-    def _extract_response_text(self, resp: Any) -> str | None:
-        """Return the textual content from a Gemini response."""
-        if resp is None:
-            return None
-        if hasattr(resp, "text"):
-            return resp.text
-        if hasattr(resp, "candidates") and resp.candidates:
-            cand = resp.candidates[0]
-            parts = getattr(getattr(cand, "content", None), "parts", None)
-            if parts:
-                for part in parts:
-                    text = getattr(part, "text", None)
-                    if text:
-                        return text
-        return None
+        if kind == "image-text":
+            img_path, txt_path = (
+                (a, b) if a.lower().endswith((".jpg", ".jpeg", ".png")) else (b, a)
+            )
+            if not Path(img_path).exists():
+                raise FileNotFoundError(f"Missing image file: {img_path}")
+            text = (
+                Path(txt_path).read_text(encoding="utf-8").strip()
+                if Path(txt_path).exists()
+                else "No text available"
+            )
+            img = Image.open(img_path)
+            if img.mode != "RGB":
+                img = img.convert("RGB")
+            return [self.prompts["image_text_prompt"], img, f"Text: {text}"]
+
+        raise ValueError(f"Unknown comparison type: {kind}")
 
     def _run_rater(self, kind: str, a: str, b: str) -> Rating:
         if self.mode == "human":
-            prompt = self._format_prompt(kind, a, b)
-            print("-" * 15, "\nCopy-paste to human UI:\n", prompt)
-            score = int(input("Score 1-5? "))
-            reason = input("Reason? ")[:280]
-            return {"score": score, "reason": reason}
+            print(f"--- Human Evaluation: {kind} ---")
+            print(f"A: {a}")
+            print(f"B: {b}")
+
+            rating = {}
+            # Dynamically get keys from the Pydantic model for robustness
+            for criterion in list(_RatingModel.model_fields.keys()):
+                print(f"\nEnter rating for {criterion}:")
+                score = float(input("Score 1-10? "))
+                reason = input("Reason? ")[:280]
+                rating[criterion] = {"score": score, "reason": reason}
+            return rating
 
         if not self.client:
-            return {"score": -1, "reason": "Missing GOOGLE_API_KEY"}
-
-        client = self.client
+            return DEFAULT_RATING
 
         try:
-            if kind == "image-image":
-                # Ensure both files exist and can be opened as images
-                if not (Path(a).exists() and Path(b).exists()):
-                    raise FileNotFoundError(f"Missing image file(s): {a} or {b}")
+            contents = self._prepare_contents(kind, a, b)
 
-                with Image.open(a) as img1, Image.open(b) as img2:
-                    # Convert to RGB mode if needed
-                    if img1.mode != "RGB":
-                        img1 = img1.convert("RGB")
-                    if img2.mode != "RGB":
-                        img2 = img2.convert("RGB")
+            response = self.client.models.generate_content(
+                model=MODEL_NAME,
+                config=types.GenerateContentConfig(
+                    system_instruction=SYSTEM_INSTRUCTION,
+                    response_mime_type="application/json",
+                    response_schema=_RatingModel,
+                ),
+                contents=contents,
+            )
 
-                    response = client.models.generate_content(
-                        model=MODEL_NAME,
-                        config=types.GenerateContentConfig(
-                            system_instruction=SYSTEM_INSTRUCTION
-                        ),
-                        contents=[self.prompts["image_image_prompt"], img1, img2],
-                    )
+            if hasattr(response, "parsed") and response.parsed:
+                parsed_data = response.parsed
+                # We expect a _RatingModel, but cast to be safe
+                rating_model = cast(_RatingModel, parsed_data)
+                if hasattr(rating_model, "model_dump"):
+                    return rating_model.model_dump()
+                if isinstance(rating_model, dict):
+                    return rating_model
 
-            elif kind == "text-text":
-                # Handle missing text files by using placeholders
-                text1 = "No text available"
-                text2 = "No text available"
-
-                if Path(a).exists():
-                    with open(a, "r", encoding="utf-8") as f:
-                        text1 = f.read().strip()
-                if Path(b).exists():
-                    with open(b, "r", encoding="utf-8") as f:
-                        text2 = f.read().strip()
-
-                prompt_text = f"""Compare these two texts:
-                Text 1: {text1}
-                Text 2: {text2}"""
-
-                response = client.models.generate_content(
-                    model=MODEL_NAME,
-                    config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_INSTRUCTION
-                    ),
-                    contents=[self.prompts["text_text_prompt"], prompt_text],
-                )
-
-            elif kind == "image-text":
-                # Determine which is image and which is text
-                if a.lower().endswith((".jpg", ".jpeg", ".png")):
-                    img_path, txt_path = a, b
-                else:
-                    img_path, txt_path = b, a
-
-                if not Path(img_path).exists():
-                    raise FileNotFoundError(f"Missing image file: {img_path}")
-
-                text = "No text available"
-                if Path(txt_path).exists():
-                    with open(txt_path, "r", encoding="utf-8") as f:
-                        text = f.read().strip()
-
-                with Image.open(img_path) as img:
-                    if img.mode != "RGB":
-                        img = img.convert("RGB")
-
-                    response = client.models.generate_content(
-                        model=MODEL_NAME,
-                        config=types.GenerateContentConfig(
-                            system_instruction=SYSTEM_INSTRUCTION
-                        ),
-                        contents=[
-                            self.prompts["image_text_prompt"],
-                            img,
-                            f"Text: {text}",
-                        ],
-                    )
-
-            else:
-                raise ValueError(f"Unknown comparison type: {kind}")
-
-            try:
-                response_text = self._extract_response_text(response)
-                if response_text:
-                    response_text = response_text.strip()
-                    try:
-                        # Extract the JSON string from the response
-                        start_idx = response_text.find("{")
-                        end_idx = response_text.rfind("}") + 1
-                        if start_idx >= 0 and end_idx > start_idx:
-                            json_str = response_text[start_idx:end_idx]
-                            result = json.loads(json_str)
-
-                            # Validate the structure of the parsed JSON
-                            expected_keys = [
-                                "content",
-                                "missing",
-                                "style",
-                                "meaning",
-                                "overall",
-                            ]
-                            if all(key in result for key in expected_keys):
-                                for key in expected_keys:
-                                    if not (
-                                        isinstance(
-                                            result[key].get("score"), (int, float)
-                                        )
-                                        and isinstance(result[key].get("reason"), str)
-                                    ):
-                                        raise ValueError(
-                                            f"Invalid score or reason for key: {key}"
-                                        )
-                                return result
-                            else:
-                                raise ValueError(
-                                    "Missing expected keys in JSON response"
-                                )
-                    except (json.JSONDecodeError, KeyError, ValueError) as e:
-                        return {"score": -1, "reason": f"JSON parsing error: {e}"}
-                return {"score": -1, "reason": "Empty or invalid response"}
-            except Exception as e:
-                return {"score": -1, "reason": f"Error processing response: {e}"}
+            # If we reach here, structured output failed.
+            print(
+                f"Error: No valid structured output from Gemini for {kind} {a} vs {b}"
+            )
+            if hasattr(response, "text"):
+                print("Raw response:", response.text)
+            return DEFAULT_RATING
 
         except Exception as e:
-            return {"score": -1, "reason": f"Error: {str(e)}"}
+            print(f"Error during {kind} comparison for '{a}' vs '{b}': {e}")
+            return DEFAULT_RATING
 
     def _package(
         self,
