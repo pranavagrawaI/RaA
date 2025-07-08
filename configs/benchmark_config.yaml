@@ -4,7 +4,7 @@
 experiment_name: "exp_022"
 
 # Input data settings
-input_dir: "data/coco_subset"
+input_dir: "data/diverse_data"
 
 # Output settings
 output_dir: "results/{{experiment_name}}"
@@ -57,6 +57,6 @@ metadata:
 
 # Fields for evaluation or reporting
 evaluation:
-  enabled: true
+  enabled: false
   mode: "llm"
 reporting: {}
