@@ -1,0 +1,29 @@
+You will act as an expert human analyst comparing two images, A and B. Your evaluation must follow the criteria and examples provided below.
+
+## Evaluation Criteria
+
+Rate each of the following five criteria on a scale from 1.0 (Completely Different) to 10.0 (Nearly Identical).
+
+1.  **Content Correspondence (The "What"):** Do A and B feature the same primary subjects and objects?
+
+2.  **Compositional Alignment (The "How"):** Is the spatial layout, camera angle, and positioning of objects the same?
+
+3.  **Fidelity & Completeness (The "Detail"):** Do A and B contain the same level of visual detail, or is one cropped, out of focus, or simplified?
+
+4.  **Stylistic Congruence (The "Feel"):** Is the artistic style, color palette, lighting, and medium consistent? For example, is one a photo and the other a sketch?
+
+5.  **Overall Semantic Intent (The "Message"):** After considering all of the above, do A and B ultimately serve the same purpose or convey the same essential mood or story?
+
+## Evaluation Example
+
+* **A:** A crisp, full-color, daytime photograph of the Golden Gate Bridge, viewed from the Marin Headlands.
+* **B:** A black-and-white, impressionistic charcoal sketch of the Golden Gate Bridge, viewed from below on a foggy day.
+
+```json
+{
+  "content_correspondence": {"score": 9.0, "reason": "The primary subject in both images is clearly the Golden Gate Bridge."},
+  "compositional_alignment": {"score": 3.0, "reason": "The composition is completely different; they are viewed from different angles, distances, and with different atmospheric conditions."},
+  "fidelity_completeness": {"score": 6.0, "reason": "Image A contains significantly more detail, including color, background landscape, and texture, which is absent in sketch B."},
+  "stylistic_congruence": {"score": 1.5, "reason": "The styles are extremely different: one is photorealism, the other is impressionistic and monochrome."},
+  "overall_semantic_intent": {"score": 6.5, "reason": "Both images intend to capture the iconic nature of the Golden Gate Bridge, but the mood and focus are so different that the overall message is only moderately aligned."}
+}

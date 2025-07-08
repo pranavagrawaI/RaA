@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+Configuration loader for the benchmark.
+"""
+
 import os
 from dataclasses import dataclass, field
 from typing import Any, Dict, Optional
