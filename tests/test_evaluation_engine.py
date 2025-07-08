@@ -22,6 +22,9 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
     (item / "image_iter1.jpg").write_text("y", encoding="utf-8")
     (item / "text_iter1.txt").write_text("z", encoding="utf-8")
 
+    # Ensure the EvaluationEngine does not attempt real API calls
+    monkeypatch.setenv("GOOGLE_API_KEY", "dummy")
+
     monkeypatch.setattr(
         EvaluationEngine,
         "_run_rater",
