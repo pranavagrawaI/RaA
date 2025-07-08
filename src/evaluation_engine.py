@@ -302,7 +302,6 @@ class EvaluationEngine:
         rating: Rating,
         items: List[str],
     ) -> Dict[str, Any]:
-        # Convert absolute paths to relative paths for cleaner output
         rel_items = [Path(item).name for item in items]
         return {
             "item_id": item,
