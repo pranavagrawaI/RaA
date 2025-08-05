@@ -1,8 +1,13 @@
 import json
-import types
+from types import SimpleNamespace
 
 import evaluation_engine
 from evaluation_engine import EvaluationEngine
+
+
+def create_mock_config():
+    """Create a mock config for testing."""
+    return SimpleNamespace(loop=SimpleNamespace(type="I-T-I"))
 
 
 def test_engine_creates_ratings(tmp_path, monkeypatch):
@@ -40,7 +45,8 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
     class DummyClient(evaluation_engine.genai.Client):
         pass
 
-    engine = EvaluationEngine(str(exp), client=DummyClient())
+    config = create_mock_config()
+    engine = EvaluationEngine(str(exp), config=config, client=DummyClient())
     assert isinstance(engine.client, DummyClient)
     engine.run()
 
@@ -62,7 +68,8 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
 
 def test_run_rater_uses_structured_output(monkeypatch, tmp_path):
     # This test replaces the old `test_run_rater_uses_extractor`
-    eng = EvaluationEngine(str(tmp_path))
+    config = create_mock_config()
+    eng = EvaluationEngine(str(tmp_path), config=config)
     monkeypatch.setenv("GOOGLE_API_KEY", "dummy")
 
     a = tmp_path / "a.txt"
@@ -70,20 +77,24 @@ def test_run_rater_uses_structured_output(monkeypatch, tmp_path):
     a.write_text("A")
     b.write_text("B")
 
+    # Create individual _Criterion instances
+    criterion_data = {"score": 4.0, "reason": "works"}
+    criteria = evaluation_engine._Criterion(**criterion_data)
+
     # The expected data structure that the model should return
     mock_rating_data = {
-        "content_correspondence": {"score": 4.0, "reason": "works"},
-        "compositional_alignment": {"score": 4.0, "reason": "works"},
-        "fidelity_completeness": {"score": 4.0, "reason": "works"},
-        "stylistic_congruence": {"score": 4.0, "reason": "works"},
-        "overall_semantic_intent": {"score": 4.0, "reason": "works"},
+        "content_correspondence": criteria,
+        "compositional_alignment": criteria,
+        "fidelity_completeness": criteria,
+        "stylistic_congruence": criteria,
+        "overall_semantic_intent": criteria,
     }
 
     # Create a mock _RatingModel instance from the data
     mock_rating_model = evaluation_engine._RatingModel(**mock_rating_data)
 
     # Create a mock response object that mimics the Gemini API response
-    mock_response = types.SimpleNamespace(parsed=mock_rating_model)
+    mock_response = SimpleNamespace(parsed=mock_rating_model, text="Mock response text")
 
     class DummyModel:
         def generate_content(self, *args, **kwargs):
@@ -100,5 +111,14 @@ def test_run_rater_uses_structured_output(monkeypatch, tmp_path):
     monkeypatch.setattr(evaluation_engine.genai, "Client", DummyClient)
     eng.client = DummyClient()  # Re-initialize client on the instance
 
+    # Expected output format after model_dump()
+    expected_output = {
+        "content_correspondence": {"score": 4.0, "reason": "works"},
+        "compositional_alignment": {"score": 4.0, "reason": "works"},
+        "fidelity_completeness": {"score": 4.0, "reason": "works"},
+        "stylistic_congruence": {"score": 4.0, "reason": "works"},
+        "overall_semantic_intent": {"score": 4.0, "reason": "works"},
+    }
+
     rating = eng._run_rater("text-text", str(a), str(b))
-    assert rating == mock_rating_data
+    assert rating == expected_output
