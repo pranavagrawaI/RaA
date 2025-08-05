@@ -10,14 +10,16 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from pathlib import Path
-from typing import Any, Dict, List, Literal, cast
+from typing import Any, Dict, List, cast
 
 from google import genai
 from google.genai import types
-from pydantic import BaseModel
 from PIL import Image
+from pydantic import BaseModel
 
+from benchmark_config import BenchmarkConfig
 from output_manager import OutputManager
 
 
@@ -50,7 +52,7 @@ Adhere to these four Guiding Principles in all evaluations:
 
 MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
 
-Rating = Dict[str, Dict[str, Any]]  # Updated to match new schema
+Rating = Dict[str, Dict[str, Any]]
 
 DEFAULT_RATING = {
     "content_correspondence": {"score": -1.0, "reason": "Rating unavailable"},
@@ -67,22 +69,16 @@ class EvaluationEngine:
     def __init__(
         self,
         exp_root: str,
-        mode: Literal["llm", "human"] = "llm",
-        config=None,
+        config: BenchmarkConfig,
         client: genai.Client | None = None,
     ) -> None:
         self.exp_root = Path(exp_root)
-        self.mode = mode
-        self.loop_type = (
-            config.loop.type.upper() if config else ""
-        )  # Will do all comparisons if config not provided
+        self.loop_type = config.loop.type.upper() if config else ""
         if client is not None:
             self.client = client
-        elif self.mode == "llm":
+        else:
             api_key = os.getenv("GOOGLE_API_KEY")
             self.client = genai.Client(api_key=api_key) if api_key else None
-        else:
-            self.client = None
         self.prompts = self._load_prompts()
 
     def _load_prompts(self) -> Dict[str, str]:
@@ -94,6 +90,7 @@ class EvaluationEngine:
         return prompts
 
     def run(self) -> None:
+        """Run the evaluation process."""
         meta_path = self.exp_root / "metadata.json"
         meta = json.load(open(meta_path, "r", encoding="utf-8"))
         for item_id, record in meta.items():
@@ -134,12 +131,6 @@ class EvaluationEngine:
             elif self.loop_type == "T-I-T":
                 # For T-I-T: Always compare current text with original
                 evals += self._compare_texts(item_id, i, curr_txt, base_txt, "original")
-            else:
-                # If loop type unknown, do both comparisons
-                evals += self._compare_images(
-                    item_id, i, curr_img, base_img, "original"
-                )
-                evals += self._compare_texts(item_id, i, curr_txt, base_txt, "original")
 
             # Compare with previous iteration (only for iterations after the first)
             if i > 1:
@@ -147,7 +138,6 @@ class EvaluationEngine:
                 prev_txt = _path(rec[f"iter{i - 1}_text"])
 
                 if self.loop_type == "I-T-I":
-                    # For I-T-I: Compare both images and texts with previous iteration
                     evals += self._compare_images(
                         item_id, i, curr_img, prev_img, "previous"
                     )
@@ -155,7 +145,6 @@ class EvaluationEngine:
                         item_id, i, curr_txt, prev_txt, "previous"
                     )
                 elif self.loop_type == "T-I-T":
-                    # For T-I-T: Compare both texts and images with previous iteration
                     evals += self._compare_texts(
                         item_id, i, curr_txt, prev_txt, "previous"
                     )
@@ -241,57 +230,57 @@ class EvaluationEngine:
 
         raise ValueError(f"Unknown comparison type: {kind}")
 
-    def _run_rater(self, kind: str, a: str, b: str) -> Rating:
-        if self.mode == "human":
-            print(f"--- Human Evaluation: {kind} ---")
-            print(f"A: {a}")
-            print(f"B: {b}")
-
-            rating = {}
-            # Dynamically get keys from the Pydantic model for robustness
-            for criterion in list(_RatingModel.model_fields.keys()):
-                print(f"\nEnter rating for {criterion}:")
-                score = float(input("Score 1-10? "))
-                reason = input("Reason? ")[:280]
-                rating[criterion] = {"score": score, "reason": reason}
-            return rating
-
+    def _run_rater(self, kind: str, a: str, b: str, max_retries: int = 3) -> Rating:
         if not self.client:
             return DEFAULT_RATING
 
-        try:
-            contents = self._prepare_contents(kind, a, b)
+        for attempt in range(max_retries):
+            try:
+                contents = self._prepare_contents(kind, a, b)
 
-            response = self.client.models.generate_content(
-                model=MODEL_NAME,
-                config=types.GenerateContentConfig(
-                    system_instruction=SYSTEM_INSTRUCTION,
-                    response_mime_type="application/json",
-                    response_schema=_RatingModel,
-                ),
-                contents=contents,
-            )
+                response = self.client.models.generate_content(
+                    model=MODEL_NAME,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_INSTRUCTION,
+                        response_mime_type="application/json",
+                        response_schema=_RatingModel,
+                    ),
+                    contents=contents,
+                )
 
-            if hasattr(response, "parsed") and response.parsed:
-                parsed_data = response.parsed
-                # We expect a _RatingModel, but cast to be safe
-                rating_model = cast(_RatingModel, parsed_data)
-                if hasattr(rating_model, "model_dump"):
-                    return rating_model.model_dump()
-                if isinstance(rating_model, dict):
-                    return rating_model
+                if hasattr(response, "parsed") and response.parsed:
+                    parsed_data = response.parsed
+                    # We expect a _RatingModel, but cast to be safe
+                    rating_model = cast(_RatingModel, parsed_data)
+                    if hasattr(rating_model, "model_dump"):
+                        return rating_model.model_dump()
+                    if isinstance(rating_model, dict):
+                        return rating_model
 
-            # If we reach here, structured output failed.
-            print(
-                f"Error: No valid structured output from Gemini for {kind} {a} vs {b}"
-            )
-            if hasattr(response, "text"):
-                print("Raw response:", response.text)
-            return DEFAULT_RATING
+                # If we reach here, structured output failed.
+                print(
+                    f"Error: No valid structured output from Gemini for {kind} {a} vs {b} (Attempt {attempt + 1}/{max_retries})"
+                )
+                if hasattr(response, "text"):
+                    print("Raw response:", response.text)
 
-        except Exception as e:
-            print(f"Error during {kind} comparison for '{a}' vs '{b}': {e}")
-            return DEFAULT_RATING
+                # Only sleep if we're going to retry
+                if attempt < max_retries - 1:
+                    time.sleep(2**attempt)  # Exponential backoff: 1s, 2s, 4s...
+                    continue
+
+            except Exception as e:
+                print(
+                    f"Error during {kind} comparison for '{a}' vs '{b}': {e} (Attempt {attempt + 1}/{max_retries})"
+                )
+
+                # Only sleep if we're going to retry
+                if attempt < max_retries - 1:
+                    time.sleep(2**attempt)  # Exponential backoff: 1s, 2s, 4s...
+                    continue
+
+        # If all retries failed, return default rating
+        return DEFAULT_RATING
 
     def _package(
         self,
