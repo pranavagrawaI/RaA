@@ -50,7 +50,7 @@ def _flatten_records(data: Sequence[Dict]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def _build_chart(df: pd.DataFrame) -> alt.Chart:
+def _build_chart(df: pd.DataFrame) -> alt.FacetChart:
     """Create an Altair line chart from flattened ratings."""
     base = (
         alt.Chart(df)
