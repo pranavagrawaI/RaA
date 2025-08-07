@@ -4,7 +4,7 @@
 experiment_name: "exp_024"
 
 # Input data settings
-input_dir: "data/diverse_data"
+input_dir: "data/coco_subset"
 
 # Output settings
 output_dir: "results/{{experiment_name}}"

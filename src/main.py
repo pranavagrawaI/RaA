@@ -4,15 +4,16 @@
 import argparse
 import os
 import sys
-from typing import Literal, cast
 
 import yaml
+from dotenv import load_dotenv
 from google import genai
 
 from benchmark_config import BenchmarkConfig
 from evaluation_engine import EvaluationEngine
 from loop_controller import LoopController
 
+load_dotenv()
 
 def parse_args():
     """Parse command-line arguments."""
@@ -59,10 +60,8 @@ def main():
 
     api_key = os.getenv("GOOGLE_API_KEY")
     if config.evaluation.enabled:
-        mode = cast(Literal["llm", "human"], config.evaluation.mode)
         engine = EvaluationEngine(
             config.output_dir,
-            mode=mode,
             config=config,
             client=genai.Client(api_key=api_key),
         )

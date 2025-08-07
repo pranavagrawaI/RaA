@@ -50,7 +50,6 @@ class _MetadataConfig:
 @dataclass
 class _EvaluationConfig:
     enabled: bool
-    mode: str
 
 
 @dataclass
@@ -163,12 +162,9 @@ class BenchmarkConfig:
 
     @staticmethod
     def _load_evaluation_config(eval_dict: Dict[str, Any]) -> _EvaluationConfig:
-        if "enabled" not in eval_dict or "mode" not in eval_dict:
-            raise KeyError("evaluation.enabled and evaluation.mode are required")
-        return _EvaluationConfig(
-            enabled=bool(eval_dict["enabled"]),
-            mode=str(eval_dict["mode"]),
-        )
+        if "enabled" not in eval_dict:
+            raise KeyError("evaluation.enabled is required")
+        return _EvaluationConfig(enabled=bool(eval_dict["enabled"]))
 
     @staticmethod
     def _load_metadata_config(meta_dict: Dict[str, Any]) -> _MetadataConfig:
