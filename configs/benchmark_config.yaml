@@ -1,7 +1,7 @@
 # Benchmark configuration for RaA pipeline
 
 # Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_022"
+experiment_name: "exp_024"
 
 # Input data settings
 input_dir: "data/diverse_data"
@@ -32,14 +32,14 @@ models:
 prompts:
   caption: |-
     Describe this image in detailed, structured prose so that another model could reproduce it as faithfully as possible. Your description **must** include:
-    • Primary subject(s) – identity, count, appearance, pose, expression
-    • Secondary objects – any items or beings within the frame and their relation to the subject
-    • Scene setting – indoor/outdoor, environment, lighting conditions, time of day
-    • Color palette – dominant and notable colours of all main elements
-    • Composition – camera angle, framing, perspective, depth cues, object placement
-    • Style indicators – if artistic, specify medium (e.g., watercolor, digital painting); if photographic, note lens/filters (if guessable)
-    • Textures & materials – of major surfaces (e.g., skin, fabric, metal, grass)
-    • Mood or atmosphere – if emotionally evocative
+    • Primary subject(s) - identity, count, appearance, pose, expression
+    • Secondary objects - any items or beings within the frame and their relation to the subject
+    • Scene setting - indoor/outdoor, environment, lighting conditions, time of day
+    • Color palette - dominant and notable colours of all main elements
+    • Composition - camera angle, framing, perspective, depth cues, object placement
+    • Style indicators - if artistic, specify medium (e.g., watercolor, digital painting); if photographic, note lens/filters (if guessable)
+    • Textures & materials - of major surfaces (e.g., skin, fabric, metal, grass)
+    • Mood or atmosphere - if emotionally evocative
     Do **not** omit details due to assumed irrelevance. Write as if the description will be used to reconstruct the image from scratch.
   image: |-
     Recreate the image described below with maximum visual fidelity. Prioritise spatial arrangement, visual details, and scene structure exactly as specified. Do not stylise unless explicitly instructed.
@@ -57,6 +57,6 @@ metadata:
 
 # Fields for evaluation or reporting
 evaluation:
-  enabled: false
-  mode: "llm"
+  enabled: true
+
 reporting: {}
