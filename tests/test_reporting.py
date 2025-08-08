@@ -1,47 +1,120 @@
 import json
+import unittest
 from pathlib import Path
+from unittest.mock import patch
 
-from reporting import generate_line_overview
+import pandas as pd
 
-
-def _write_ratings(path: Path) -> None:
-    data = [
-        {
-            "item_id": "item1",
-            "step": 1,
-            "anchor": "original",
-            "comparison_type": "image-image",
-            "comparison_items": ["a", "b"],
-            "content_correspondence": {"score": 8.0, "reason": ""},
-            "compositional_alignment": {"score": 7.0, "reason": ""},
-            "fidelity_completeness": {"score": 6.0, "reason": ""},
-            "style_consistency": {"score": 5.0, "reason": ""},
-            "overall": {"score": 4.0, "reason": ""},
-        },
-        {
-            "item_id": "item1",
-            "step": 2,
-            "anchor": "previous",
-            "comparison_type": "image-image",
-            "comparison_items": ["c", "d"],
-            "content_correspondence": {"score": 7.5, "reason": ""},
-            "compositional_alignment": {"score": 6.5, "reason": ""},
-            "fidelity_completeness": {"score": 5.5, "reason": ""},
-            "style_consistency": {"score": 4.5, "reason": ""},
-            "overall": {"score": 3.5, "reason": ""},
-        },
-    ]
-    path.write_text(json.dumps(data))
+from src.reporting import (
+    discover_ratings_files,
+    load_and_normalize_data,
+    calculate_aggregates,
+    generate_vega_specs,
+    generate_static_charts,
+)
 
 
-def test_generate_line_overview(tmp_path):
-    eval_dir = tmp_path / "item1" / "eval"
-    eval_dir.mkdir(parents=True)
-    ratings_file = eval_dir / "ratings.json"
-    _write_ratings(ratings_file)
+class TestReporting(unittest.TestCase):
+    def setUp(self):
+        """Set up a synthetic dataset for testing."""
+        self.test_dir = Path("test_data")
+        self.test_dir.mkdir(exist_ok=True)
+        self.eval_dir = self.test_dir / "eval"
+        self.eval_dir.mkdir(exist_ok=True)
+        self.ratings_file = self.eval_dir / "ratings.json"
 
-    generate_line_overview(tmp_path)
+        self.synthetic_data = [
+            {
+                "item_id": "test_01",
+                "step": 1,
+                "comparison_type": "image-image",
+                "anchor": "original",
+                "overall": {"score": 8, "reason": "Good start"},
+                "style_consistency": {"score": 7},
+            },
+            {
+                "item_id": "test_01",
+                "step": 2,
+                "comparison_type": "image-image",
+                "anchor": "original",
+                "overall": {"score": 9, "reason": "Improved"},
+                "style_consistency": {"score": 6, "reason": "Slightly off"},
+            },
+            {
+                "item_id": "test_01",
+                "step": 1,
+                "comparison_type": "image-text",
+                "anchor": "previous",
+                "overall": {"score": -1, "reason": "Not applicable"},
+                "fidelity_completeness": {"score": 5},
+            },
+        ]
+        with self.ratings_file.open("w") as f:
+            json.dump(self.synthetic_data, f)
 
-    out_file = eval_dir / "line_overview.html"
-    assert out_file.is_file()
-    assert out_file.stat().st_size > 0
+    def tearDown(self):
+        """Clean up test data."""
+        import shutil
+
+        shutil.rmtree(self.test_dir)
+
+    def test_discover_ratings_files(self):
+        """Test discovery of ratings.json files."""
+        found_files = discover_ratings_files(self.test_dir)
+        self.assertEqual(len(found_files), 1)
+        self.assertEqual(found_files[0], self.ratings_file)
+
+        found_files = discover_ratings_files(self.ratings_file)
+        self.assertEqual(len(found_files), 1)
+        self.assertEqual(found_files[0], self.ratings_file)
+
+    def test_load_and_normalize_data(self):
+        """Test data loading and metric canonicalization."""
+        df, _ = load_and_normalize_data(self.ratings_file)
+        self.assertIsInstance(df, pd.DataFrame)
+        self.assertFalse(df.empty)
+        self.assertIn("valid", df.columns)
+        self.assertEqual(df["valid"].sum(), 5)
+        self.assertEqual(df[df["metric"] == "style_consistency"].shape[0], 2)
+        self.assertEqual(df.shape[0], 6)
+
+    def test_calculate_aggregates(self):
+        """Test correctness of aggregation calculations."""
+        df, _ = load_and_normalize_data(self.ratings_file)
+        aggregates = calculate_aggregates(df)
+
+        self.assertAlmostEqual(aggregates["summary_cards"]["coverage"], 5 / 6)
+
+        deltas_df = aggregates["deltas"]
+        self.assertIn("delta", deltas_df.columns)
+        self.assertEqual(
+            deltas_df[(deltas_df["metric"] == "overall") & (deltas_df["step"] == 2)][
+                "delta"
+            ].iloc[0],
+            1.0,
+        )
+
+        stability_df = aggregates["stability"]
+        self.assertIn("mean", stability_df.columns)
+        self.assertIn("std", stability_df.columns)
+
+    def test_generate_vega_specs(self):
+        """Test that Vega-Lite specs are generated without errors."""
+        df, _ = load_and_normalize_data(self.ratings_file)
+        aggregates = calculate_aggregates(df)
+        specs = generate_vega_specs(df, aggregates)
+        self.assertIn("trends", specs)
+        self.assertIn("$schema", specs["trends"])
+
+    @patch("matplotlib.pyplot.show")
+    def test_generate_static_charts(self, mock_show):
+        """Test that static charts are generated without errors."""
+        df, _ = load_and_normalize_data(self.ratings_file)
+        aggregates = calculate_aggregates(df)
+        charts = generate_static_charts(df, aggregates, "light")
+        self.assertIn("trends", charts)
+        self.assertTrue(charts["trends"].startswith("iVBOR"))
+
+
+if __name__ == "__main__":
+    unittest.main()

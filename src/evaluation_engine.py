@@ -130,7 +130,13 @@ class EvaluationEngine:
                 )
             elif self.loop_type == "T-I-T":
                 # For T-I-T: Always compare current text with original
-                evals += self._compare_texts(item_id, i, curr_txt, base_txt, "original")
+                evals += self._compare_texts(
+                    item_id, i, curr_txt, base_txt, "original"
+                )
+
+            # Cross-modal comparison with original
+            evals += self._compare_cross(item_id, i, curr_img, base_txt, "original")
+            evals += self._compare_cross(item_id, i, base_img, curr_txt, "original")
 
             # Compare with previous iteration (only for iterations after the first)
             if i > 1:
@@ -159,6 +165,14 @@ class EvaluationEngine:
                     evals += self._compare_texts(
                         item_id, i, curr_txt, prev_txt, "previous"
                     )
+
+                # Cross-modal comparison with previous
+                evals += self._compare_cross(
+                    item_id, i, curr_img, prev_txt, "previous"
+                )
+                evals += self._compare_cross(
+                    item_id, i, prev_img, curr_txt, "previous"
+                )
 
             # Always do image-text comparison for current iteration
             evals += self._compare_cross(item_id, i, curr_img, curr_txt, "same-step")

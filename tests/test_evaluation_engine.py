@@ -20,12 +20,16 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
             "input": "input.jpg",
             "iter1_img": "image_iter1.jpg",
             "iter1_text": "text_iter1.txt",
+            "iter2_img": "image_iter2.jpg",
+            "iter2_text": "text_iter2.txt",
         }
     }
     (exp / "metadata.json").write_text(json.dumps(meta), encoding="utf-8")
     (item / "input.jpg").write_text("x", encoding="utf-8")
     (item / "image_iter1.jpg").write_text("y", encoding="utf-8")
     (item / "text_iter1.txt").write_text("z", encoding="utf-8")
+    (item / "image_iter2.jpg").write_text("a", encoding="utf-8")
+    (item / "text_iter2.txt").write_text("b", encoding="utf-8")
 
     # Ensure the EvaluationEngine does not attempt real API calls
     monkeypatch.setenv("GOOGLE_API_KEY", "dummy")
@@ -54,6 +58,25 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
     assert ratings_path.is_file()
     data = json.loads(ratings_path.read_text())
     assert data
+    # Iter 1:
+    # - img vs base_img (original)
+    # - img vs base_txt (original)
+    # - txt vs base_img (original)
+    # - img vs txt (same-step)
+    # Total = 4
+    #
+    # Iter 2:
+    # - img vs base_img (original)
+    # - img vs base_txt (original)
+    # - txt vs base_img (original)
+    # - img vs prev_img (previous)
+    # - txt vs prev_txt (previous)
+    # - img vs prev_txt (previous)
+    # - txt vs prev_img (previous)
+    # - img vs txt (same-step)
+    # Total = 8
+    # Grand Total = 12
+    assert len(data) == 12
     assert "content_correspondence" in data[0]
     assert data[0]["content_correspondence"]["score"] == 5
     assert "compositional_alignment" in data[0]

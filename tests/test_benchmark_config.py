@@ -30,7 +30,6 @@ metadata:
   random_seed: 123
 evaluation:
   enabled: true
-  mode: "llm"
 reporting: {}
 """
 
@@ -43,7 +42,6 @@ loop:
   num_iterations: 1
 evaluation:
   enabled: true
-  mode: "llm"
 """
 
 
@@ -84,7 +82,6 @@ def test_valid_config_loads(valid_cfg_file):
     assert cfg.metadata.random_seed == 123
 
     assert cfg.evaluation.enabled is True
-    assert cfg.evaluation.mode == "llm"
     assert cfg.reporting == {}
 
 
@@ -102,7 +99,6 @@ def test_minimal_config_loads(tmp_path):
     assert cfg.models.caption_model.name == "dummy-captioner"
     assert cfg.logging.level == "INFO"
     assert cfg.evaluation.enabled is True
-    assert cfg.evaluation.mode == "llm"
 
 
 def test_missing_key_raises(tmp_path):
@@ -114,7 +110,7 @@ def test_missing_key_raises(tmp_path):
 
 
 def test_missing_evaluation_raises(tmp_path):
-    bad_yaml = VALID_YAML.replace('evaluation:\n  enabled: true\n  mode: "llm"\n', "")
+    bad_yaml = VALID_YAML.replace('evaluation:\n  enabled: true\n', "")
     path = tmp_path / "bad_eval.yaml"
     path.write_text(bad_yaml)
     with pytest.raises(KeyError):

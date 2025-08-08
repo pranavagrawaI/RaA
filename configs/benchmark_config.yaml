@@ -1,7 +1,7 @@
 # Benchmark configuration for RaA pipeline
 
 # Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_024"
+experiment_name: "exp_025"
 
 # Input data settings
 input_dir: "data/coco_subset"
@@ -14,7 +14,7 @@ loop:
   # Type of recursive loop: I-T-I, T-I-T etc.
   type: "I-T-I"
   # Number of full recursion iterations to perform (excluding initial input)
-  num_iterations: 2
+  num_iterations: 5
 
 # Models to use for each stage of the loop
 models:
