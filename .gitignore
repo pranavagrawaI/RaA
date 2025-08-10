@@ -196,7 +196,3 @@ cython_debug/
 # data and results
 data/
 results/
-
-
-# test file
-src/test.py
