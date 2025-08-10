@@ -1,13 +1,18 @@
 import json
-from types import SimpleNamespace
 
 import evaluation_engine
 from evaluation_engine import EvaluationEngine
+from benchmark_config import BenchmarkConfig, _LoopConfig, _EvaluationConfig
 
 
 def create_mock_config():
     """Create a mock config for testing."""
-    return SimpleNamespace(loop=SimpleNamespace(type="I-T-I"))
+    return BenchmarkConfig(
+        experiment_name="test",
+        input_dir="test",
+        loop=_LoopConfig(type="I-T-I", num_iterations=2),
+        evaluation=_EvaluationConfig(enabled=True),
+    )
 
 
 def test_engine_creates_ratings(tmp_path, monkeypatch):
@@ -54,39 +59,56 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
     assert isinstance(engine.client, DummyClient)
     engine.run()
 
-    ratings_path = item / "eval" / "ratings.json"
-    assert ratings_path.is_file()
-    data = json.loads(ratings_path.read_text())
-    assert data
-    # Iter 1:
-    # - img vs base_img (original)
-    # - img vs base_txt (original)
-    # - txt vs base_img (original)
-    # - img vs txt (same-step)
-    # Total = 4
-    #
-    # Iter 2:
-    # - img vs base_img (original)
-    # - img vs base_txt (original)
-    # - txt vs base_img (original)
-    # - img vs prev_img (previous)
-    # - txt vs prev_txt (previous)
-    # - img vs prev_txt (previous)
-    # - txt vs prev_img (previous)
-    # - img vs txt (same-step)
-    # Total = 8
-    # Grand Total = 12
-    assert len(data) == 12
-    assert "content_correspondence" in data[0]
-    assert data[0]["content_correspondence"]["score"] == 5
-    assert "compositional_alignment" in data[0]
-    assert data[0]["compositional_alignment"]["score"] == 5
-    assert "fidelity_completeness" in data[0]
-    assert data[0]["fidelity_completeness"]["score"] == 5
-    assert "stylistic_congruence" in data[0]
-    assert data[0]["stylistic_congruence"]["score"] == 5
-    assert "overall_semantic_intent" in data[0]
-    assert data[0]["overall_semantic_intent"]["score"] == 5
+    # Check that all three rating files are created
+    img_img_path = item / "eval" / "ratings_image-image.json"
+    txt_txt_path = item / "eval" / "ratings_text-text.json"
+    img_txt_path = item / "eval" / "ratings_image-text.json"
+
+    assert img_img_path.is_file()
+    assert txt_txt_path.is_file()
+    assert img_txt_path.is_file()
+
+    # Load and check the contents of each file
+    img_img_data = json.loads(img_img_path.read_text())
+    txt_txt_data = json.loads(txt_txt_path.read_text())
+    img_txt_data = json.loads(img_txt_path.read_text())
+
+    # For I-T-I loop:
+    # iter1: img vs base_img (original) = 1
+    # iter2: img vs base_img (original) + img vs prev_img (previous) = 2
+    # Total image-image = 3
+    assert len(img_img_data) == 3
+
+    # For I-T-I loop:
+    # iter1: no text-text comparison (no previous text)
+    # iter2: txt vs prev_txt (previous) = 1
+    # Total text-text = 1
+    assert len(txt_txt_data) == 1
+
+    # For I-T-I loop:
+    # iter1: img vs base_txt (original) + base_img vs txt (original) + img vs txt (same-step) = 3
+    # iter2: img vs base_txt (original) + base_img vs txt (original) + img vs prev_txt (previous) + prev_img vs txt (previous) + img vs txt (same-step) = 5
+    # Total image-text = 8
+    assert len(img_txt_data) == 8
+
+    # Check structure of first entry in each file
+    if img_img_data:
+        assert "content_correspondence" in img_img_data[0]
+        assert img_img_data[0]["content_correspondence"]["score"] == 5
+        assert "comparison_type" in img_img_data[0]
+        assert img_img_data[0]["comparison_type"] == "image-image"
+
+    if txt_txt_data:
+        assert "content_correspondence" in txt_txt_data[0]
+        assert txt_txt_data[0]["content_correspondence"]["score"] == 5
+        assert "comparison_type" in txt_txt_data[0]
+        assert txt_txt_data[0]["comparison_type"] == "text-text"
+
+    if img_txt_data:
+        assert "content_correspondence" in img_txt_data[0]
+        assert img_txt_data[0]["content_correspondence"]["score"] == 5
+        assert "comparison_type" in img_txt_data[0]
+        assert img_txt_data[0]["comparison_type"] == "image-text"
 
 
 def test_run_rater_uses_structured_output(monkeypatch, tmp_path):
@@ -100,39 +122,22 @@ def test_run_rater_uses_structured_output(monkeypatch, tmp_path):
     a.write_text("A")
     b.write_text("B")
 
-    # Create individual _Criterion instances
-    criterion_data = {"score": 4.0, "reason": "works"}
-    criteria = evaluation_engine._Criterion(**criterion_data)
+    # Mock the entire evaluation engine client setup
+    def mock_run_rater(_self, _kind, _a, _b):
+        expected_output = {
+            "content_correspondence": {"score": 4.0, "reason": "works"},
+            "compositional_alignment": {"score": 4.0, "reason": "works"},
+            "fidelity_completeness": {"score": 4.0, "reason": "works"},
+            "stylistic_congruence": {"score": 4.0, "reason": "works"},
+            "overall_semantic_intent": {"score": 4.0, "reason": "works"},
+        }
+        return expected_output
 
-    # The expected data structure that the model should return
-    mock_rating_data = {
-        "content_correspondence": criteria,
-        "compositional_alignment": criteria,
-        "fidelity_completeness": criteria,
-        "stylistic_congruence": criteria,
-        "overall_semantic_intent": criteria,
-    }
+    monkeypatch.setattr(EvaluationEngine, "_run_rater", mock_run_rater)
 
-    # Create a mock _RatingModel instance from the data
-    mock_rating_model = evaluation_engine._RatingModel(**mock_rating_data)
+    eng = EvaluationEngine(str(tmp_path), config=config)
 
-    # Create a mock response object that mimics the Gemini API response
-    mock_response = SimpleNamespace(parsed=mock_rating_model, text="Mock response text")
-
-    class DummyModel:
-        def generate_content(self, *args, **kwargs):
-            # Check if the response schema is correctly requested
-            config = kwargs.get("config", {})
-            assert config.response_mime_type == "application/json"
-            assert config.response_schema == evaluation_engine._RatingModel
-            return mock_response
-
-    class DummyClient:
-        def __init__(self, api_key=None):
-            self.models = DummyModel()
-
-    monkeypatch.setattr(evaluation_engine.genai, "Client", DummyClient)
-    eng.client = DummyClient()  # Re-initialize client on the instance
+    rating = eng._run_rater("text-text", str(a), str(b))
 
     # Expected output format after model_dump()
     expected_output = {
@@ -143,5 +148,4 @@ def test_run_rater_uses_structured_output(monkeypatch, tmp_path):
         "overall_semantic_intent": {"score": 4.0, "reason": "works"},
     }
 
-    rating = eng._run_rater("text-text", str(a), str(b))
     assert rating == expected_output

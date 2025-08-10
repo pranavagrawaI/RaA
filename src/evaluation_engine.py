@@ -45,7 +45,7 @@ Adhere to these four Guiding Principles in all evaluations:
 
 2.  **Prioritize Core Meaning:** The most important question is "Do A and B tell the same fundamental story or convey the same core message?" A stylistic change (e.g., photo vs. painting) is less significant than a change in the central action or relationship (e.g., a cat chasing a mouse vs. a mouse chasing a cat).
 
-3.  **Score the *Difference*, Not the Quality:** Your task is to measure similarity, not to judge which input is "better." A low-quality photo of a subject is a near-perfect match to a high-quality photo of the *same subject*. Your scores must reflect the degree of transformation between A and B, not their intrinsic quality.
+3.  **Score the *Difference*, Not the Quality:** Your task is to measure similarity, not to judge which input is "better." A low-quality photo of a subject is a near-perfect match to a high-quality photo of the *same subject*. Your scores must reflect the degree of transformation between A and B, not their quality. Please provide your evaluation with at least one decimal place of precision.
 
 4.  **Justify with Specifics:** Your "reason" for each score is critical. It must be concise and point to concrete evidence in the inputs. Avoid vague justifications. Instead of "The style is different," write "A is a photorealistic image, while B is an abstract watercolor painting."
 """
@@ -98,7 +98,10 @@ class EvaluationEngine:
 
     def _eval_single_item(self, item_id: str, rec: Dict[str, str]) -> None:
         om = OutputManager(self.exp_root / item_id / "eval")
-        evals: List[Dict[str, Any]] = []
+        # separate rating lists per comparison type
+        img_img_ratings: List[Dict[str, Any]] = []
+        txt_txt_ratings: List[Dict[str, Any]] = []
+        img_txt_ratings: List[Dict[str, Any]] = []
 
         def _path(rel: str) -> str:
             return str(self.exp_root / item_id / rel)
@@ -125,18 +128,34 @@ class EvaluationEngine:
             # Compare with original (base) content
             if self.loop_type == "I-T-I":
                 # For I-T-I: Always compare current image with original
-                evals += self._compare_images(
+                img_img_ratings += self._compare_images(
                     item_id, i, curr_img, base_img, "original"
                 )
             elif self.loop_type == "T-I-T":
                 # For T-I-T: Always compare current text with original
-                evals += self._compare_texts(
+                txt_txt_ratings += self._compare_texts(
                     item_id, i, curr_txt, base_txt, "original"
                 )
 
             # Cross-modal comparison with original
-            evals += self._compare_cross(item_id, i, curr_img, base_txt, "original")
-            evals += self._compare_cross(item_id, i, base_img, curr_txt, "original")
+            if self.loop_type == "I-T-I":
+                # For I-T-I: Compare current text with original image (base_img)
+                img_txt_ratings += self._compare_cross(
+                    item_id, i, base_img, curr_txt, "original"
+                )
+            elif self.loop_type == "T-I-T":
+                # For T-I-T: Compare current image with original text (base_txt)
+                img_txt_ratings += self._compare_cross(
+                    item_id, i, curr_img, base_txt, "original"
+                )
+            else:
+                # If loop type unknown, do both comparisons (backward compatibility)
+                img_txt_ratings += self._compare_cross(
+                    item_id, i, curr_img, base_txt, "original"
+                )
+                img_txt_ratings += self._compare_cross(
+                    item_id, i, base_img, curr_txt, "original"
+                )
 
             # Compare with previous iteration (only for iterations after the first)
             if i > 1:
@@ -144,40 +163,57 @@ class EvaluationEngine:
                 prev_txt = _path(rec[f"iter{i - 1}_text"])
 
                 if self.loop_type == "I-T-I":
-                    evals += self._compare_images(
+                    img_img_ratings += self._compare_images(
                         item_id, i, curr_img, prev_img, "previous"
                     )
-                    evals += self._compare_texts(
+                    txt_txt_ratings += self._compare_texts(
                         item_id, i, curr_txt, prev_txt, "previous"
                     )
                 elif self.loop_type == "T-I-T":
-                    evals += self._compare_texts(
+                    txt_txt_ratings += self._compare_texts(
                         item_id, i, curr_txt, prev_txt, "previous"
                     )
-                    evals += self._compare_images(
+                    img_img_ratings += self._compare_images(
                         item_id, i, curr_img, prev_img, "previous"
                     )
                 else:
                     # If loop type unknown, do both comparisons
-                    evals += self._compare_images(
+                    img_img_ratings += self._compare_images(
                         item_id, i, curr_img, prev_img, "previous"
                     )
-                    evals += self._compare_texts(
+                    txt_txt_ratings += self._compare_texts(
                         item_id, i, curr_txt, prev_txt, "previous"
                     )
 
                 # Cross-modal comparison with previous
-                evals += self._compare_cross(
-                    item_id, i, curr_img, prev_txt, "previous"
-                )
-                evals += self._compare_cross(
-                    item_id, i, prev_img, curr_txt, "previous"
-                )
+                if self.loop_type == "I-T-I":
+                    # For I-T-I: Compare current text with previous image
+                    img_txt_ratings += self._compare_cross(
+                        item_id, i, prev_img, curr_txt, "previous"
+                    )
+                elif self.loop_type == "T-I-T":
+                    # For T-I-T: Compare current image with previous text
+                    img_txt_ratings += self._compare_cross(
+                        item_id, i, curr_img, prev_txt, "previous"
+                    )
+                else:
+                    # If loop type unknown, do both comparisons (backward compatibility)
+                    img_txt_ratings += self._compare_cross(
+                        item_id, i, curr_img, prev_txt, "previous"
+                    )
+                    img_txt_ratings += self._compare_cross(
+                        item_id, i, prev_img, curr_txt, "previous"
+                    )
 
             # Always do image-text comparison for current iteration
-            evals += self._compare_cross(item_id, i, curr_img, curr_txt, "same-step")
+            img_txt_ratings += self._compare_cross(
+                item_id, i, curr_img, curr_txt, "same-step"
+            )
 
-        om.write_json(evals, "ratings.json")
+        # write separate ratings files per comparison type
+        om.write_json(img_img_ratings, "ratings_image-image.json")
+        om.write_json(txt_txt_ratings, "ratings_text-text.json")
+        om.write_json(img_txt_ratings, "ratings_image-text.json")
 
     def _compare_images(
         self, item: str, step: int, img_a: str, img_b: str, anchor: str
@@ -202,10 +238,43 @@ class EvaluationEngine:
     def _prepare_contents(self, kind: str, a: str, b: str) -> List[Any]:
         """Prepare the contents list for the Gemini API call based on comparison kind."""
         if kind == "image-image":
-            if not (Path(a).exists() and Path(b).exists()):
-                raise FileNotFoundError(f"Missing image file(s): {a} or {b}")
-            img1 = Image.open(a)
-            img2 = Image.open(b)
+            # Accept symlinks as valid entries; we'll error clearly on open if target is missing.
+            for p in (a, b):
+                if not (os.path.lexists(p) or Path(p).is_symlink() or Path(p).exists()):
+                    dir_p = os.path.dirname(os.path.abspath(p))
+                    print(f"[DEBUG] Listing files in directory of {p}: {dir_p}")
+                    try:
+                        print(os.listdir(dir_p))
+                    except Exception as e:
+                        print(f"[DEBUG] Could not list directory {dir_p}: {e}")
+                    print(
+                        f"[DEBUG] Path entry missing: {p} | exists={Path(p).exists()} is_symlink={Path(p).is_symlink()} lexists={os.path.lexists(p)}"
+                    )
+                    raise FileNotFoundError(f"Missing image file entry: {p}")
+            try:
+                img1 = Image.open(a)
+            except Exception as e:
+                target = None
+                if Path(a).is_symlink():
+                    try:
+                        target = os.readlink(a)
+                    except Exception:
+                        target = "<unreadable symlink target>"
+                raise FileNotFoundError(
+                    f"Cannot open image A: {a}. Symlink target: {target}. Error: {e}"
+                ) from e
+            try:
+                img2 = Image.open(b)
+            except Exception as e:
+                target = None
+                if Path(b).is_symlink():
+                    try:
+                        target = os.readlink(b)
+                    except Exception:
+                        target = "<unreadable symlink target>"
+                raise FileNotFoundError(
+                    f"Cannot open image B: {b}. Symlink target: {target}. Error: {e}"
+                ) from e
             if img1.mode != "RGB":
                 img1 = img1.convert("RGB")
             if img2.mode != "RGB":
@@ -230,14 +299,30 @@ class EvaluationEngine:
             img_path, txt_path = (
                 (a, b) if a.lower().endswith((".jpg", ".jpeg", ".png")) else (b, a)
             )
-            if not Path(img_path).exists():
-                raise FileNotFoundError(f"Missing image file: {img_path}")
+            # Accept symlinked images; error clearly if they cannot be opened
+            if not (
+                os.path.lexists(img_path)
+                or Path(img_path).is_symlink()
+                or Path(img_path).exists()
+            ):
+                raise FileNotFoundError(f"Missing image file entry: {img_path}")
             text = (
                 Path(txt_path).read_text(encoding="utf-8").strip()
                 if Path(txt_path).exists()
                 else "No text available"
             )
-            img = Image.open(img_path)
+            try:
+                img = Image.open(img_path)
+            except Exception as e:
+                target = None
+                if Path(img_path).is_symlink():
+                    try:
+                        target = os.readlink(img_path)
+                    except Exception:
+                        target = "<unreadable symlink target>"
+                raise FileNotFoundError(
+                    f"Cannot open image: {img_path}. Symlink target: {target}. Error: {e}"
+                ) from e
             if img.mode != "RGB":
                 img = img.convert("RGB")
             return [self.prompts["image_text_prompt"], img, f"Text: {text}"]
