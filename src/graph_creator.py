@@ -44,50 +44,15 @@ AnchorType = Literal["original", "previous", "same-step"]
 
 @dataclass(frozen=True)
 class Key:
+    """Represents a unique key for a specific evaluation scenario."""
+
     comparison_type: ComparisonType
     anchor: AnchorType
-    # For image-text we may have two directions for original/previous anchors.
-    # direction values:
-    #   - "img-vs-text" (current image vs <anchor> text)
-    #   - "text-vs-img" (current text vs <anchor> image)
-    #   - None for others and for same-step (symmetric)
     direction: Optional[str] = None
-
-
-def _is_image_file(name: str) -> bool:
-    name = name.lower()
-    return name.endswith((".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tif", ".tiff"))
-
-
-def _is_text_file(name: str) -> bool:
-    return name.lower().endswith(".txt")
 
 
 def _sanitize_filename(s: str) -> str:
     return re.sub(r"[^a-zA-Z0-9_.-]", "-", s)
-
-
-def _infer_direction_for_image_text(
-    anchor: str, comparison_items: List[str]
-) -> Optional[str]:
-    """Infer direction for image-text comparisons using comparison_items.
-
-    Heuristic:
-      - If comparison_items[0] is a text file: current image vs (original/previous/current) text => "img-vs-text"
-      - If comparison_items[0] is an image file: current text vs (original/previous/current) image => "text-vs-img"
-      - Otherwise return None.
-    For same-step we return None because it's symmetric and always current image vs current text.
-    """
-    if anchor == "same-step":
-        return None
-    if not comparison_items:
-        return None
-    ref = comparison_items[0]
-    if _is_text_file(ref):
-        return "img-vs-text"
-    if _is_image_file(ref):
-        return "text-vs-img"
-    return None
 
 
 def _collect_eval_files(eval_dir: Path) -> List[Path]:
@@ -100,7 +65,11 @@ def _load_records(eval_dir: Path) -> List[Dict[str, Any]]:
         try:
             with fp.open("r", encoding="utf-8") as f:
                 data = json.load(f)
-        except Exception:
+        except json.JSONDecodeError as e:
+            print(f"[reporting] Failed to decode JSON in {fp}: {e}")
+            continue
+        except OSError as e:
+            print(f"[reporting] Failed to open {fp}: {e}")
             continue
         if isinstance(data, list):
             for rec in data:
@@ -112,11 +81,9 @@ def _load_records(eval_dir: Path) -> List[Dict[str, Any]]:
 
 
 def _extract_item_id(eval_dir: Path, records: List[Dict[str, Any]]) -> str:
-    # Prefer record value if available; else use parent folder name
     for rec in records:
         if isinstance(rec, dict) and rec.get("item_id"):
-            return str(rec["item_id"])  # type: ignore[return-value]
-    # eval dir should be .../<item_id>/eval
+            return str(rec["item_id"])
     parent = eval_dir.parent.name
     return parent or "item"
 
@@ -133,27 +100,15 @@ def _iter_series(
         anchor = rec.get("anchor")
         if ctype != wanted.comparison_type or anchor != wanted.anchor:
             continue
-        # Direction filter for image-text
-        direction: Optional[str] = None
-        if ctype == "image-text":
-            comparison_items = rec.get("comparison_items") or []
-            if not isinstance(comparison_items, list):
-                comparison_items = []
-            direction = _infer_direction_for_image_text(
-                str(anchor), [str(x) for x in comparison_items]
-            )
-            if wanted.direction != direction:
-                # For same-step the wanted.direction will be None, as we expect
-                if not (wanted.direction is None and str(anchor) == "same-step"):
-                    continue
 
         step_val = rec.get("step")
         if step_val is None:
             continue
         try:
-            step = int(step_val)  # type: ignore[arg-type]
-        except Exception:
-            continue
+            step = int(step_val)
+        except (ValueError, TypeError) as e:
+            print(f"[reporting] Failed to parse step value '{step_val}' in record: {e}")
+            continue  # Skip this record if step cannot be parsed
 
         scores: Dict[str, Optional[float]] = {}
         has_any = False
@@ -162,8 +117,9 @@ def _iter_series(
             score: Optional[float] = None
             if isinstance(val, dict) and "score" in val:
                 try:
-                    score = float(val["score"])  # type: ignore[arg-type]
-                except Exception:
+                    score = float(val["score"])
+                except (ValueError, TypeError):
+                    print("[reporting] failed to assign score.")
                     score = None
             # Filter out placeholders like -1.0 if present
             if score is not None and score < 0:
@@ -221,7 +177,6 @@ def _plot_group(
     plt.title(" | ".join(title_parts))
     plt.xlabel("Generation (step)")
     plt.ylabel("Score")
-    # Determine Y scale dynamically (supports 0-1 and 0-10 data)
     all_vals: List[float] = []
     for crit in CRITERIA:
         for v in ys[crit]:
@@ -235,7 +190,6 @@ def _plot_group(
             plt.ylim(0, 11.0)
         else:
             plt.ylim(0, ymax * 1.05)
-    # Set x-axis ticks to integer steps only
     if steps:
         min_step = min(steps)
         max_step = max(steps)
@@ -256,6 +210,14 @@ def _plot_group(
 
 
 def generate_charts_for_eval(eval_dir: Path) -> List[Path]:
+    """Generate evaluation charts for the given directory.
+
+    Args:
+        eval_dir (Path): The directory containing evaluation data.
+
+    Returns:
+        List[Path]: A list of paths to the generated chart images.
+    """
     eval_dir = eval_dir.resolve()
     charts: List[Path] = []
     records = _load_records(eval_dir)
@@ -279,31 +241,14 @@ def generate_charts_for_eval(eval_dir: Path) -> List[Path]:
     else:
         loop_type = "UNKNOWN"
 
-    # Only include groupings that make sense for the detected loop type
     wanted_keys: List[Key] = [
         Key("image-image", "original"),
         Key("image-image", "previous"),
         Key("text-text", "previous"),
         Key("image-text", "same-step"),
+        Key("image-text", "original"),
+        Key("image-text", "previous"),
     ]
-    if loop_type == "I-T-I":
-        wanted_keys += [
-            Key("image-text", "original", direction="text-vs-img"),
-            Key("image-text", "previous", direction="text-vs-img"),
-        ]
-    elif loop_type == "T-I-T":
-        wanted_keys += [
-            Key("image-text", "original", direction="img-vs-text"),
-            Key("image-text", "previous", direction="img-vs-text"),
-        ]
-    else:  # UNKNOWN, backward compatible: plot all
-        wanted_keys += [
-            Key("image-text", "original", direction="img-vs-text"),
-            Key("image-text", "previous", direction="img-vs-text"),
-            Key("image-text", "original", direction="text-vs-img"),
-            Key("image-text", "previous", direction="text-vs-img"),
-        ]
-
     missing = []
     for key in wanted_keys:
         series = list(_iter_series(records, key))
@@ -313,14 +258,12 @@ def generate_charts_for_eval(eval_dir: Path) -> List[Path]:
         if out:
             charts.append(out)
 
-    # Print debug info about missing groupings
     if missing:
         print(f"[reporting] Loop type detected: {loop_type}")
         print("[reporting] No data for the following groupings:")
         for key in missing:
             print(f"  - {key.comparison_type} | {key.anchor} | {key.direction}")
 
-    # Optional: write an index of generated charts
     if charts:
         index = {
             "item_id": item_id,
@@ -329,8 +272,8 @@ def generate_charts_for_eval(eval_dir: Path) -> List[Path]:
         try:
             with (eval_dir / "charts_index.json").open("w", encoding="utf-8") as f:
                 json.dump(index, f, indent=2)
-        except Exception:
-            pass
+        except (OSError, IOError) as e:
+            print(f"[reporting] Failed to write charts_index.json: {e}")
 
     return charts
 

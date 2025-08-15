@@ -5,13 +5,13 @@ Stores outputs in results/<exp_name>/<identifier>/
 """
 
 import errno
+import json
 import logging
 import os
 import shutil
-import json
 import time
 from pathlib import Path
-from typing import Any, Dict, TypeVar, Callable
+from typing import Any, Callable, Dict, TypeVar
 
 from benchmark_config import BenchmarkConfig
 from output_manager import OutputManager

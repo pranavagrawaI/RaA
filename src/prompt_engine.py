@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+"""Utility for generating captions and images using Gemini API."""
 
 import os
 from io import BytesIO

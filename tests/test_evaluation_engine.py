@@ -86,10 +86,10 @@ def test_engine_creates_ratings(tmp_path, monkeypatch):
     assert len(txt_txt_data) == 1
 
     # For I-T-I loop:
-    # iter1: img vs base_txt (original) + base_img vs txt (original) + img vs txt (same-step) = 3
-    # iter2: img vs base_txt (original) + base_img vs txt (original) + img vs prev_txt (previous) + prev_img vs txt (previous) + img vs txt (same-step) = 5
-    # Total image-text = 8
-    assert len(img_txt_data) == 8
+    # iter1: base_img vs txt (original) + img vs txt (same-step) = 2
+    # iter2: base_img vs txt (original) + prev_img vs txt (previous) + img vs txt (same-step) = 3
+    # Total image-text = 5
+    assert len(img_txt_data) == 5
 
     # Check structure of first entry in each file
     if img_img_data:
