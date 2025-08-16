@@ -53,7 +53,7 @@ class LoopController:
         for attempt in range(self.max_retries):
             try:
                 return operation(*args, **kwargs)
-            except Exception as e:
+            except (OSError, ValueError, RuntimeError) as e:
                 last_exception = e
                 if attempt < self.max_retries - 1:
                     delay = self.retry_delay * (2**attempt)

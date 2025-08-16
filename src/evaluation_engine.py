@@ -16,7 +16,7 @@ from typing import Any, Dict, List, cast
 
 from google import genai
 from google.genai import types
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from pydantic import BaseModel
 
 from benchmark_config import BenchmarkConfig
@@ -245,7 +245,7 @@ class EvaluationEngine:
                     print(f"[DEBUG] Listing files in directory of {p}: {dir_p}")
                     try:
                         print(os.listdir(dir_p))
-                    except Exception as e:
+                    except (OSError, PermissionError) as e:
                         print(f"[DEBUG] Could not list directory {dir_p}: {e}")
                     print(
                         f"[DEBUG] Path entry missing: {p} | exists={Path(p).exists()} is_symlink={Path(p).is_symlink()} lexists={os.path.lexists(p)}"
@@ -253,24 +253,24 @@ class EvaluationEngine:
                     raise FileNotFoundError(f"Missing image file entry: {p}")
             try:
                 img1 = Image.open(a)
-            except Exception as e:
+            except (FileNotFoundError, UnidentifiedImageError, OSError) as e:
                 target = None
                 if Path(a).is_symlink():
                     try:
                         target = os.readlink(a)
-                    except Exception:
+                    except OSError:
                         target = "<unreadable symlink target>"
                 raise FileNotFoundError(
                     f"Cannot open image A: {a}. Symlink target: {target}. Error: {e}"
                 ) from e
             try:
                 img2 = Image.open(b)
-            except Exception as e:
+            except (FileNotFoundError, UnidentifiedImageError, OSError) as e:
                 target = None
                 if Path(b).is_symlink():
                     try:
                         target = os.readlink(b)
-                    except Exception:
+                    except OSError:
                         target = "<unreadable symlink target>"
                 raise FileNotFoundError(
                     f"Cannot open image B: {b}. Symlink target: {target}. Error: {e}"
@@ -313,12 +313,12 @@ class EvaluationEngine:
             )
             try:
                 img = Image.open(img_path)
-            except Exception as e:
+            except (FileNotFoundError, UnidentifiedImageError, OSError) as e:
                 target = None
                 if Path(img_path).is_symlink():
                     try:
                         target = os.readlink(img_path)
-                    except Exception:
+                    except OSError:
                         target = "<unreadable symlink target>"
                 raise FileNotFoundError(
                     f"Cannot open image: {img_path}. Symlink target: {target}. Error: {e}"
@@ -368,7 +368,12 @@ class EvaluationEngine:
                     time.sleep(2**attempt)  # Exponential backoff: 1s, 2s, 4s...
                     continue
 
-            except Exception as e:
+            except (
+                FileNotFoundError,
+                UnidentifiedImageError,
+                OSError,
+                ValueError,
+            ) as e:
                 print(
                     f"Error during {kind} comparison for '{a}' vs '{b}': {e} (Attempt {attempt + 1}/{max_retries})"
                 )
