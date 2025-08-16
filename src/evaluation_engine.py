@@ -36,19 +36,8 @@ class _RatingModel(BaseModel):
     overall_semantic_intent: _Criterion
 
 
-SYSTEM_INSTRUCTION = """
-You are an Expert Multimodal Analyst.Your task is to compare two inputs (A and B) with the nuanced judgment of a human specialist. You will evaluate them across five universal criteria and provide a single, consistent JSON output.
-
-Adhere to these four Guiding Principles in all evaluations:
-
-1.  **Deconstruct, Then Compare:** Before scoring, mentally break down each input into its core components: the subjects, the actions, the relationships between them, and the overall mood or style. Do not make a holistic judgment until you have analyzed the parts.
-
-2.  **Prioritize Core Meaning:** The most important question is "Do A and B tell the same fundamental story or convey the same core message?" A stylistic change (e.g., photo vs. painting) is less significant than a change in the central action or relationship (e.g., a cat chasing a mouse vs. a mouse chasing a cat).
-
-3.  **Score the *Difference*, Not the Quality:** Your task is to measure similarity, not to judge which input is "better." A low-quality photo of a subject is a near-perfect match to a high-quality photo of the *same subject*. Your scores must reflect the degree of transformation between A and B, not their quality. Please provide your evaluation with at least one decimal place of precision.
-
-4.  **Justify with Specifics:** Your "reason" for each score is critical. It must be concise and point to concrete evidence in the inputs. Avoid vague justifications. Instead of "The style is different," write "A is a photorealistic image, while B is an abstract watercolor painting."
-"""
+# The system instruction is stored in the prompts directory and loaded at runtime.
+# See prompts/system_instruction_eval.txt
 
 MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
 
@@ -102,6 +91,7 @@ class EvaluationEngine:
         img_img_ratings: List[Dict[str, Any]] = []
         txt_txt_ratings: List[Dict[str, Any]] = []
         img_txt_ratings: List[Dict[str, Any]] = []
+        txt_img_ratings: List[Dict[str, Any]] = []
 
         def _path(rel: str) -> str:
             return str(self.exp_root / item_id / rel)
@@ -139,22 +129,23 @@ class EvaluationEngine:
 
             # Cross-modal comparison with original
             if self.loop_type == "I-T-I":
-                # For I-T-I: Compare current text with original image (base_img)
+                # For I-T-I: image-text with original
                 img_txt_ratings += self._compare_cross(
                     item_id, i, base_img, curr_txt, "original"
                 )
+                # text-image: not for original in I-T-I
             elif self.loop_type == "T-I-T":
-                # For T-I-T: Compare current image with original text (base_txt)
-                img_txt_ratings += self._compare_cross(
-                    item_id, i, curr_img, base_txt, "original"
+                # For T-I-T: text-image with original
+                txt_img_ratings += self._compare_text_image(
+                    item_id, i, base_txt, curr_img, "original"
                 )
             else:
-                # If loop type unknown, do both comparisons (backward compatibility)
-                img_txt_ratings += self._compare_cross(
-                    item_id, i, curr_img, base_txt, "original"
-                )
+                # Unknown loop type: do both directions for original
                 img_txt_ratings += self._compare_cross(
                     item_id, i, base_img, curr_txt, "original"
+                )
+                txt_img_ratings += self._compare_text_image(
+                    item_id, i, base_txt, curr_img, "original"
                 )
 
             # Compare with previous iteration (only for iterations after the first)
@@ -187,33 +178,54 @@ class EvaluationEngine:
 
                 # Cross-modal comparison with previous
                 if self.loop_type == "I-T-I":
-                    # For I-T-I: Compare current text with previous image
+                    # For I-T-I: image-text (prev_img vs curr_txt) and text-image (prev_txt vs curr_img)
                     img_txt_ratings += self._compare_cross(
                         item_id, i, prev_img, curr_txt, "previous"
+                    )
+                    txt_img_ratings += self._compare_text_image(
+                        item_id, i, prev_txt, curr_img, "previous"
                     )
                 elif self.loop_type == "T-I-T":
-                    # For T-I-T: Compare current image with previous text
+                    # For T-I-T: image-text only for previous (curr_img vs prev_txt)
                     img_txt_ratings += self._compare_cross(
                         item_id, i, curr_img, prev_txt, "previous"
+                    )
+                    # And text-image also happens for previous
+                    txt_img_ratings += self._compare_text_image(
+                        item_id, i, prev_txt, curr_img, "previous"
                     )
                 else:
-                    # If loop type unknown, do both comparisons (backward compatibility)
-                    img_txt_ratings += self._compare_cross(
-                        item_id, i, curr_img, prev_txt, "previous"
-                    )
+                    # Unknown loop type: do both directions for previous
                     img_txt_ratings += self._compare_cross(
                         item_id, i, prev_img, curr_txt, "previous"
                     )
+                    img_txt_ratings += self._compare_cross(
+                        item_id, i, curr_img, prev_txt, "previous"
+                    )
+                    txt_img_ratings += self._compare_text_image(
+                        item_id, i, prev_txt, curr_img, "previous"
+                    )
 
-            # Always do image-text comparison for current iteration
-            img_txt_ratings += self._compare_cross(
-                item_id, i, curr_img, curr_txt, "same-step"
-            )
+            # Same-step cross-modal comparison
+            if self.loop_type == "I-T-I":
+                # Keep same-step image-text in I-T-I
+                img_txt_ratings += self._compare_cross(
+                    item_id, i, curr_img, curr_txt, "same-step"
+                )
+            elif self.loop_type == "T-I-T":
+                # In T-I-T, image-text happens only for previous per requirements
+                pass
+            else:
+                # Unknown loop type: keep same-step image-text for backward compatibility
+                img_txt_ratings += self._compare_cross(
+                    item_id, i, curr_img, curr_txt, "same-step"
+                )
 
         # write separate ratings files per comparison type
         om.write_json(img_img_ratings, "ratings_image-image.json")
         om.write_json(txt_txt_ratings, "ratings_text-text.json")
         om.write_json(img_txt_ratings, "ratings_image-text.json")
+        om.write_json(txt_img_ratings, "ratings_text-image.json")
 
     def _compare_images(
         self, item: str, step: int, img_a: str, img_b: str, anchor: str
@@ -234,6 +246,12 @@ class EvaluationEngine:
     ) -> List[Dict[str, Any]]:
         rating = self._run_rater("image-text", img, txt)
         return [self._package("image-text", item, step, anchor, rating, [img, txt])]
+
+    def _compare_text_image(
+        self, item: str, step: int, txt: str, img: str, anchor: str
+    ) -> List[Dict[str, Any]]:
+        rating = self._run_rater("text-image", txt, img)
+        return [self._package("text-image", item, step, anchor, rating, [txt, img])]
 
     def _prepare_contents(self, kind: str, a: str, b: str) -> List[Any]:
         """Prepare the contents list for the Gemini API call based on comparison kind."""
@@ -327,6 +345,48 @@ class EvaluationEngine:
                 img = img.convert("RGB")
             return [self.prompts["image_text_prompt"], img, f"Text: {text}"]
 
+        if kind == "text-image":
+            # Determine which input is text and which is image regardless of order
+            if a.lower().endswith((".jpg", ".jpeg", ".png")):
+                img_path, txt_path = a, b
+            elif b.lower().endswith((".jpg", ".jpeg", ".png")):
+                img_path, txt_path = b, a
+            else:
+                # Neither looks like an image; treat as missing image
+                raise FileNotFoundError(
+                    "No image file provided for text-image comparison"
+                )
+
+            # Accept symlinked images; error clearly if they cannot be opened
+            if not (
+                os.path.lexists(img_path)
+                or Path(img_path).is_symlink()
+                or Path(img_path).exists()
+            ):
+                raise FileNotFoundError(f"Missing image file entry: {img_path}")
+
+            text = (
+                Path(txt_path).read_text(encoding="utf-8").strip()
+                if Path(txt_path).exists()
+                else "No text available"
+            )
+            try:
+                img = Image.open(img_path)
+            except (FileNotFoundError, UnidentifiedImageError, OSError) as e:
+                target = None
+                if Path(img_path).is_symlink():
+                    try:
+                        target = os.readlink(img_path)
+                    except OSError:
+                        target = "<unreadable symlink target>"
+                raise FileNotFoundError(
+                    f"Cannot open image: {img_path}. Symlink target: {target}. Error: {e}"
+                ) from e
+            if img.mode != "RGB":
+                img = img.convert("RGB")
+            # Reuse same prompt; order the modalities as text then image
+            return [self.prompts["image_text_prompt"], f"Text: {text}", img]
+
         raise ValueError(f"Unknown comparison type: {kind}")
 
     def _run_rater(self, kind: str, a: str, b: str, max_retries: int = 3) -> Rating:
@@ -340,7 +400,7 @@ class EvaluationEngine:
                 response = self.client.models.generate_content(
                     model=MODEL_NAME,
                     config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_INSTRUCTION,
+                        system_instruction=self.prompts.get("system_instruction_eval", ""),
                         response_mime_type="application/json",
                         response_schema=_RatingModel,
                     ),
