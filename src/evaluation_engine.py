@@ -368,12 +368,7 @@ class EvaluationEngine:
                     time.sleep(2**attempt)  # Exponential backoff: 1s, 2s, 4s...
                     continue
 
-            except (
-                FileNotFoundError,
-                UnidentifiedImageError,
-                OSError,
-                ValueError,
-            ) as e:
+            except Exception as e:
                 print(
                     f"Error during {kind} comparison for '{a}' vs '{b}': {e} (Attempt {attempt + 1}/{max_retries})"
                 )
