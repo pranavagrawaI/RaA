@@ -94,9 +94,15 @@ class LoopController:
         if not images:
             raise RuntimeError(f"No .jpg/.png found in {self.cfg.input_dir}")
 
+        print(
+            f"[GEN] I-T-I loop start: {len(images)} image(s), iterations={self.cfg.loop.num_iterations}"
+        )
         for path in images:
             stem = Path(path).stem
+            print(f"[GEN] > Start item '{stem}'")
             self._process_i_t_i_for_image(str(path), stem)
+            print(f"[GEN] < End item '{stem}'")
+        print("[GEN] I-T-I loop end")
 
     def _process_i_t_i_for_image(self, img_path: str, stem: str) -> None:
         om = self.root_om.subdir(stem)
@@ -127,6 +133,9 @@ class LoopController:
 
         # Continue from last successful iteration
         for i in range(current_iter, self.cfg.loop.num_iterations + 1):
+            print(
+                f"[GEN]   Iteration {i}/{self.cfg.loop.num_iterations} for '{stem}' - captioning..."
+            )
             try:
                 # Generate caption with retry
                 caption = self._retry_with_backoff(
@@ -137,6 +146,9 @@ class LoopController:
                 record[f"iter{i}_text"] = txt_name
                 self._save_progress(stem, record)
 
+                print(
+                    f"[GEN]   Iteration {i}/{self.cfg.loop.num_iterations} for '{stem}' - image gen..."
+                )
                 # Generate image with retry
                 generated_img = self._retry_with_backoff(
                     generate_image, self.cfg.prompts.image, caption
@@ -160,9 +172,15 @@ class LoopController:
         if not texts:
             raise RuntimeError(f"No .txt found in {self.cfg.input_dir}")
 
+        print(
+            f"[GEN] T-I-T loop start: {len(texts)} text prompt(s), iterations={self.cfg.loop.num_iterations}"
+        )
         for path in texts:
             stem = Path(path).stem
+            print(f"[GEN] > Start item '{stem}'")
             self._process_t_i_t_for_text(str(path), stem)
+            print(f"[GEN] < End item '{stem}'")
+        print("[GEN] T-I-T loop end")
 
     def _process_t_i_t_for_text(self, txt_path: str, stem: str) -> None:
         om = self.root_om.subdir(stem)
@@ -199,6 +217,9 @@ class LoopController:
                 with open(current_text_path, "r", encoding="utf-8") as f:
                     text_content = f.read()
 
+                print(
+                    f"[GEN]   Iteration {i}/{self.cfg.loop.num_iterations} for '{stem}' - image gen..."
+                )
                 # Generate image with retry
                 generated_img = self._retry_with_backoff(
                     generate_image, self.cfg.prompts.image, text_content
@@ -210,6 +231,9 @@ class LoopController:
 
                 # Generate caption with retry
                 img_path = str(om.root_dir / img_name)
+                print(
+                    f"[GEN]   Iteration {i}/{self.cfg.loop.num_iterations} for '{stem}' - captioning..."
+                )
                 caption = self._retry_with_backoff(
                     generate_caption, img_path, prompt=self.cfg.prompts.caption
                 )

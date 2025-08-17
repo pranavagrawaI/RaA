@@ -11,13 +11,6 @@ output_dir: "bar/{{experiment_name}}"
 loop:
   type: "I-T-I"
   num_iterations: 3
-models:
-  caption_model:
-    name: "m1"
-    params: {}
-  image_model:
-    name: "m2"
-    params: {}
 prompts:
   caption: |-
     Test caption prompt
@@ -26,11 +19,11 @@ prompts:
 logging:
   level: "DEBUG"
   save_config_snapshot: false
-metadata:
-  random_seed: 123
 evaluation:
   enabled: true
-reporting: {}
+reporting:
+  charts: false
+  summary: false
 """
 
 MINIMAL_YAML = """
@@ -64,12 +57,6 @@ def test_valid_config_loads(valid_cfg_file):
     assert cfg.loop.type == "I-T-I"
     assert cfg.loop.num_iterations == 3
 
-    # Model configurations
-    assert cfg.models.caption_model.name == "m1"
-    assert cfg.models.caption_model.params == {}
-    assert cfg.models.image_model.name == "m2"
-    assert cfg.models.image_model.params == {}
-
     # Prompt configurations
     assert cfg.prompts.caption == "Test caption prompt"
     assert cfg.prompts.image == "Test image prompt"
@@ -78,11 +65,10 @@ def test_valid_config_loads(valid_cfg_file):
     assert cfg.logging.level == "DEBUG"
     assert not cfg.logging.save_config_snapshot
 
-    # Metadata
-    assert cfg.metadata.random_seed == 123
-
     assert cfg.evaluation.enabled is True
-    assert cfg.reporting == {}
+    # Reporting should be a _ReportingConfig object with explicit values from YAML
+    assert cfg.reporting.charts is False
+    assert cfg.reporting.summary is False
 
 
 def test_minimal_config_loads(tmp_path):
@@ -96,9 +82,11 @@ def test_minimal_config_loads(tmp_path):
     assert cfg.output_dir.endswith("results/exp_minimal")
     assert cfg.loop.type == "I-T-I"
     assert cfg.loop.num_iterations == 1
-    assert cfg.models.caption_model.name == "dummy-captioner"
     assert cfg.logging.level == "INFO"
     assert cfg.evaluation.enabled is True
+    # Default reporting values when not specified should be True
+    assert cfg.reporting.charts is True  # Default is True according to _load_reporting_config
+    assert cfg.reporting.summary is True  # Default is True according to _load_reporting_config
 
 
 def test_missing_key_raises(tmp_path):

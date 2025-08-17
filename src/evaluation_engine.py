@@ -44,11 +44,11 @@ MODEL_NAME = "gemini-2.5-flash-lite"
 Rating = Dict[str, Dict[str, Any]]
 
 DEFAULT_RATING = {
-    "content_correspondence": {"score": -1.0, "reason": "Rating unavailable"},
-    "compositional_alignment": {"score": -1.0, "reason": "Rating unavailable"},
-    "fidelity_completeness": {"score": -1.0, "reason": "Rating unavailable"},
-    "stylistic_congruence": {"score": -1.0, "reason": "Rating unavailable"},
-    "overall_semantic_intent": {"score": -1.0, "reason": "Rating unavailable"},
+    "content_correspondence": {"score": -1.0, "reason": "Rating failed"},
+    "compositional_alignment": {"score": -1.0, "reason": "Rating failed"},
+    "fidelity_completeness": {"score": -1.0, "reason": "Rating failed"},
+    "stylistic_congruence": {"score": -1.0, "reason": "Rating failed"},
+    "overall_semantic_intent": {"score": -1.0, "reason": "Rating failed"},
 }
 
 
@@ -394,12 +394,6 @@ class EvaluationEngine:
             return DEFAULT_RATING
 
         for attempt in range(max_retries):
-            # Define a narrow set of exceptions we expect from I/O and the genai client.
-            rater_exceptions = (FileNotFoundError, OSError, ValueError)
-            if hasattr(genai, "Error"):
-                # If the genai module exposes a specific Error type, include it.
-                rater_exceptions = rater_exceptions + (getattr(genai, "Error"),)
-
             try:
                 contents = self._prepare_contents(kind, a, b)
 
@@ -436,8 +430,7 @@ class EvaluationEngine:
                     time.sleep(2**attempt)  # Exponential backoff: 1s, 2s, 4s...
                     continue
 
-            except rater_exceptions as e:
-                # Log expected errors (I/O, parsing, or client-specific) and retry if appropriate.
+            except Exception as e:  # pylint: disable=broad-except
                 print(
                     f"Error during {kind} comparison for '{a}' vs '{b}': {e} (Attempt {attempt + 1}/{max_retries})"
                 )
