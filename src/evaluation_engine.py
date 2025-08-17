@@ -394,6 +394,12 @@ class EvaluationEngine:
             return DEFAULT_RATING
 
         for attempt in range(max_retries):
+            # Define a narrow set of exceptions we expect from I/O and the genai client.
+            rater_exceptions = (FileNotFoundError, OSError, ValueError)
+            if hasattr(genai, "Error"):
+                # If the genai module exposes a specific Error type, include it.
+                rater_exceptions = rater_exceptions + (getattr(genai, "Error"),)
+
             try:
                 contents = self._prepare_contents(kind, a, b)
 
@@ -430,7 +436,8 @@ class EvaluationEngine:
                     time.sleep(2**attempt)  # Exponential backoff: 1s, 2s, 4s...
                     continue
 
-            except Exception as e:
+            except rater_exceptions as e:
+                # Log expected errors (I/O, parsing, or client-specific) and retry if appropriate.
                 print(
                     f"Error during {kind} comparison for '{a}' vs '{b}': {e} (Attempt {attempt + 1}/{max_retries})"
                 )
