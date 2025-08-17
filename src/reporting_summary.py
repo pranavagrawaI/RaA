@@ -1,231 +1,251 @@
-"""Generate a qualitative summary of evaluation metrics using Gemini.
-
-This script reads JSON rating files from an evaluation folder,
-prepares a structured prompt, and uses a Gemini model to produce a
-qualitative narrative. The resulting text is saved to
-``qualitative_summary.txt`` in the same folder and the first lines are
-printed to stdout.
-
-Usage:
-    python reporting_summary.py --eval-folder exp_025/eval
-"""
-
-from __future__ import annotations
+# -*- coding: utf-8 -*-
+"""Simple script to generate qualitative summaries from JSON evaluation data using Gemini."""
 
 import argparse
 import json
 import os
 import sys
-from collections import defaultdict
 from pathlib import Path
-from statistics import mean
-from typing import Dict, Iterable, List
+from typing import List
 
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
+load_dotenv()
 
-CRITERIA = [
-    "content_correspondence",
-    "compositional_alignment",
-    "fidelity_completeness",
-    "stylistic_congruence",
-    "overall_semantic_intent",
-]
-
-SYSTEM_PROMPT = (
-    "You are an expert evaluation analyst. Based on the numeric synopsis "
-    "and stepwise reasons, craft a cohesive narrative describing what "
-    "changed, why it changed, why it matters, and what to try next. Avoid "
-    "lists or JSON. Do not repeat raw numbers beyond those provided in the "
-    "synopsis."
-)
+# For each entry in experiment folder take all rating_*.json and pass it to gemini.
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Summarise evaluation metrics with Gemini"
-    )
-    parser.add_argument(
-        "--eval-folder",
-        type=str,
-        default="exp_025/eval",
-        help="Path to the eval folder containing JSON files",
-    )
-    parser.add_argument(
-        "--model", type=str, default="gemini-2.5-flash", help="Gemini model name"
-    )
-    parser.add_argument(
-        "--thinking-budget",
-        type=int,
-        default=0,
-        help="Thinking budget for Gemini (tokens)",
-    )
-    return parser.parse_args()
+def _collect_eval_files(eval_dir: Path) -> List[Path]:
+    """Collect the four expected evaluation JSON files in a consistent order."""
+    expected_files = [
+        "ratings_image-image.json",
+        "ratings_image-text.json",
+        "ratings_text-image.json",
+        "ratings_text-text.json",
+    ]
+
+    found_files = []
+    for filename in expected_files:
+        file_path = eval_dir / filename
+        if file_path.exists():
+            found_files.append(file_path)
+
+    return found_files
 
 
-def _load_records(eval_dir: Path) -> List[Dict]:
-    records: List[Dict] = []
+def _load_json_file(file_path: Path) -> dict:
+    """Load a JSON file and return its content."""
+    with open(file_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_individual_eval_files(eval_dir: Path) -> List[dict]:
+    """Load all JSON files in the directory and return as individual dictionaries."""
     if not eval_dir.exists():
-        print(f"[WARN] Eval folder '{eval_dir}' not found", file=sys.stderr)
-        return records
-    for path in eval_dir.glob("*.json"):
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            if isinstance(data, list):
-                records.extend(data)
-            elif isinstance(data, dict):
-                records.append(data)
-            else:
-                print(
-                    f"[WARN] Unexpected JSON structure in {path.name}; skipping",
-                    file=sys.stderr,
-                )
-        except FileNotFoundError:
-            print(f"[WARN] Missing file {path}", file=sys.stderr)
-        except json.JSONDecodeError:
-            print(f"[WARN] Invalid JSON in {path}", file=sys.stderr)
-    return records
+        raise FileNotFoundError(f"Directory not found: {eval_dir}")
+
+    json_files = _collect_eval_files(eval_dir)
+    if not json_files:
+        raise FileNotFoundError(f"No JSON files found in {eval_dir}")
+
+    eval_data = []
+    for json_file in json_files:
+        content = _load_json_file(json_file)
+        eval_data.append({"filename": json_file.name, "data": content})
+
+    print(f"Found {len(json_files)} JSON files")
+    return eval_data
 
 
-def _avg_scores(records: Iterable[Dict]) -> Dict[str, Dict[int, float]]:
-    scores: Dict[str, Dict[int, List[float]]] = {
-        c: defaultdict(list) for c in CRITERIA
-    }
-    for rec in records:
-        step = rec.get("step")
-        if step is None:
-            continue
-        for c in CRITERIA:
-            if c in rec and isinstance(rec[c], dict):
-                val = rec[c].get("score")
-                if isinstance(val, (int, float)):
-                    scores[c][int(step)].append(val)
-    return {c: {s: mean(vs) for s, vs in step_map.items()} for c, step_map in scores.items()}
-
-
-def _reasons(records: Iterable[Dict]) -> Dict[str, Dict[int, str]]:
-    reasons: Dict[str, Dict[int, str]] = {c: {} for c in CRITERIA}
-    for rec in records:
-        step = rec.get("step")
-        if step is None:
-            continue
-        for c in CRITERIA:
-            if c in rec and isinstance(rec[c], dict):
-                reason = rec[c].get("reason")
-                if isinstance(reason, str) and step not in reasons[c]:
-                    reasons[c][int(step)] = reason.strip()
-    return reasons
-
-
-def _classify_pattern(values: List[float]) -> str:
-    if not values:
-        return "stable"
-    if max(values) - min(values) < 0.2:
-        return "stable"
-    diffs = [values[i + 1] - values[i] for i in range(len(values) - 1)]
-    if all(d >= 0 for d in diffs) or all(d <= 0 for d in diffs):
-        return "mono"
-    sign_changes = sum(1 for i in range(len(diffs) - 1) if diffs[i] * diffs[i + 1] < 0)
-    if sign_changes >= 2:
-        return "osc"
-    return "step"
-
-
-def _magnitude(delta: float) -> str:
-    delta = abs(delta)
-    if delta < 0.5:
-        return "small"
-    if delta < 1.5:
-        return "mod"
-    return "large"
-
-
-def build_prompt(eval_dir: Path, records: List[Dict]) -> str:
-    run_id = eval_dir.parent.name
-    steps = sorted({rec.get("step") for rec in records if rec.get("step") is not None})
-    comparisons = sorted({rec.get("comparison_type") for rec in records if rec.get("comparison_type")})
-    anchors = sorted({rec.get("anchor") for rec in records if rec.get("anchor")})
-
-    scores = _avg_scores(records)
-    reasons = _reasons(records)
-
-    header_lines = [
-        f"Run id: {run_id}",
-        f"Steps: {', '.join(map(str, steps)) if steps else 'none'}",
-        f"Comparison types: {', '.join(comparisons) if comparisons else 'none'}",
-    ]
-    header_lines.append(
-        f"Anchors: {', '.join(anchors) if anchors else 'none'}"
-    )
-
-    synopsis_lines: List[str] = []
-    for crit, step_map in scores.items():
-        if not step_map:
-            continue
-        ordered = [v for _, v in sorted(step_map.items())]
-        start, end = ordered[0], ordered[-1]
-        synopsis_lines.append(
-            f"* {crit.replace('_', ' ')}: {start:.1f} → {end:.1f} ({_magnitude(end - start)}), pattern: {_classify_pattern(ordered)}"
-        )
-
-    reason_lines: List[str] = []
-    for crit, step_map in reasons.items():
-        if not step_map:
-            continue
-        reason_lines.append(f"{crit.replace('_', ' ')}:")
-        for step in sorted(step_map):
-            reason_lines.append(f"  step {step}: {step_map[step]}")
-
-    prompt_sections = [
-        "\n".join(header_lines),
-        "Numeric synopsis:\n" + "\n".join(synopsis_lines) if synopsis_lines else "Numeric synopsis: none",
-        "Reasons:\n" + "\n".join(reason_lines) if reason_lines else "Reasons: none",
-    ]
-    return "\n\n".join(prompt_sections)
-
-
-def generate_summary(prompt: str, model: str, budget: int) -> str:
+def generate_summary(
+    eval_data: List[dict], system_instruction_file: Path, item_id: str
+) -> str:
+    """Generate summary using Gemini API with individual evaluation files."""
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        print("[ERROR] GOOGLE_API_KEY not set", file=sys.stderr)
-        sys.exit(1)
+        return "Error: GOOGLE_API_KEY not set"
+
+    # Load system instruction
+    with open(system_instruction_file, "r", encoding="utf-8") as f:
+        system_instruction = f.read().strip()
+
     client = genai.Client(api_key=api_key)
+
+    # Construct prompt with item list and individual eval files
+    prompt_parts = [f"Item ID: {item_id}", "", "Evaluation Data:", ""]
+
+    for eval_file in eval_data:
+        prompt_parts.append(f"=== {eval_file['filename']} ===")
+        prompt_parts.append(json.dumps(eval_file["data"], indent=2))
+        prompt_parts.append("")
+
+    prompt = "\n".join(prompt_parts)
+
+    print("--- PROMPT BEGIN ---")
+    print(prompt[:1000] + "..." if len(prompt) > 1000 else prompt)
+    print("--- PROMPT END ---")
+
     try:
         response = client.models.generate_content(
-            model=model,
+            model="gemini-2.5-flash-lite",
             contents=[prompt],
             config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-                thinking_config=types.ThinkingConfig(thinking_budget=budget),
+                system_instruction=system_instruction,
             ),
         )
-    except Exception as exc:  # broad to capture network/auth issues
-        print(f"[ERROR] Gemini request failed: {exc}", file=sys.stderr)
-        sys.exit(1)
-
-    return getattr(response, "text", "").strip()
+        return getattr(response, "text", "No response text").strip()
+    except (ValueError, TypeError, ConnectionError, RuntimeError) as e:
+        return f"Error generating summary: {e}"
 
 
-def main() -> None:
-    args = parse_args()
-    eval_dir = Path(args.eval_folder)
-    records = _load_records(eval_dir)
+def _discover_eval_dirs(root: Path) -> List[Path]:
+    """Discover all eval directories under the given root path.
 
-    if not records:
-        summary = "No evaluation data available."  # Do not call Gemini
-    else:
-        prompt = build_prompt(eval_dir, records)
-        summary = generate_summary(prompt, args.model, args.thinking_budget)
+    Args:
+        root: Path to search for eval directories. Can be:
+            - An eval folder (…/<item_id>/eval)
+            - An item folder containing an eval subfolder (…/<item_id>)
+            - An experiment folder containing multiple items (…/results/exp_xxx)
 
-    out_path = eval_dir / "qualitative_summary.txt"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(summary)
+    Returns:
+        List of paths to eval directories found.
+    """
+    root = root.resolve()
+    eval_dirs: List[Path] = []
 
-    print("\n".join(summary.splitlines()[:15]))
+    if root.name == "eval" and root.is_dir():
+        return [root]
+
+    # If this is an item folder with eval subfolder
+    candidate = root / "eval"
+    if candidate.is_dir():
+        eval_dirs.append(candidate)
+
+    # If this is an experiment folder containing multiple items
+    for child in root.iterdir() if root.is_dir() else []:
+        c_eval = child / "eval"
+        if c_eval.is_dir():
+            eval_dirs.append(c_eval)
+
+    # As a last resort, deep scan (one level deeper) for any eval dirs
+    if not eval_dirs and root.is_dir():
+        for p in root.rglob("eval"):
+            if p.is_dir():
+                eval_dirs.append(p)
+
+    # Deduplicate
+    seen = set()
+    uniq: List[Path] = []
+    for d in eval_dirs:
+        if d not in seen:
+            uniq.append(d)
+            seen.add(d)
+    return uniq
+
+
+def _extract_item_id(eval_dir: Path) -> str:
+    """Extract item ID from an eval directory path."""
+    parent = eval_dir.parent.name
+    return parent or "item"
+
+
+def generate_summary_for_eval(eval_dir: Path, system_instruction_file: Path) -> bool:
+    """Generate summary for a single eval directory.
+
+    Args:
+        eval_dir: Path to the eval directory containing ratings_*.json files
+        system_instruction_file: Path to the system instruction file
+
+    Returns:
+        True if summary was generated successfully, False otherwise
+    """
+    try:
+        # Extract item ID first
+        item_id = _extract_item_id(eval_dir)
+
+        # Load individual JSON files
+        eval_data = load_individual_eval_files(eval_dir)
+
+        # Generate summary with individual files
+        summary = generate_summary(eval_data, system_instruction_file, item_id)
+
+        # Write output
+        output_file = eval_dir / "qualitative_summary.txt"
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(summary)
+
+        print(f"Summary written to: {output_file} (item: {item_id})")
+
+        return True
+
+    except FileNotFoundError as e:
+        item_id = _extract_item_id(eval_dir)
+        print(
+            f"Warning: No ratings files found for item '{item_id}' in {eval_dir}: {e}"
+        )
+        return False
+    except (OSError, IOError, RuntimeError) as e:
+        item_id = _extract_item_id(eval_dir)
+        print(f"Error processing item '{item_id}' in {eval_dir}: {e}")
+        return False
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Generate summaries from JSON evaluation data for all items in an experiment"
+    )
+    parser.add_argument(
+        "experiment-dir",
+        help="Path to experiment directory containing item subdirectories with eval folders",
+    )
+    args = parser.parse_args()
+
+    experiment_dir = Path(getattr(args, "experiment-dir"))
+    system_file = (
+        Path(__file__).parent.parent
+        / "prompts"
+        / "system_instruction_report.txt"  # Fixed filename
+    )
+
+    if not experiment_dir.exists():
+        print(
+            f"Error: Experiment directory not found: {experiment_dir}", file=sys.stderr
+        )
+        return 1
+
+    if not system_file.exists():
+        print(
+            f"Error: System instruction file not found: {system_file}", file=sys.stderr
+        )
+        return 1
+
+    # Discover all eval directories in the experiment
+    eval_dirs = _discover_eval_dirs(experiment_dir)
+
+    if not eval_dirs:
+        print(f"No eval directories found under: {experiment_dir}", file=sys.stderr)
+        return 1
+
+    print(f"Found {len(eval_dirs)} eval directories to process")
+
+    successful = 0
+    failed = 0
+
+    for eval_dir in eval_dirs:
+        if generate_summary_for_eval(eval_dir, system_file):
+            successful += 1
+        else:
+            failed += 1
+
+    print("\nSummary generation complete:")
+    print(f"  Successful: {successful}")
+    print(f"  Failed: {failed}")
+    print(f"  Total: {len(eval_dirs)}")
+
+    return 0 if failed == 0 else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
