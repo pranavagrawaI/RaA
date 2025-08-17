@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Tests for the graph_creator module.
 
@@ -58,6 +60,12 @@ class TestKey:
         assert key.comparison_type == "image-text"
         assert key.anchor == "same-step"
         assert key.direction == "forward"
+
+    def test_key_creation_text_image(self):
+        key = Key("text-image", "previous")
+        assert key.comparison_type == "text-image"
+        assert key.anchor == "previous"
+        assert key.direction is None
 
     def test_key_equality(self):
         key1 = Key("text-text", "previous")
@@ -276,6 +284,26 @@ class TestIterSeries:
             assert len(series) == 0
             mock_print.assert_called()
 
+    def test_iter_series_text_image_matching_key(self):
+        """Test that text-image comparison type works correctly."""
+        records = [
+            self.create_sample_record(
+                "text-image", "previous", 1, {"content_correspondence": 0.8}
+            ),
+            self.create_sample_record(
+                "text-image", "previous", 2, {"content_correspondence": 0.9}
+            ),
+        ]
+
+        key = Key("text-image", "previous")
+        series = list(_iter_series(records, key))
+
+        assert len(series) == 2
+        assert series[0][0] == 1  # step
+        assert series[0][1]["content_correspondence"] == 0.8
+        assert series[1][0] == 2
+        assert series[1][1]["content_correspondence"] == 0.9
+
 
 class TestPlotGroup:
     """Test plotting functionality."""
@@ -363,6 +391,34 @@ class TestPlotGroup:
         assert result is not None
         assert "forward" in result.name
 
+    @patch("matplotlib.pyplot.figure")
+    @patch("matplotlib.pyplot.savefig")
+    @patch("matplotlib.pyplot.close")
+    def test_plot_group_text_image(
+        self, mock_close, mock_savefig, mock_figure, tmp_path
+    ):
+        eval_dir = tmp_path / "eval"
+        eval_dir.mkdir()
+
+        key = Key("text-image", "previous")
+        series = [
+            (
+                1,
+                {
+                    "content_correspondence": 0.8,
+                    "compositional_alignment": 0.7,
+                    "fidelity_completeness": None,
+                    "stylistic_congruence": None,
+                    "overall_semantic_intent": None,
+                },
+            )
+        ]
+
+        result = _plot_group("test_item", eval_dir, key, series)
+
+        assert result is not None
+        assert result.name == "chart_text-image_previous.png"
+
 
 class TestGenerateChartsForEval:
     """Test the main chart generation function."""
@@ -407,6 +463,50 @@ class TestGenerateChartsForEval:
 
         assert len(charts) > 0
         assert mock_plot_group.call_count > 0
+
+    @patch("src.graph_creator._plot_group")
+    def test_generate_charts_includes_text_image_types(self, mock_plot_group, tmp_path):
+        """Test that text-image comparison types are included in chart generation."""
+        eval_dir = tmp_path / "item1" / "eval"
+        eval_dir.mkdir(parents=True)
+
+        # Create sample data with text-image comparisons
+        ratings_data = [
+            {
+                "item_id": "item1",
+                "comparison_type": "text-image",
+                "anchor": "previous",
+                "step": 2,
+                "content_correspondence": {"score": 0.8, "reason": "test"},
+            },
+            {
+                "item_id": "item1",
+                "comparison_type": "text-image",
+                "anchor": "original",
+                "step": 1,
+                "content_correspondence": {"score": 0.7, "reason": "test"},
+            },
+        ]
+
+        (eval_dir / "ratings_text-image.json").write_text(json.dumps(ratings_data))
+
+        # Mock _plot_group to return a chart path
+        mock_chart_path = eval_dir / "test_chart.png"
+        mock_plot_group.return_value = mock_chart_path
+
+        generate_charts_for_eval(eval_dir)
+
+        # Verify that _plot_group was called with text-image keys
+        called_keys = [
+            call[0][2] for call in mock_plot_group.call_args_list
+        ]  # Third argument is the Key
+        text_image_keys = [
+            key
+            for key in called_keys
+            if hasattr(key, "comparison_type") and key.comparison_type == "text-image"
+        ]
+
+        assert len(text_image_keys) >= 2  # Should have both original and previous
 
     def test_generate_charts_for_eval_no_data(self, tmp_path):
         eval_dir = tmp_path / "eval"

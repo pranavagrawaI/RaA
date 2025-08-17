@@ -39,7 +39,7 @@ class _RatingModel(BaseModel):
 # The system instruction is stored in the prompts directory and loaded at runtime.
 # See prompts/system_instruction_eval.txt
 
-MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17"
+MODEL_NAME = "gemini-2.5-flash-lite"
 
 Rating = Dict[str, Dict[str, Any]]
 
@@ -400,7 +400,9 @@ class EvaluationEngine:
                 response = self.client.models.generate_content(
                     model=MODEL_NAME,
                     config=types.GenerateContentConfig(
-                        system_instruction=self.prompts.get("system_instruction_eval", ""),
+                        system_instruction=self.prompts.get(
+                            "system_instruction_eval", ""
+                        ),
                         response_mime_type="application/json",
                         response_schema=_RatingModel,
                     ),

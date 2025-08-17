@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Reporting utilities to plot evaluation scores over generations.
 
@@ -38,7 +39,7 @@ CRITERIA = [
     "overall_semantic_intent",
 ]
 
-ComparisonType = Literal["image-image", "text-text", "image-text"]
+ComparisonType = Literal["image-image", "text-text", "image-text", "text-image"]
 AnchorType = Literal["original", "previous", "same-step"]
 
 
@@ -241,14 +242,43 @@ def generate_charts_for_eval(eval_dir: Path) -> List[Path]:
     else:
         loop_type = "UNKNOWN"
 
-    wanted_keys: List[Key] = [
-        Key("image-image", "original"),
-        Key("image-image", "previous"),
-        Key("text-text", "previous"),
-        Key("image-text", "same-step"),
-        Key("image-text", "original"),
-        Key("image-text", "previous"),
-    ]
+    # Define expected keys based on loop type
+    if loop_type == "I-T-I":
+        # Image -> Text -> Image: starts with image, no text-image with original
+        wanted_keys: List[Key] = [
+            Key("image-image", "original"),
+            Key("image-image", "previous"),
+            Key("text-text", "previous"),
+            Key("image-text", "same-step"),
+            Key("image-text", "original"),
+            Key("image-text", "previous"),
+            Key("text-image", "previous"),  # Only previous, not original
+        ]
+    elif loop_type == "T-I-T":
+        # Text -> Image -> Text: starts with text, no image-image with original
+        wanted_keys: List[Key] = [
+            Key("image-image", "previous"),  # Only previous, not original
+            Key("text-text", "original"),
+            Key("text-text", "previous"),
+            Key("image-text", "same-step"),
+            Key("image-text", "previous"),  # Only previous, not original
+            Key("text-image", "original"),
+            Key("text-image", "previous"),
+        ]
+    else:
+        # Unknown loop type: try all combinations
+        wanted_keys: List[Key] = [
+            Key("image-image", "original"),
+            Key("image-image", "previous"),
+            Key("text-text", "original"),
+            Key("text-text", "previous"),
+            Key("image-text", "same-step"),
+            Key("image-text", "original"),
+            Key("image-text", "previous"),
+            Key("text-image", "original"),
+            Key("text-image", "previous"),
+        ]
+
     missing = []
     for key in wanted_keys:
         series = list(_iter_series(records, key))
@@ -260,7 +290,7 @@ def generate_charts_for_eval(eval_dir: Path) -> List[Path]:
 
     if missing:
         print(f"[reporting] Loop type detected: {loop_type}")
-        print("[reporting] No data for the following groupings:")
+        print("[reporting] Missing expected data for the following groupings:")
         for key in missing:
             print(f"  - {key.comparison_type} | {key.anchor} | {key.direction}")
 

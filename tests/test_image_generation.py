@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from PIL import Image
 from test_utils import mock_google_api
 
