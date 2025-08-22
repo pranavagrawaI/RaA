@@ -5,7 +5,7 @@ Configuration loader for the benchmark.
 
 import os
 from dataclasses import dataclass, field
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 import yaml
 
@@ -14,20 +14,6 @@ import yaml
 class _LoopConfig:
     type: str
     num_iterations: int
-
-
-@dataclass
-class _ModelSpec:
-    name: str = "dummy-captioner"
-    params: Dict[str, Any] = field(default_factory=dict)
-
-
-@dataclass
-class _ModelsConfig:
-    caption_model: _ModelSpec = field(default_factory=_ModelSpec)
-    image_model: _ModelSpec = field(
-        default_factory=lambda: _ModelSpec(name="dummy-imagegen")
-    )
 
 
 @dataclass
@@ -43,14 +29,14 @@ class _LoggingConfig:
 
 
 @dataclass
-class _MetadataConfig:
-    random_seed: Optional[int] = None
+class _EvaluationConfig:
+    enabled: bool
 
 
 @dataclass
-class _EvaluationConfig:
-    enabled: bool
-    mode: str
+class _ReportingConfig:
+    charts: bool = False
+    summary: bool = False
 
 
 @dataclass
@@ -73,11 +59,9 @@ class BenchmarkConfig:
 
     # OPTIONAL fields (with defaults):
     output_dir: str = "results/{{experiment_name}}"
-    models: _ModelsConfig = field(default_factory=_ModelsConfig)
     prompts: _PromptsConfig = field(default_factory=_PromptsConfig)
     logging: _LoggingConfig = field(default_factory=_LoggingConfig)
-    metadata: _MetadataConfig = field(default_factory=_MetadataConfig)
-    reporting: Dict[str, Any] = field(default_factory=dict)
+    reporting: _ReportingConfig = field(default_factory=_ReportingConfig)
 
     @staticmethod
     def from_yaml(path: str) -> "BenchmarkConfig":
@@ -101,22 +85,18 @@ class BenchmarkConfig:
         )
 
         loop_cfg = BenchmarkConfig._load_loop_config(raw["loop"])
-        models_cfg = BenchmarkConfig._load_models_config(raw.get("models", {}))
         prompts_cfg = BenchmarkConfig._load_prompts_config(raw.get("prompts", {}))
         logging_cfg = BenchmarkConfig._load_logging_config(raw.get("logging", {}))
-        metadata_cfg = BenchmarkConfig._load_metadata_config(raw.get("metadata", {}))
         eval_cfg = BenchmarkConfig._load_evaluation_config(raw["evaluation"])
-        rep_cfg = raw.get("reporting", {})
+        rep_cfg = BenchmarkConfig._load_reporting_config(raw.get("reporting", {}))
 
         return BenchmarkConfig(
             experiment_name=exp_name,
             input_dir=inp_dir,
             loop=loop_cfg,
             output_dir=output_dir,
-            models=models_cfg,
             prompts=prompts_cfg,
             logging=logging_cfg,
-            metadata=metadata_cfg,
             evaluation=eval_cfg,
             reporting=rep_cfg,
         )
@@ -127,21 +107,6 @@ class BenchmarkConfig:
         if not isinstance(num, int) or num <= 0:
             raise ValueError("num_iterations must be an integer greater than zero")
         return _LoopConfig(type=loop_dict["type"], num_iterations=num)
-
-    @staticmethod
-    def _load_models_config(models_dict: Dict[str, Any]) -> _ModelsConfig:
-        cap_dict = models_dict.get("caption_model", {})
-        img_dict = models_dict.get("image_model", {})
-
-        cap_spec = _ModelSpec(
-            name=cap_dict.get("name", "dummy-captioner"),
-            params=cap_dict.get("params", {}),
-        )
-        img_spec = _ModelSpec(
-            name=img_dict.get("name", "dummy-imagegen"),
-            params=img_dict.get("params", {}),
-        )
-        return _ModelsConfig(caption_model=cap_spec, image_model=img_spec)
 
     @staticmethod
     def _load_prompts_config(prompts_dict: Dict[str, Any]) -> _PromptsConfig:
@@ -163,18 +128,30 @@ class BenchmarkConfig:
 
     @staticmethod
     def _load_evaluation_config(eval_dict: Dict[str, Any]) -> _EvaluationConfig:
-        if "enabled" not in eval_dict or "mode" not in eval_dict:
-            raise KeyError("evaluation.enabled and evaluation.mode are required")
-        return _EvaluationConfig(
-            enabled=bool(eval_dict["enabled"]),
-            mode=str(eval_dict["mode"]),
-        )
+        if "enabled" not in eval_dict:
+            raise KeyError("evaluation.enabled is required")
+        return _EvaluationConfig(enabled=bool(eval_dict["enabled"]))
 
     @staticmethod
-    def _load_metadata_config(meta_dict: Dict[str, Any]) -> _MetadataConfig:
-        return _MetadataConfig(random_seed=meta_dict.get("random_seed", None))
+    def _load_reporting_config(rep_dict: Dict[str, Any]) -> _ReportingConfig:
+        return _ReportingConfig(
+            charts=bool(rep_dict.get("charts", True)),
+            summary=bool(rep_dict.get("summary", True)),
+        )
 
     @staticmethod
     def _format_output_dir(template: str, exp_name: str) -> str:
         single_brace = template.replace("{{", "{").replace("}}", "}")
-        return single_brace.format(experiment_name=exp_name)
+        try:
+            return single_brace.format(experiment_name=exp_name)
+        except KeyError as e:
+            # Unknown placeholder used in template
+            raise ValueError(
+                "Invalid output_dir template. Only '{experiment_name}' is supported. "
+                f"Got unknown key: {e} in template: {template!r}"
+            ) from e
+        except ValueError as e:
+            # Malformed braces or format string
+            raise ValueError(
+                f"Malformed output_dir template: {template!r}. Use 'results/{{experiment_name}}' or similar."
+            ) from e

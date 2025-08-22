@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """Tests for the LoopController's error handling and resumption capabilities."""
 
 import json

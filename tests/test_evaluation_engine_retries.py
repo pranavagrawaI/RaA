@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from unittest.mock import Mock, patch
 
 import pytest

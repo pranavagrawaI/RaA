@@ -1,10 +1,10 @@
 # Benchmark configuration for RaA pipeline
 
 # Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_024"
+experiment_name: "exp_027"
 
 # Input data settings
-input_dir: "data/diverse_data"
+input_dir: "data/coco_subset"
 
 # Output settings
 output_dir: "results/{{experiment_name}}"
@@ -14,19 +14,7 @@ loop:
   # Type of recursive loop: I-T-I, T-I-T etc.
   type: "I-T-I"
   # Number of full recursion iterations to perform (excluding initial input)
-  num_iterations: 2
-
-# Models to use for each stage of the loop
-models:
-  caption_model:
-    name: "gemini-2.5-flash" # Example: model for generating captions from images
-    params:
-      version: "v1" # Model version or other hyperparameters
-  image_model:
-    name: "imagen-3" # Example: model for generating images from text
-    params:
-      steps: 50
-      guidance_scale: 7.5
+  num_iterations: 5
 
 # Prompt template for image captioning and generation
 prompts:
@@ -51,12 +39,11 @@ logging:
   # Whether to save a snapshot of the full config in the output folder
   save_config_snapshot: true
 
-# Metadata settings (e.g., random seed for reproducibility)
-metadata:
-  random_seed: 42
-
-# Fields for evaluation or reporting
+# Fields for evaluation
 evaluation:
   enabled: true
 
-reporting: {}
+# Fields for reporting
+reporting:
+  charts: true
+  summary: true

@@ -1,5 +1,6 @@
-from test_utils import mock_google_api, test_image
+# -*- coding: utf-8 -*-
 
+from test_utils import mock_google_api, test_image # pylint: ignore
 from prompt_engine import generate_caption
 
 
