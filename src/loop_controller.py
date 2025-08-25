@@ -26,15 +26,35 @@ class LoopController:
     def __init__(self, config: BenchmarkConfig):
         self.cfg = config
         self.root_om = OutputManager(config.output_dir)
-        self.meta: Dict[str, Any] = {}
+        # Load existing metadata at initialization
+        try:
+            with open(
+                self.root_om.root_dir / "metadata.json", "r", encoding="utf-8"
+            ) as f:
+                self.meta: Dict[str, Any] = json.load(f)
+        except (FileNotFoundError, ValueError, json.JSONDecodeError):
+            self.meta: Dict[str, Any] = {}
         # Default retry settings
         self.max_retries = getattr(config, "max_retries", 3)
         self.retry_delay = getattr(config, "retry_delay", 5)
 
     def _save_progress(self, stem: str, record: Dict[str, str]) -> None:
         """Save current progress to metadata file."""
-        self.meta[stem] = record
-        self.root_om.write_json(self.meta, "metadata.json")
+        # Load existing metadata to preserve other items' progress
+        try:
+            with open(
+                self.root_om.root_dir / "metadata.json", "r", encoding="utf-8"
+            ) as f:
+                existing_meta = json.load(f)
+        except (FileNotFoundError, ValueError, json.JSONDecodeError):
+            existing_meta = {}
+        
+        # Update with current item's progress
+        existing_meta[stem] = record
+        self.meta[stem] = record  # Keep local copy in sync
+        
+        # Save the complete metadata
+        self.root_om.write_json(existing_meta, "metadata.json")
 
     def _load_progress(self, stem: str) -> Dict[str, str]:
         """Load existing progress from metadata file."""

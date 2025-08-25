@@ -1,22 +1,13 @@
-# Benchmark configuration for RaA pipeline
+experiment_name: "central_experiment1"
 
-# Unique name for this experiment, used to create results subdirectory
-experiment_name: "exp_027"
+input_dir: "data/main_experiment"
 
-# Input data settings
-input_dir: "data/coco_subset"
-
-# Output settings
 output_dir: "results/{{experiment_name}}"
 
-# Loop configuration
 loop:
-  # Type of recursive loop: I-T-I, T-I-T etc.
   type: "I-T-I"
-  # Number of full recursion iterations to perform (excluding initial input)
-  num_iterations: 5
+  num_iterations: 20
 
-# Prompt template for image captioning and generation
 prompts:
   caption: |-
     Describe this image in detailed, structured prose so that another model could reproduce it as faithfully as possible. Your description **must** include:
@@ -32,20 +23,13 @@ prompts:
   image: |-
     Recreate the image described below with maximum visual fidelity. Prioritise spatial arrangement, visual details, and scene structure exactly as specified. Do not stylise unless explicitly instructed.
 
-# Logging and metadata
 logging:
-  # Log verbosity level (DEBUG, INFO, WARNING, ERROR)
   level: "INFO"
-  # Whether to save a snapshot of the full config in the output folder
   save_config_snapshot: true
 
-# Fields for evaluation
 evaluation:
   enabled: true
 
-# Fields for reporting
 reporting:
-  # Whether to generate visual charts
   charts: true
-  # Whether to include a summary report
   summary: true
