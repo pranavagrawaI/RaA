@@ -142,9 +142,7 @@ def main():
         iterations = int(iterations_raw) if iterations_raw is not None else 0
     except (TypeError, ValueError):
         iterations = iterations_raw if iterations_raw is not None else "?"
-    print(
-        f"[INFO] Loop generation starting: type={loop_type}, iterations={iterations}"
-    )
+    print(f"[INFO] Loop generation starting: type={loop_type}, iterations={iterations}")
     controller.run()
     print(f"[INFO] Loop generation complete. Outputs are in `{config.output_dir}`.")
 
