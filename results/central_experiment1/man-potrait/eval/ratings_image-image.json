@@ -1,0 +1,1172 @@
+[
+  {
+    "item_id": "man-potrait",
+    "step": 1,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter1.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both images feature a close-up portrait of a man's face against a plain background. The primary subject is identical."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both images are headshots with similar framing and a direct gaze towards the camera. The positioning of the subjects is largely comparable, though minor variations exist in head tilt and shoulder angle."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both images are high-resolution photographs with good detail. Image B might have slightly more pronounced texture and shadow, giving a subtle difference in fidelity."
+    },
+    "stylistic_congruence": {
+      "score": 7.5,
+      "reason": "Both images are studio portraits with similar lighting and clothing choices (grey sweater, patterned shirt). However, the lighting in B is more dramatic with stronger shadows, and the overall mood is slightly different, contributing to a moderate stylistic difference."
+    },
+    "overall_semantic_intent": {
+      "score": 8.5,
+      "reason": "Both images intend to present a professional and approachable portrait of a man. The core message of presenting an individual is the same, despite minor differences in lighting and facial features."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 2,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter2.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 9.0,
+      "reason": "Both images feature a headshot of a man wearing a collared shirt and a sweater."
+    },
+    "compositional_alignment": {
+      "score": 7.5,
+      "reason": "Both images are front-facing headshots with similar framing and focus on the face. However, the background and slight variations in head tilt and shoulder position create some differences."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both images are high-quality photographs with good detail, but there are subtle differences in skin texture rendering and sharpness, with A appearing slightly sharper."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both images have a similar lighting style and color palette, giving a generally professional portrait feel. However, the lighting in B is slightly more dramatic with sharper shadows, and the background is subtly different."
+    },
+    "overall_semantic_intent": {
+      "score": 8.5,
+      "reason": "Both images clearly intend to portray professional portraits of men, conveying a similar overall mood and purpose."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 2,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter2.jpg",
+      "image_iter1.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images depict the exact same subject: a portrait of a man with brown hair, beard, green eyes, wearing a light blue collared shirt and a grey sweater."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The compositional alignment is identical. Both images show a head-and-shoulders shot of the man, centered in the frame, with the same framing and pose."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images exhibit the same level of detail, sharpness, and completeness. No cropping or loss of detail is apparent between the two."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The stylistic elements are perfectly congruent. Both images are high-quality studio portraits with similar lighting, color balance, and a neutral grey background."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The overall semantic intent is identical; both images serve as professional portraits of the same individual, conveying a similar mood and purpose."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 3,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter3.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 8.5,
+      "reason": "Both images feature a headshot of a man with similar clothing (button-down shirt and sweater) and pose (looking directly at the camera)."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "The framing is similar, focusing on the upper body and head. However, the background and lighting are different, and the subjects are distinct individuals."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both images are clear portraits with a good level of detail. Image A has a more neutral background, while Image B has a slightly more textured background and different lighting, but the fidelity to the subject is high in both."
+    },
+    "stylistic_congruence": {
+      "score": 7.5,
+      "reason": "Both are studio-style portraits with similar lighting setups (front-facing). Image A has a more muted color palette and a plain background, while Image B has a slightly warmer tone and a more visible background texture, creating a minor stylistic difference."
+    },
+    "overall_semantic_intent": {
+      "score": 8.0,
+      "reason": "Both images aim to present a professional or formal portrait of a man. The core intent is the same, though the specific individuals and subtle atmospheric differences create slight variations in the overall message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 3,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter3.jpg",
+      "image_iter2.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same subject: a headshot of a man with light brown hair, a beard, green eyes, wearing a light blue collared shirt and a grey sweater."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The framing, subject positioning, and camera angle are identical in both images. Both are medium close-up headshots with the subject looking directly at the camera."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both images show a very similar level of detail and are complete headshots. There are minor differences in facial expression and subtle lighting adjustments, but no significant detail is lost or added."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both images share a similar photographic style, lighting, and color palette. The subtle differences in lighting and expression are minor and do not constitute a significant stylistic shift."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images clearly intend to present a professional portrait of the same individual with a neutral expression and pose, serving the same semantic purpose."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 4,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter4.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both images feature a headshot of a man with facial hair, looking directly at the camera. The primary subjects are highly similar."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both are medium close-up portraits with the subject centered. The framing and head position are very similar, though the camera angle is slightly different."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Both images are high-fidelity portraits. However, image B appears to have slightly more skin texture and detail visible due to lighting and focus, while image A has a more uniformly smooth appearance."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both images are studio portraits with similar lighting and color palettes. The style is consistent, though image B has a slightly warmer tone and more pronounced shadows."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both images clearly intend to present a professional portrait of a man. The overall message and mood are very similar."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 4,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter4.jpg",
+      "image_iter3.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same primary subject: a headshot of the same man."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The framing, pose, and background are nearly identical, with only minor differences in the exact positioning of the head."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both images are high-fidelity portraits. Image B has a slightly more visible dark blue undershirt collar compared to image A."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both images share the same photographic style, lighting, and color palette, creating a very similar aesthetic."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both images serve the same purpose of presenting a professional portrait of the same individual with a very similar mood and presentation."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 5,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter5.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both images feature a close-up, head-and-shoulders portrait of a man against a plain, neutral background. The primary subject matter is identical."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "Both images are composed as head-and-shoulders portraits, centered on the subject. However, the framing is slightly tighter in B, and the head is tilted slightly more in B than in A."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both images are high-quality photographs with good detail. Image A has a slightly sharper focus on the subject's features and more even lighting, while Image B has a somewhat softer focus and more dramatic lighting, but the level of detail is still comparable."
+    },
+    "stylistic_congruence": {
+      "score": 7.5,
+      "reason": "Both images are studio portraits with a similar color palette and lighting style, creating a comparable mood. Image A has a slightly cooler, more even lighting, while Image B has warmer tones and slightly more contrast, leading to a minor stylistic difference."
+    },
+    "overall_semantic_intent": {
+      "score": 8.5,
+      "reason": "Both images clearly aim to capture a professional portrait of a man, conveying a similar sense of calm and approachability. The subtle differences in expression and lighting do not significantly alter the core intent."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 5,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter5.jpg",
+      "image_iter4.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the exact same subject: a man with brown hair, a beard, green eyes, wearing a blue collared shirt and a grey sweater with blue dots."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The composition is identical in both images, with the subject framed in a medium close-up shot against a grey background, facing directly forward."
+    },
+    "fidelity_completeness": {
+      "score": 9.9,
+      "reason": "The images are virtually identical in detail and completeness. There might be a minuscule difference in rendering or compression, but it is imperceptible to the viewer."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "Both images share the same photographic style, lighting, color palette, and overall aesthetic, presenting as professional studio portraits."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images clearly intend to present a professional portrait of the same individual, conveying a consistent message of a well-groomed, approachable person."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 6,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter6.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both images feature a close-up portrait of a man with facial hair, wearing a collared shirt and a sweater. The primary subject is consistent."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "Both images are headshots with similar framing and a dark/neutral background. However, the specific angle of the head and shoulders differs slightly, with B being slightly more tilted and A being more direct."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both images are high-quality photographs with a good level of detail in the faces and clothing. There are minor differences in lighting and skin texture, but the overall detail level is very similar."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both images are studio portraits with a similar lighting style that emphasizes the face. While there are slight differences in background color and the sharpness of the focus, the overall aesthetic is congruent."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both images serve the same semantic intent of presenting a professional-looking portrait of a man. The mood is similar, focusing on a neutral or slightly pleasant expression."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 6,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter6.jpg",
+      "image_iter5.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same subject: a man with a beard and specific clothing, looking directly at the camera."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The framing, camera angle, and subject positioning are nearly identical. There are very minor differences in the facial expression and the slight tilt of the head."
+    },
+    "fidelity_completeness": {
+      "score": 9.8,
+      "reason": "Both images are high-resolution portraits with consistent detail. The differences are so subtle they are almost imperceptible, relating to minor variations in rendering or compression."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "The lighting, color palette, and overall photographic style are extremely similar, creating a consistent aesthetic. The differences are negligible and might be due to minor variations in processing."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both images share the same intent of presenting a portrait of the same individual with a similar mood and focus. The subtle differences do not alter the fundamental message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 7,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter7.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "Both images are portraits of men, but the primary subjects themselves (the individuals) are entirely different."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both images are head-and-shoulders portraits, framed similarly with the subject looking directly at the camera. The lighting and background, while different, are both studio-style."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Both images are high-fidelity photographs with good detail. Image A has a slightly more polished studio lighting, while Image B has a more naturalistic and perhaps slightly less controlled lighting."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both images are photographic portraits with a similar depth of field, focusing on the subject. However, the lighting quality and post-processing are distinct, with A being more heavily retouched and B appearing more natural."
+    },
+    "overall_semantic_intent": {
+      "score": 7.0,
+      "reason": "Both images aim to present a professional or formal portrait of a man, but the distinct individuals and subtle differences in mood and lighting give them slightly different overall messages."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 7,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter7.jpg",
+      "image_iter6.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same man with the same beard, hair, shirt, and sweater."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The framing, pose, and camera angle are identical in both images."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images display the same level of detail and are not cropped or altered in any way."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "Both images are studio portraits with identical lighting, color balance, and photographic style."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images have the same intent: to present a studio portrait of the same individual."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 8,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter8.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "Both images feature portraits of men, but the subjects are entirely different individuals with distinct features, hair color, and facial hair."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both images are headshots taken from a similar medium shot, with the subject facing forward and centered in the frame. The background is plain and out of focus in both."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both images are high-quality portraits with a similar level of detail, focus, and clarity."
+    },
+    "stylistic_congruence": {
+      "score": 6.0,
+      "reason": "While both are portraits, Image A has a darker, more muted color palette and a direct lighting style, whereas Image B has a slightly cooler tone and a softer lighting that creates more pronounced shadows and highlights."
+    },
+    "overall_semantic_intent": {
+      "score": 7.0,
+      "reason": "Both images serve the basic intent of presenting a professional portrait of a man. However, the difference in subjects and subtle stylistic variations give them slightly different moods."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 8,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter8.jpg",
+      "image_iter7.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the exact same subject: a man with red hair and a beard, wearing a blue shirt and a grey polka dot sweater against a dark grey background."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The composition is identical. Both images show a head-and-shoulders portrait of the man, centered, with the same framing, camera angle, and relative positioning of features."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images display the same level of detail, sharpness, and completeness. There are no apparent crops, blurs, or simplifications present in either image."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The stylistic elements are perfectly congruent. Both are high-quality studio portraits with similar lighting, color rendering, and overall aesthetic."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images have the same semantic intent: to present a clear, professional portrait of the same individual in a consistent setting and style."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 9,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter9.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 7.0,
+      "reason": "Both images feature a head-and-shoulders portrait of a man against a plain background. However, the subjects are different individuals."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The framing and camera angle are very similar, both being close-up portraits centered on the face."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both images are high-quality photographs with good detail and clarity, though the background in A is darker and more uniform than in B."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both images are photographic portraits with similar lighting styles, although the background color and texture differ slightly."
+    },
+    "overall_semantic_intent": {
+      "score": 8.0,
+      "reason": "Both images are clearly intended as professional portraits of men, conveying a similar overall message and mood."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 9,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter9.jpg",
+      "image_iter8.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same subject, a man with red hair and a beard, wearing a blue shirt and a grey and navy polka dot sweater."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The framing, pose, and head angle of the man are identical in both images."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images show the same level of detail and are not cropped or altered in any way relative to each other."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "Both images are high-quality studio portraits with the same lighting, color palette, and realistic style."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images convey the same semantic intent of presenting a clear, direct portrait of the man."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 10,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter10.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "Both images are portraits of men, but they are different individuals with distinct features, hair color, and skin tones."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both images are headshots with a similar medium shot framing, showing the subject from the chest up, and both are centered."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both images are high-resolution, detailed photographs with good lighting and focus on the subjects' faces."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both images are studio portraits with similar lighting setups and a neutral background, creating a professional and similar feel, though the background colors differ slightly."
+    },
+    "overall_semantic_intent": {
+      "score": 8.0,
+      "reason": "Both images convey a similar semantic intent of presenting a professional portrait of a man, with a friendly and approachable demeanor."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 10,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter10.jpg",
+      "image_iter9.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same male subject with red hair and a beard, wearing a blue shirt and a grey sweater with navy blue polka dots."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The subjects are identically positioned in a head-and-shoulders shot against a dark grey background. The only difference is a slight variation in the framing, with image B being slightly tighter."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both images are high-resolution photographs with consistent detail in the subject's facial features, hair, and clothing. There are minor differences in lighting and sharpness, with image A appearing slightly softer."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both images are studio portraits with a similar lighting style and a consistent color palette. The overall feel is very similar, aiming for a clean and professional look."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both images serve the same semantic intent of presenting a portrait of the same individual in a professional and approachable manner. The subtle differences do not alter the fundamental message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 11,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter11.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The primary subjects are different individuals."
+    },
+    "compositional_alignment": {
+      "score": 7.5,
+      "reason": "Both images feature a close-up portrait of a man from the shoulders up, with a similar centered framing and head-on view."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both images are high-fidelity portraits, but the background and lighting subtly differ, and the man in image A has a beard while the man in image B does not, affecting completeness of detail."
+    },
+    "stylistic_congruence": {
+      "score": 6.0,
+      "reason": "Both are studio portraits with controlled lighting, but image A has a darker, more dramatic background and a slightly warmer color temperature, while image B has a cooler, lighter background."
+    },
+    "overall_semantic_intent": {
+      "score": 6.5,
+      "reason": "Both images aim to capture a professional portrait of a man, but the differences in the subjects and subtle stylistic variations create a moderately different overall message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 11,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter11.jpg",
+      "image_iter10.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same subject: a man with red hair and a beard, wearing a blue shirt and a grey sweater with dark blue and red polka dots."
+    },
+    "compositional_alignment": {
+      "score": 9.8,
+      "reason": "The composition is nearly identical, with the subject centered, shoulders visible, and head and shoulders shot. The slight difference is in the expression and subtle head tilt."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both images show a high level of detail, including facial features, hair texture, and clothing patterns. There are very minor differences in lighting and expression, but no significant loss of detail or cropping."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both images are studio portraits with similar lighting and a dark grey background. The overall style is consistent with professional photography."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both images serve the same purpose of presenting a portrait of the same individual, conveying a similar, slightly friendly and approachable mood."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 12,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter12.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 3.0,
+      "reason": "Both images are portraits of men, but the subjects are completely different individuals with different facial features, hair color, and styling."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both are headshot portraits, framed similarly with the subject looking directly at the camera against a plain background."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both images are high-quality, detailed photographs with clear focus on the subject's face and attire. There are no significant differences in cropping or detail level."
+    },
+    "stylistic_congruence": {
+      "score": 7.5,
+      "reason": "Both images are studio portraits with similar lighting setups and a plain background, creating a consistent feel. However, the background colors and specific lighting nuances differ slightly."
+    },
+    "overall_semantic_intent": {
+      "score": 7.0,
+      "reason": "Both images aim to present a professional portrait of a man, but the distinct subjects and subtle differences in mood prevent a higher score in overall intent."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 12,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter12.jpg",
+      "image_iter11.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the exact same subject: a man with red hair, beard, and mustache, wearing a blue shirt and a grey sweater with red and blue polka dots."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The composition is identical in both images, with the subject positioned centrally and framed in a similar medium close-up shot against a dark grey background."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images display the same level of detail, sharpness, and color saturation; there are no discernible differences in cropping or rendering."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The stylistic elements, including lighting, color palette, and photographic medium, are identical between the two images."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images convey the same intent of presenting a clear portrait of the man, with no significant difference in mood or message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 13,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter13.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "Both images are portraits of men, but the subjects themselves are entirely different individuals."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both images are headshots, centered on the face, with similar framing and camera angles."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both images are detailed photographs, but the lighting and background in A are more stark and controlled, while B has a softer, more ambient feel, leading to slight differences in perceived detail."
+    },
+    "stylistic_congruence": {
+      "score": 4.0,
+      "reason": "While both are photographs, the lighting and background are distinctly different, with A having a more dramatic, studio-like lighting and B having a softer, more naturalistic lighting."
+    },
+    "overall_semantic_intent": {
+      "score": 6.0,
+      "reason": "Both images aim to present a portrait of a person, but the difference in subjects and subtle stylistic variations lead to a moderately aligned overall message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 13,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter13.jpg",
+      "image_iter12.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same man with red hair and a beard, wearing a blue shirt and a grey polka-dot sweater, presented in a headshot."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The framing, camera angle, and subject positioning are nearly identical in both images, with only minor differences in head tilt and facial expression."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both images are high-resolution portraits. The primary difference is that the beard and mustache style of the subject have been altered between the two images."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "Both images are studio portraits with similar lighting, depth of field, and overall photographic style."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both images aim to present a professional portrait of the same individual, conveying a similar mood and aesthetic. The difference in facial hair style is a minor variation on the core intent."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 14,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter14.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The subjects are two different men."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both images are headshots featuring a man from the chest up, facing the camera directly with similar lighting and framing."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both images are high-quality portraits with good detail and lighting, though B has a more neutral background and slightly softer focus on the subject."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both images are studio portraits with similar lighting setups, but A has a dark background and a more dramatic lighting, while B has a lighter, more diffused background and lighting, resulting in a slightly different mood."
+    },
+    "overall_semantic_intent": {
+      "score": 7.5,
+      "reason": "Both images are portraits of men intended to showcase their likeness, likely for professional or personal use, sharing a similar underlying purpose but with distinct visual presentations."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 14,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter14.jpg",
+      "image_iter13.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same subject: a man with red hair and a beard, wearing a light blue collared shirt and a grey sweater with large red and blue polka dots. The framing and pose are identical."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The composition, including the headshot framing, camera angle, and the positioning of the subject and his clothing, is virtually identical between the two images."
+    },
+    "fidelity_completeness": {
+      "score": 9.8,
+      "reason": "Both images are high-fidelity and complete. Image B has a slightly wider aspect ratio, showing a small amount more of the dark background on the sides, but the subject detail is otherwise consistent."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both images share a very similar photographic style, lighting, and color palette, resulting in a highly congruent feel. The subtle difference in background tone and aspect ratio is minor."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images clearly intend to present a portrait of the same individual with the same visual presentation and mood."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 15,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter15.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 4.0,
+      "reason": "Both images are portraits of men, but they depict different individuals with distinct facial features, hair color, and facial hair."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both images are close-up headshots, featuring the subjects from the shoulders up, with a similar central framing and dark or plain backgrounds."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both images are high-quality photographs with a good level of detail in facial features and clothing. However, the lighting and overall clarity differ slightly."
+    },
+    "stylistic_congruence": {
+      "score": 6.5,
+      "reason": "Both images are photographic portraits with a similar studio lighting setup, but the background and lighting quality are not identical, creating a slightly different mood."
+    },
+    "overall_semantic_intent": {
+      "score": 7.0,
+      "reason": "Both images are clearly intended as professional portraits of individuals, conveying a similar purpose. The differences in the subjects and subtle stylistic variations prevent a higher score."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 15,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter15.jpg",
+      "image_iter14.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the exact same subject: a man with red hair and beard, wearing a blue shirt and a grey sweater with polka dots."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The composition, including the framing, angle, and positioning of the subject, is identical in both images."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images display the same level of detail, with no discernible differences in sharpness, cropping, or information presented."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The stylistic elements, such as lighting, color palette, and overall aesthetic, are indistinguishable between the two images."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images convey the same essential message and mood, presenting a portrait of the same individual with identical visual characteristics and intent."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 16,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter16.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 3.0,
+      "reason": "Both images are portraits of men, but the individuals are entirely different. One has red hair and freckles, the other has dark hair and a different facial structure."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both images are headshots, centered on the subject's face with a similar framing and shoulder view. The background is also a simple, solid color in both."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both images are high-quality photographs with similar levels of detail and focus on the subjects' faces."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both images use studio lighting and a similar photographic style, resulting in a consistent look and feel, although the background colors differ slightly."
+    },
+    "overall_semantic_intent": {
+      "score": 7.0,
+      "reason": "Both images aim to present a professional or artistic portrait of a person, but the difference in subjects means the overall message or intent is only moderately aligned."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 16,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter16.jpg",
+      "image_iter15.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the exact same subject: a man with red hair and a beard, wearing a blue collared shirt and a grey sweater with large polka dots."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The composition is identical, with the subject centered and framed in the same way, at the same angle and distance."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images show the same level of detail, with no cropping or loss of information."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The stylistic elements, including lighting, color palette, and overall aesthetic, are identical between the two images."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images convey the same intent of presenting a clear portrait of the subject with no discernible difference in mood or message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 17,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter17.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 4.0,
+      "reason": "Both images are portraits of men, but they depict entirely different individuals with distinct features, hair color, and facial hair."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both portraits are framed similarly, focusing on the face and upper chest, with a similar head-on perspective and a plain background."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both images are detailed photographic portraits, but image A has a slightly tighter crop and a darker, more focused background compared to image B's slightly wider framing and lighter background."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both images are studio portraits with similar lighting styles, though the background color and the specific lighting setup differ slightly."
+    },
+    "overall_semantic_intent": {
+      "score": 7.5,
+      "reason": "Both images aim to present a formal portrait of a man, but the difference in subjects and subtle variations in mood create a moderate alignment in overall intent."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 17,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter17.jpg",
+      "image_iter16.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the exact same subject: a red-haired man with a beard and mustache, wearing a light blue shirt and a grey sweater with polka dots."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The framing, pose, and subject's position within the frame are identical in both images."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images exhibit the same level of detail, focus, and completeness; there are no discernible differences in resolution or cropping."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The lighting, color palette, and overall photographic style are identical, suggesting the images are either duplicates or extremely minor variations of the same shot."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images convey the same intent of presenting a portrait of the described individual with a consistent mood and aesthetic."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 18,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter18.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 3.0,
+      "reason": "Both images feature a headshot of a man, but the individuals are completely different."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both images are close-up headshots with the subject facing directly towards the camera, shoulders and head filling the frame, with a neutral background. The framing is nearly identical."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both images are high-quality, detailed photographs. Image A has slightly more studio-like lighting and a darker, more uniform background, while Image B has a slightly softer focus and a lighter background with subtle texture."
+    },
+    "stylistic_congruence": {
+      "score": 7.5,
+      "reason": "Both images are studio portraits with similar lighting styles, though Image A has a slightly moodier, darker tone and background, while Image B is brighter and uses a textured backdrop. Both use shallow depth of field."
+    },
+    "overall_semantic_intent": {
+      "score": 8.0,
+      "reason": "Both images are clearly intended as formal portraits, likely for professional or personal branding. The core intent of presenting a person in a clear, neutral, and approachable manner is the same, despite the differences in the subjects and subtle lighting variations."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 18,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter18.jpg",
+      "image_iter17.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same subject: a man with red hair and a beard, wearing a blue shirt and a gray sweater with red and blue polka dots."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The framing and head-and-shoulders composition are nearly identical. The slight difference is the angle and styling of the man's mustache."
+    },
+    "fidelity_completeness": {
+      "score": 9.8,
+      "reason": "Both images are high-resolution portraits with very similar detail in the skin, hair, and clothing. The primary difference in detail is the styling of the mustache."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "The lighting, background, and overall photographic style are virtually identical. The only stylistic difference is the addition of a styled mustache in image B."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both images convey the same intent of showcasing the subject's portrait with a focus on his distinctive features and attire. The variation is minor and does not fundamentally alter the message."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 19,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter19.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "The primary subject in both images is a portrait of a man, but the individuals are completely different."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both images are headshots, framed similarly with the subject looking directly at the camera. The background is plain in both, and the lighting is studio-style."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both images are high-resolution, detailed photographs with similar levels of clarity and focus on the subject's face."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both images are professional studio portraits with similar lighting and color palettes, though image A has a darker background and image B has a slightly bluer background."
+    },
+    "overall_semantic_intent": {
+      "score": 8.0,
+      "reason": "Both images serve the same semantic intent of capturing a professional portrait of a man, conveying a similar mood of directness and approachability."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 19,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter19.jpg",
+      "image_iter18.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same primary subject: a man with red hair and a beard, wearing a blue shirt and a grey sweater with red and blue polka dots. The framing and pose are identical."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The composition, including the camera angle, distance, and the positioning of the subject within the frame, is identical in both images."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "Both images show the same level of detail, focus, and completeness. There are no apparent differences in cropping or resolution."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The stylistic elements, such as lighting, color palette, and overall photographic quality, are indistinguishable between the two images."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both images convey the same essential message and mood, presenting a straightforward portrait of the subject without any discernible change in intent."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 20,
+    "anchor": "original",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter20.jpg",
+      "input.jpg"
+    ],
+    "content_correspondence": {
+      "score": 7.0,
+      "reason": "Both images feature a portrait of a man from the chest up, with similar facial features and attire."
+    },
+    "compositional_alignment": {
+      "score": 7.5,
+      "reason": "Both images are head-and-shoulders portraits with a neutral background, and the subjects are centered and looking towards the camera."
+    },
+    "fidelity_completeness": {
+      "score": 6.0,
+      "reason": "Image A is a stylized illustration with a very smooth, almost airbrushed appearance and a distinct color palette for hair and skin. Image B is a photograph with realistic skin texture, lighting, and natural hair color."
+    },
+    "stylistic_congruence": {
+      "score": 2.5,
+      "reason": "Image A is a digital illustration with a stylized, animated aesthetic, while Image B is a realistic photograph with natural lighting and skin texture."
+    },
+    "overall_semantic_intent": {
+      "score": 6.0,
+      "reason": "Both images are portraits of men, but the artistic styles create a different overall mood and intent \u2013 one feels illustrative and perhaps more artistic, while the other is a direct photographic representation."
+    }
+  },
+  {
+    "item_id": "man-potrait",
+    "step": 20,
+    "anchor": "previous",
+    "comparison_type": "image-image",
+    "comparison_items": [
+      "image_iter20.jpg",
+      "image_iter19.jpg"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both images feature the same primary subject: a man with red hair, a beard, green eyes, wearing a blue collared shirt and a grey sweater with red and blue polka dots."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The framing, subject positioning, and camera angle are nearly identical in both images. The slight difference is in the background detail and the subtle shift in the subject's head tilt."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both images are detailed portraits. Image A, the illustration, has a slightly smoother, more rendered texture, while Image B, the photograph, shows more realistic skin texture and subtle lighting variations."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Image A is a digital illustration with a painted, rendered style, while Image B is a photograph. While the subject and composition are very similar, the medium and overall aesthetic execution are different."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both images intend to present a portrait of the same individual in the same attire and pose, conveying a similar mood and focus on the subject's face and expression."
+    }
+  }
+]

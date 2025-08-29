@@ -193,6 +193,6 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
-# data and results
-data/
-results/
+# results
+results/*
+!results/central_experiment1

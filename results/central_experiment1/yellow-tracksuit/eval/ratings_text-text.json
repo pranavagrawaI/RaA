@@ -1,0 +1,572 @@
+[
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 2,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter2.txt",
+      "text_iter1.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a young woman in a yellow tracksuit and white boots standing on a concrete court with a basketball hoop and ocean in the background. Key details like hair bun, hoop earrings, and confident pose are present in both."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts describe a centered subject with a basketball hoop to the left and a background of concrete and ocean. However, Text 1 describes an eye-level camera angle and flat perspective, while Text 2 mentions a slightly low angle and atmospheric perspective, indicating a difference in how the scene is framed."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Text 1 provides more detail on secondary objects like the basketball hoop's specific colors and the barrier. Text 2 offers more detail on the subject's appearance (makeup, skin tone) and a slightly different interpretation of the pose and expression (sultry, smirk). Text 2 also omits some details present in Text 1 like the specific text on the sweatpants."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts are descriptive and objective in tone, aiming to detail an image. The language is sophisticated and analytical in both, though Text 2 uses slightly more evocative terms like 'sultry' and 'imposing'."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to comprehensively describe a photograph of a young woman in a stylish outfit in an outdoor setting. The core message and purpose of conveying the visual information are identical."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 3,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter3.txt",
+      "text_iter2.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a female model), secondary objects (basketball hoop, concrete wall, ocean), scene setting (outdoor basketball court near the ocean), color palette (yellow clothing, blue sky/ocean), composition (eye-level, medium shot, centered subject, hoop to the left), style (photograph), textures, and mood (confident, summery). Text 1 is slightly more detailed on the model's expression and pose adjustments."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar logical structure, starting with the primary subject, then secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 2 breaks down the 'Primary subject' and 'Secondary objects' into bullet points, which slightly alters the flow but maintains the overall order."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Text 1 provides more nuanced detail on the model's features ('mixed race,' 'delicate features,' 'cool confidence,' 'assertive pose') and the specific materials of the hoop ('rusty orange,' 'tarnished metal chain'). Text 2 includes the detail of white ankle boots which are not explicitly mentioned in Text 1's 'yellow cropped hoodie and matching sweatpants,' and provides a more specific breakdown of 'depth cues' and 'object placement' within the composition."
+    },
+    "stylistic_congruence": {
+      "score": 6.0,
+      "reason": "Both texts are descriptive, but Text 1 uses more flowing, narrative prose, while Text 2 employs a more structured, bullet-pointed format for several sections. The diction is largely similar, but Text 2's explicit categorization (e.g., 'Identity,' 'Count,' 'Indoor/Outdoor') makes it feel more like a formal data extraction or report."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of the same image. Despite minor differences in structure and some specific details, their core purpose and the information conveyed are highly consistent."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 4,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter4.txt",
+      "text_iter3.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman of mixed ethnicity in a yellow tracksuit) and secondary objects (basketball hoop, concrete barrier, ocean) in a similar outdoor coastal setting."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar descriptive structure, detailing the subject, secondary objects, setting, color palette, composition, style, textures, and mood. However, the specific arrangement of details within each section differs slightly."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Text 1 provides slightly more detail on specific elements like the 'red rectangle' on the backboard and the 'faded gray concrete' court, and mentions the woman's midriff being visible. Text 2 provides a slightly different color for the ocean ('muted teal' vs 'deep blue') and the net ('tarnished metal chain' vs 'white net'). It also slightly varies the framing description ('waist up' vs 'mid-thigh up')."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts are descriptive and objective, but Text 1 uses more technical terms for photography ('prime lens,' 'depth of field,' 'natural perspective') and a more organized bullet-point structure, while Text 2 uses slightly more evocative language ('cool confidence,' 'assertive pose,' 'minimal post-processing') and a more paragraph-based structure."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts clearly aim to provide a comprehensive and detailed description of the same visual scene, conveying the same core information about the subject, setting, and mood."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 5,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter5.txt",
+      "text_iter4.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman in a yellow tracksuit), secondary objects (basketball hoop, barrier, ocean), and scene setting (outdoor basketball court near the ocean). There are minor differences in the description of ethnicity and the exact placement/description of the basketball hoop."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, setting, color palette, composition, style, textures, and mood. The order of elements within these categories is largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides a slightly more detailed breakdown of the woman's pose and expression, and explicitly mentions the rule of thirds in composition. Text 2 offers more specific details on the basketball hoop's condition (rusted, worn) and the material of the basketball court lines, and includes a detail about the woman's ethnicity. Both are detailed descriptions, but with slightly different focuses."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts use descriptive language suitable for image analysis. Text 1 uses bullet points and a more direct descriptive tone. Text 2 uses sub-bullet points and slightly more varied vocabulary in places (e.g., 'mixed ethnicity', 'rusted orange metal hoop', 'luminous skin'). The overall tone is similar, but Text 2 has a slightly more analytical and detailed linguistic style."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of the same visual image, covering all key aspects from subject matter to mood and technical elements. Their fundamental purpose is identical."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 6,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter6.txt",
+      "text_iter5.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman), her attire (yellow hoodie and sweatpants), pose (holding collar), earrings, and the background elements (basketball hoop, concrete wall, ocean). The descriptions are highly similar."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. The order and emphasis on elements are largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions. Text 1 provides slightly more granular detail on the basketball hoop's colors (orange hoop, white net) and the backboard's rectangle. Text 2 offers more specific inferences about the woman's age range and the possible time of day based on lighting. Overall completeness is very high for both."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts use descriptive, analytical language appropriate for image descriptions. However, Text 1 uses more formal headings and bullet points for attributes, while Text 2 uses a mix of bullet points and descriptive sentences, with slightly more speculative phrasing regarding lighting ('midday or early afternoon', 'cloudless sky')."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of the visual content of an image, including the subject, setting, composition, and mood. The essential message and purpose are identical."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 7,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter7.txt",
+      "text_iter6.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the exact same image, detailing the primary subject (a young woman), secondary objects (basketball hoop, wall, ocean), scene setting, color palette, composition, style, textures, and mood."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both texts follow a very similar organizational structure, breaking down the image description into logical categories such as primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 uses slightly more narrative phrasing within sections, while Text 2 uses bullet points for subject details, but the overall flow and grouping of information are highly aligned."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts are very detailed descriptions of the same image. Text 2 provides slightly more granular detail in certain areas, such as explicitly listing 'Identity,' 'Count,' and 'Appearance' under the primary subject, and detailing 'depth cues' and 'object placement' separately in composition, which Text 1 integrates more narratively. However, both capture virtually all salient details."
+    },
+    "stylistic_congruence": {
+      "score": 7.5,
+      "reason": "Both texts are descriptive and analytical, aiming for objective reporting of visual information. However, Text 1 uses more flowing, descriptive prose throughout (e.g., 'weathered outdoor basketball hoop', 'soft and diffused light', 'mood is relaxed and contemplative'), while Text 2 employs a more structured, list-like format with clearer headings and bullet points, especially for the primary subject. This makes Text 2 slightly more clinical and organized, while Text 1 is more evocative."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts share the identical semantic intent: to provide a comprehensive, detailed, and accurate description of a given image, covering all its visual elements and the overall atmosphere."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 8,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter8.txt",
+      "text_iter7.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.8,
+      "reason": "Both texts describe the same primary subject (a young woman of mixed heritage with curly dark brown hair in a high bun, gold hoop earrings, wearing a yellow hoodie and sweatpants, with her hands holding drawstrings), secondary objects (basketball hoop, concrete barrier, body of water), and the scene setting (outdoors, paved area near waterfront, soft lighting)."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. The order and emphasis on elements are largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 9.2,
+      "reason": "Both texts provide very detailed descriptions. Text 1 includes slightly more specific details like 'red rectangle painted on it' for the backboard and 'red rectangle' for the secondary object, whereas Text 2 mentions a 'red-outlined backboard'. Text 2 also adds 'chain net' and 'shallow depth of field', which are not explicitly in Text 1. However, the overall level of detail is very similar."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "The style and tone of both texts are very similar. They both use descriptive language, are objective, and structured in a clear, organized manner with headings. The diction is formal and analytical, suitable for image description."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts have the identical intent: to provide a comprehensive and detailed description of a given image, covering all visual aspects from the subject's appearance to the mood and setting."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 9,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter9.txt",
+      "text_iter8.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman), secondary objects (basketball hoop, barrier, water), and scene setting (outdoors, waterfront, golden hour lighting). Minor differences in the description of the woman's pose and the camera angle are present but do not alter the core content."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The overall structure of both descriptions is very similar, categorizing information into Primary Subject, Secondary Objects, Scene Setting, Color Palette, Composition, Style Indicators, Textures & Materials, and Mood. The logical flow of describing the elements within the image is consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts provide detailed descriptions. Text 1 offers slightly more nuanced observations on lighting and post-processing. Text 2 breaks down the primary subject into more granular bullet points and describes the midriff being exposed, which is a small detail not explicitly in Text 1. Overall, they are very close in completeness, with minor variations in focus."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts are descriptive and objective, aiming to convey information about an image. However, Text 1 uses more flowing prose within its categories, while Text 2 utilizes bullet points more extensively, creating a slightly different feel and readability."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts have the same fundamental intent: to provide a comprehensive and detailed description of a visual image, covering its subjects, setting, composition, and mood."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 10,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter10.txt",
+      "text_iter9.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the same primary subject (a young woman in a yellow tracksuit with gold hoop earrings) and secondary objects (basketball hoop, concrete wall, ocean) in identical settings and lighting conditions."
+    },
+    "compositional_alignment": {
+      "score": 9.2,
+      "reason": "Both texts follow a similar structure: primary subject, secondary objects, setting, color palette, composition, style, textures, and mood. Text 2's description of the camera angle and perspective offers slightly more specific compositional details."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both texts are highly detailed. Text 2 provides slightly more granular detail regarding the woman's ethnicity, the texture of her skin, the specific lens characteristics, and the presence of an asphalt surface."
+    },
+    "stylistic_congruence": {
+      "score": 9.8,
+      "reason": "Both texts employ a very similar descriptive and objective style, using clear headings and detailed language to convey visual information."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts share the exact same intent: to provide a comprehensive and detailed description of a given photograph."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 11,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter11.txt",
+      "text_iter10.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (young woman, yellow tracksuit, pose) and secondary objects (basketball hoop, concrete wall, ocean, sky) with very similar details."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The descriptions align in terms of subject placement (central/slightly right), framing (medium shot, waist up), and the inclusion of background elements for depth. Text 1 mentions the woman is centrally positioned, while Text 2 states slightly to the right, a minor difference."
+    },
+    "fidelity_completeness": {
+      "score": 9.2,
+      "reason": "Both texts provide very detailed descriptions. Text 1 includes slight additional details like 'light brown skin' for the woman, 'red rectangle outlined' on the backboard, and the net material ('white rope' vs 'white metal chain'), which are minor differences in completeness."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "The style is very similar, being descriptive and objective. Text 1 uses slightly more formal phrasing ('weathered, rusted basketball hoop,' 'indicating either sunrise or sunset,' 'perspective is somewhat flat') compared to Text 2 ('weathered basketball hoop and backboard,' 'suggests it is either sunrise or sunset,' 'slightly soft focus')."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts have the identical intent of providing a comprehensive, detailed description of a visual image, focusing on the subject, setting, colors, composition, style, textures, and mood."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 12,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter12.txt",
+      "text_iter11.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman in a yellow tracksuit) and secondary objects (basketball hoop, graffiti wall, ocean, sky). Text 1 includes more specific details about the woman's expression being 'neutral and contemplative' and mentions the tracksuit being 'cropped', which are slightly less emphasized in Text 2."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, starting with the primary subject, then secondary objects, setting, color palette, composition, style, textures, and mood. Text 1 breaks down 'Primary Subject(s)' into more granular detail (identity, count, appearance, pose, expression) than Text 2."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Text 1 provides a slightly more comprehensive description, including details like the color of the drawstring, the specific mention of a 'red rectangle outlining the rim' on the backboard, and the distinction between the woman's pose and expression as separate points. Text 2 is a good summary but omits some of these finer points."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts share a formal, descriptive, and analytical style. The diction is similar, focusing on objective observation and detailed analysis of visual elements. The sentence structures are comparable, being clear and informative."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a thorough and detailed textual description of the same image, covering all major visual components and the overall atmosphere. The core message and purpose of describing the image are identical."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 13,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter13.txt",
+      "text_iter12.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman in a yellow tracksuit) and secondary objects (basketball hoop, graffiti, ocean) with very similar details about her appearance, pose, and the setting."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "The overall structure is similar, describing subjects, secondary objects, setting, color, composition, style, textures, and mood. However, the ordering and grouping of details within sections vary slightly, and Text 2 provides more sub-bullet points."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Text 2 is slightly more detailed and complete. It specifies the woman's ethnic background, describes the tracksuit as 'yellow-gold', mentions the tracksuit is a 'tracksuit', details the basketball hoop's support poles, and clarifies the ocean's color and the sky's gradient."
+    },
+    "stylistic_congruence": {
+      "score": 7.5,
+      "reason": "Both texts use descriptive language suitable for image descriptions. However, Text 1 uses more flowing prose within its paragraphs, while Text 2 employs more bullet points and sub-points, making its presentation more structured and less narrative."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts share the identical intent of providing a comprehensive and detailed description of a photograph featuring a young woman in an outdoor, urban-adjacent setting."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 14,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter14.txt",
+      "text_iter13.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.8,
+      "reason": "Both texts describe the same primary subject (a young woman), her appearance (mixed ethnicity, curly hair in a bun, gold hoops, yellow outfit), pose, and expression. They also identify the same secondary objects (basketball hoop, graffiti wall, ocean) and describe the setting, lighting, color palette, composition, style, textures, and mood in very similar terms."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, categorizing details into primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. While the order of some sub-points may differ slightly (e.g., within composition), the overall flow and organization are highly aligned."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both texts provide highly detailed descriptions. Text 1 is slightly more granular in some areas, like explicitly stating 'old, weathered' for the hoop and detailing the color gradient of the ocean. Text 2 also provides a comprehensive overview with slight variations in detail, such as 'light brown skin' versus 'warm, tan tone'."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a formal, descriptive, and objective tone. The language used is technical and precise, aiming to convey factual information about the image. The sentence structures are similar in their complexity and clarity."
+    },
+    "overall_semantic_intent": {
+      "score": 9.9,
+      "reason": "Both texts have the identical semantic intent: to provide a thorough and detailed textual description of a visual image, covering all key aspects from subject matter to mood."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 15,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter15.txt",
+      "text_iter14.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.7,
+      "reason": "Both texts describe the same primary subject (young woman), secondary objects (basketball hoop, graffiti wall, ocean), scene setting (outdoor court near coast), color palette, composition, textures, and mood. Minor differences exist in the precise description of hair style (ponytail/puff vs. bun), skin tone (light brown vs. mixed/tan), and color of graffiti. The description of the hoop's net being visible is in Text 2 but not Text 1."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The organizational structure is very similar, with both texts breaking down the description into primary subjects, secondary objects, setting, colors, composition, style, textures, and mood. The order of these categories is largely consistent, and the information within each category is presented logically."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides a slightly more detailed description of the woman's pose ('relaxed yet assertive') and the wall's graffiti ('various colors and designs'). Text 2 offers more specific detail on the graffiti colors ('muted greens, browns, and grays') and mentions the net being visible. Text 1 is more explicit about the moon, whereas Text 2 implies it via 'golden hour'."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both texts are descriptive and analytical, using clear, objective language to detail an image. Text 1 is slightly more formal and descriptive in its phrasing (e.g., 'primary subject is a single young woman', 'weathered basketball hoop and backboard'). Text 2 uses slightly more casual phrasing in places (e.g., 'identity: a single young woman of mixed ethnicity', 'likely golden hour')."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to provide a comprehensive, detailed visual analysis of the same image. They both cover the same key aspects of the image and aim to convey a similar understanding of its content, composition, and atmosphere."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 16,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter16.txt",
+      "text_iter15.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman in a yellow outfit), her pose, and key accessories (gold hoop earrings). They also consistently mention the secondary elements: an urban basketball court, a graffiti-covered wall, and a gradient sky with a moon. Text 2 deviates slightly by mentioning the ocean, which is not explicitly stated in Text 1, and describes the hoop as off-center, which is a subtle compositional difference."
+    },
+    "compositional_alignment": {
+      "score": 7.5,
+      "reason": "Both texts follow a similar structure (subject, secondary objects, setting, palette, composition, style, textures, mood). However, Text 1 describes a centered composition with the woman from mid-chest up and a slightly tilted-up camera angle, while Text 2 describes an eye-level, medium shot from mid-thigh up, with the hoop directly behind her head causing a 'halo effect'. These are significant differences in how the scene is framed and presented."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide highly detailed descriptions. Text 1 includes more specific details about the woman's hair ('curly, voluminous brown hair that falls around her face and shoulders'), her expression ('slight, almost imperceptible frown'), and the basketball hoop's details ('red rectangular target', 'slightly torn net'). Text 2 adds the detail of the ocean and describes the woman's hair as a 'high ponytail or puff'. Both are thorough but differ slightly in the specific details they emphasize."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts adopt a descriptive and analytical tone, suitable for image analysis. The language is formal and uses specific terminology related to photography and art. While there are minor variations in word choice (e.g., 'slender build' vs. 'relaxed yet assertive', 'aged and slightly torn' vs. 'faded white'), the overall style and tone are very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a photograph featuring a young woman in an urban setting. Despite minor differences in compositional details and emphasis, the core message and purpose of conveying the visual information of the image are nearly identical."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 17,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter17.txt",
+      "text_iter16.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman in neon green/yellow-green athletic wear), secondary objects (graffiti-covered basketball hoop and wall, ocean/water, moon), and the general setting (urban basketball court near water at dusk). Minor differences exist in the exact shade of green, the perceived skin tone ('medium brown' vs. 'light brown'/'mixed race'), and the presence of a red target on the backboard in Text 2."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar descriptive structure, starting with the primary subject, then secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1's composition section is more detailed regarding camera angle and perspective, while Text 2 focuses on framing and focal length, but the overall organization is highly aligned."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both texts provide detailed descriptions, but there are noticeable differences in the level of detail for specific elements. Text 1 provides more detail on the woman's pose ('hands lightly clasped', 'small portion of abdomen visible'), the net ('worn'), and the concrete wall. Text 2 offers more detail on the woman's hair ('falls around her face and shoulders'), the backboard ('red rectangular target'), the graffiti colors ('shades of gray, white, black, and red'), the sky description, and the possible lens focal length. Neither is a direct summary or elaboration of the other; they contain different specific details."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both texts adopt a formal, descriptive, and analytical style suitable for image analysis. The tone is objective and detailed. Minor variations exist in word choice (e.g., 'voluminous' vs. 'curly, voluminous', 'weathered' vs. 'worn and aged') and sentence structure, but the overall feel and purpose of the writing are very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts share the identical semantic intent: to provide a comprehensive and detailed description of a given image, covering its visual elements, composition, style, and mood. They both aim to convey the visual information of the photograph as accurately as possible through text."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 18,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter18.txt",
+      "text_iter17.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman with curly dark hair, gold hoop earrings, wearing a green hoodie) and secondary elements (basketball hoop, graffiti wall, ocean, moon). Minor differences exist in the description of the woman's hands and the brightness of the moon."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. The order of elements within these categories is generally consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides slightly more detail on the woman's pose ('hands lightly holding the drawstrings of her hooded sweatshirt') and a more specific camera angle ('eye level'). Text 2 elaborates on the texture of the hoodie and sweatpants and the court surface. Both are comprehensive but with minor variations in specific details."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both texts adopt a descriptive, analytical tone suitable for image analysis. The vocabulary is similar, using terms like 'primary subject,' 'secondary objects,' 'composition,' and 'mood.' Text 1's description of the woman's hair as 'cascades around her head' is slightly more evocative than Text 2's 'voluminous, dark brown curly hair that frames her face.'"
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a thorough and detailed description of the same image, covering all key visual elements and the overall atmosphere. The core message and purpose of describing the image are identical."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 19,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter19.txt",
+      "text_iter18.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (young woman with specific features and clothing) and secondary objects (basketball hoop, graffiti wall, ocean, moon, people) in a similar setting. The main discrepancy is the color of the woman's sweatshirt."
+    },
+    "compositional_alignment": {
+      "score": 9.2,
+      "reason": "Both texts follow a similar structure: primary subject details, secondary objects, scene setting, color palette, composition, style, textures, and mood. The placement of elements like the basketball hoop and people varies slightly in the description, but the overall compositional intent is aligned."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide very detailed descriptions. Text 1 includes slightly more detail on the graffiti colors and the number of people in the background, while Text 2 provides more nuanced descriptions of the woman's expression and posture."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "The style is generally similar, being descriptive and objective. Text 1 is slightly more clinical in its breakdown of elements, while Text 2 includes slightly more evocative language (e.g., 'cascades around her head,' 'lightly holding,' 'relaxed but confident'). The most significant difference is Text 2 stating the hoodie is 'lime green' while Text 1 states it is 'grey.'"
+    },
+    "overall_semantic_intent": {
+      "score": 9.2,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of the same image, capturing its key visual elements, mood, and setting. The core message and purpose of describing the visual content are identical."
+    }
+  },
+  {
+    "item_id": "yellow-tracksuit",
+    "step": 20,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter20.txt",
+      "text_iter19.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a young woman with brown skin and curly black hair wearing a grey hoodie and gold earrings), secondary objects (basketball hoop, graffiti, ocean, people silhouettes, moon), scene setting (outdoor court near beach, dusk/dawn lighting), color palette, composition, style (photograph), textures, and mood (calm/introspective)."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a very similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style indicators, textures, and mood. The order of elements within these categories is largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts provide highly detailed descriptions. Text 1 is slightly more comprehensive by explicitly mentioning the woman holding drawstrings 'up near her neck' and noting the moon is 'off-center', whereas Text 2 mentions 'hands raised, holding the drawstrings'. Text 2 also mentions a 'shallow depth of field' which is a specific photographic detail not explicitly stated in Text 1 but implied."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts adopt a descriptive and analytical tone suitable for image analysis. However, Text 1 uses slightly more evocative language ('heavily covered in colorful graffiti', 'gradient in the sky', 'urban coolness combined with the calmness of the beach'), while Text 2 is more direct and uses bullet points with bolded sub-categories for a more structured presentation."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts share the identical semantic intent of providing a thorough and detailed descriptive analysis of a photograph, covering all major visual elements and the overall atmosphere."
+    }
+  }
+]

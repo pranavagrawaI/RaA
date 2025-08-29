@@ -1,0 +1,31 @@
+evaluation:
+  enabled: true
+experiment_name: central_experiment1
+input_dir: data/main_experiment
+logging:
+  level: INFO
+  save_config_snapshot: true
+loop:
+  num_iterations: 20
+  type: I-T-I
+output_dir: results/{{experiment_name}}
+prompts:
+  caption: "Describe this image in detailed, structured prose so that another model\
+    \ could reproduce it as faithfully as possible. Your description **must** include:\n\
+    \u2022 Primary subject(s) - identity, count, appearance, pose, expression\n\u2022\
+    \ Secondary objects - any items or beings within the frame and their relation\
+    \ to the subject\n\u2022 Scene setting - indoor/outdoor, environment, lighting\
+    \ conditions, time of day\n\u2022 Color palette - dominant and notable colours\
+    \ of all main elements\n\u2022 Composition - camera angle, framing, perspective,\
+    \ depth cues, object placement\n\u2022 Style indicators - if artistic, specify\
+    \ medium (e.g., watercolor, digital painting); if photographic, note lens/filters\
+    \ (if guessable)\n\u2022 Textures & materials - of major surfaces (e.g., skin,\
+    \ fabric, metal, grass)\n\u2022 Mood or atmosphere - if emotionally evocative\n\
+    Do **not** omit details due to assumed irrelevance. Write as if the description\
+    \ will be used to reconstruct the image from scratch."
+  image: Recreate the image described below with maximum visual fidelity. Prioritise
+    spatial arrangement, visual details, and scene structure exactly as specified.
+    Do not stylise unless explicitly instructed.
+reporting:
+  charts: true
+  summary: true

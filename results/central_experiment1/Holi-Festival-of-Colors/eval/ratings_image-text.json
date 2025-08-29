@@ -1,0 +1,1772 @@
+[
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 1,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter1.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures the described scene of a Holi festival celebration with a crowd covered in vibrant colors, including a prominent figure with a drum."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The description accurately notes the elevated camera angle, the dense crowd composition, and the placement of the drummer as an anchor, all of which are evident in the image."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "The image aligns extremely well with the detailed description, accurately representing all key subjects, secondary objects, setting, color palette, and atmosphere without significant deviations or additions."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The description correctly identifies the image as a photograph with a documentary style, and the visual evidence fully supports this stylistic congruence."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the intent of the detailed description, conveying a vivid and accurate representation of a Holi festival as described, including its celebratory mood and visual elements."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 1,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter1.jpg",
+      "text_iter1.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts the primary subjects (a crowd celebrating Holi, a man playing a drum) and secondary objects (turbans, colored powder) described in the text."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image aligns well with the compositional description, including the elevated camera angle, the man with the drum as a foreground anchor, and the dense crowd spread out behind him. The description of the colored powder clouds is also accurately represented."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "The image captures most of the details mentioned, such as the colors of the powder and the clothing. The text mentions specific colors like yellow and blue in the middle ground, which are present, but the dominant colors are red and pink. The description of the man with the drum obscuring his features is also accurate."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with a realistic documentary style, matching the 'Style Indicators' section of the text description."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "The image perfectly encapsulates the text's intent: to provide a detailed and evocative description of a lively Holi festival celebration, capturing the vibrant colors, energetic atmosphere, and key figures within the crowd."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 2,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter2.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the description, showing a large crowd celebrating Holi with colored powder, and specifically a man with a turban playing a drum."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image aligns well with the description's compositional elements, including the drummer's position, the crowd density, and the colored powder in the air, though specific details like the exact colors of turbans or the texture of the drum are not explicitly verifiable without higher resolution."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "The image includes all major elements described, such as the crowd, Holi colors, and the drummer. While background buildings and trees are mentioned, they are described as blurry and less prominent, which is consistent with the visual information, and no significant unrequested elements are added."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph, and its style, capturing a candid cultural event with vibrant colors, aligns perfectly with the description of documentary photography."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the festive, chaotic, and culturally rich atmosphere of Holi as described, successfully fulfilling the semantic intent of the detailed text description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 2,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter1.jpg",
+      "text_iter2.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the text description, depicting a crowd celebrating Holi, with a drummer and vibrant colored powder filling the air."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately reflects the described composition, with the drummer positioned to the left, slightly elevated, and the colored powder clouds dominating the upper frame."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the primary subjects and secondary objects detailed in the text, such as the drum, turbans, colored powder, buildings, and trees, without adding unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with a documentary style, capturing a candid moment, which aligns precisely with the 'Style Indicators' mentioned in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the festive, joyful, and energetic atmosphere of the Holi festival as described in the text, successfully fulfilling the prompt's intent."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 2,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter2.jpg",
+      "text_iter2.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts a man playing a drum amidst a Holi festival celebration with colored powder, matching the primary subject and secondary objects described."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image captures the scene with a man playing a drum positioned above the crowd, which aligns with the description. The composition is tight and emphasizes the density of the crowd, as noted."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "The image includes all the key elements mentioned in the description, such as the crowd, the drummer, the drum, and the colored powder. The colors of the powder are as described, though the text mentions green, red, and blue specifically, while the image primarily shows pink and yellow. The buildings and trees in the background are also present but blurry as described."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph and the style is consistent with documentary photography, capturing a candid moment of a cultural event, as indicated in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "The image successfully conveys the festive and energetic atmosphere of a Holi festival celebration, centered around a drummer, fulfilling the overall intent of the descriptive text."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 3,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter3.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The provided text describes a man playing a drum in a crowd covered in purple powder, suggesting a Holi festival. The image, however, shows a vibrant scene of people covered in various colors (red, green, yellow, pink, blue) at what appears to be a Holi festival, with no central figure playing a drum. The primary subject and action described in the text are completely absent from the image."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The text specifies a central figure standing on the shoulders of others and playing a drum. The image does not contain this specific arrangement or action; instead, it depicts a general crowd celebrating with colors, with a person in the foreground holding a drum, but not in the described pose or context."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not include the primary subject (a man playing a drum while standing on shoulders) or the specific details associated with it, such as his clothing colors or the drum's description. The dominant color in the image is not just purple but a riot of colors, and the setting is a festival, not specifically related to the described scene."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "The image is photographic and has a medium shot framing, with a slight background blur, which aligns with the 'photographic' and 'slight blurring of the background' style indicators mentioned in the text. The overall mood is also described as festive and energetic, which matches the image."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The core semantic intent of the text was to depict a specific scene involving a man playing a drum in a particular manner within a crowd. The image fails to capture this central request, depicting a different, albeit related, festival scene."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 3,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter2.jpg",
+      "text_iter3.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches all the primary and secondary subjects described in the text, including the central figure with the drum, the crowd, and the background elements."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately reflects the compositional details described, such as the central placement of the man on shoulders, his action of playing the drum, and the surrounding crowd."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text and does not introduce any significant unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image's photographic style and lighting conditions precisely match the description provided in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the festive and energetic atmosphere of a color festival, successfully fulfilling the core intent conveyed by the detailed description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 3,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter3.jpg",
+      "text_iter3.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary and secondary subjects described in the text: the man with the drum, the crowd, and the setting."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The text's description of the man standing on shoulders, playing a drum in the center of a crowd, is accurately and precisely rendered in the image."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the elements mentioned in the text, such as the specific clothing colors, the drum details, the purple powder, and the background buildings, without adding any significant unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is photographic, with clear focus on the subject and a slightly blurred background, aligning with the text's description of photographic style and depth of field."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the festive and energetic atmosphere of a color festival, accurately depicting the scene described in the text."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 4,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter4.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the description of a crowd during a Holi celebration, with people covered in colored powder and a central figure playing a drum."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "The description places a 'man with a drum' as the focal point, who is 'standing or hoisted up by the crowd, positioning him higher than most of the other people'. The image does show a person with a drum in the center, but they are not significantly higher than the surrounding crowd, and the drum is held lower. The crowd is also predominantly covered in purple powder, not the 'dust/powder' cloud of pink described in the text."
+    },
+    "fidelity_completeness": {
+      "score": 4.0,
+      "reason": "The image is missing several key details described in the text, such as the specific colors of the man's clothing (yellow shirt, orange turban/scarf), the ornate carvings and tassels on the drum, the multi-story pastel buildings, and the flag. Instead, the image is filled with vibrant green and pink powders and a predominantly purple-clad crowd."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph, matching the 'photographic' style indicator in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 4.5,
+      "reason": "While the image captures a festive Holi celebration with a drum player, it deviates significantly in the details of the primary subject's attire, the drum's appearance, the color of the powder, and the specific positioning of the drummer within the crowd, failing to fully capture the semantic intent of the detailed description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 4,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter3.jpg",
+      "text_iter4.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts all primary and secondary subjects described in the text, including the man with the drum, the crowd, the buildings, and the powder."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image's composition, with the man centered and elevated by the crowd, and the crowd filling the foreground, perfectly matches the description."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text and does not introduce significant unrequested elements, accurately reflecting the provided description."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text describes the image as a photograph with specific lighting and lens characteristics, which the image clearly exhibits."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the described scene, including the central figure, the crowd, the cultural context of a festival, and the overall festive and lively mood."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 4,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter4.jpg",
+      "text_iter4.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts all the primary subjects, secondary objects, scene setting, color palette, composition, style indicators, textures, and mood described in the text."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The text description perfectly matches the visual composition of the image, noting the central placement of the man with the drum, the surrounding crowd, and the background elements."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The text provides a comprehensive and accurate description of the image, capturing all key details without adding any extraneous information or omitting any significant elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text correctly identifies the image as a 'photographic' style, aligning with the visual evidence."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The text successfully conveys the full semantic intent of the image, accurately describing its content, composition, style, and atmosphere, which is a vibrant and festive cultural celebration."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 5,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter5.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The image shows a large crowd of people celebrating Holi, covered in colorful powder. It does not contain any of the primary or secondary subjects described in the text, such as a man with a specific description playing a Dhol drum, an Indian flag, or buildings with signs in Hindi."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "There is no correspondence between the composition described in the text and the image provided. The text describes a specific central subject playing a drum, supported by a crowd, with a flag and buildings in the background, none of which are present in the image."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image is completely unrelated to the detailed description provided. It fails to include any of the specified elements, details, or scene settings, and instead depicts a different event entirely."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "The image is photographic, which aligns with the style indicator in the text. However, the content mismatch is too significant to warrant a higher score."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image fails to fulfill the core request of the text prompt as it depicts a completely different scene and subject matter. The detailed description of a specific event and subject is not represented in the image."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 5,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter4.jpg",
+      "text_iter5.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the key elements described: the man with the orange turban and yellow shirt playing the dhol drum, the crowd covered in purple powder, the Indian flag, and the buildings in the background."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately reflects the described composition, with the central figure elevated by the crowd, the low camera angle emphasizing his position, and the surrounding elements contributing to the festive atmosphere."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text description, such as the specific clothing colors, the drum's features, the powder on the people, and the background elements, without adding any significant unrequested items."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is photographic and matches the 'photographic' style indicator described in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully conveys the festive, energetic, and joyful atmosphere of a Holi celebration, with the central figure playing music for the crowd, fulfilling the core intent of the description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 5,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter5.jpg",
+      "text_iter5.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts all the primary subjects and secondary objects described in the text: a man in an orange turban and yellow shirt playing a Dhol drum, a crowd covered in pink powder, and an Indian flag."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image's composition aligns perfectly with the description, showing the man centered, elevated on the crowd, playing the drum with sticks, and the Indian flag on the left."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text, such as the specific clothing colors, the drum's appearance, the powder on people, and the background elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is photographic, matching the 'Photographic' style indicator in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image perfectly captures the described scene of a festive Holi celebration, fulfilling the overall semantic intent of the detailed text description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 6,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter6.txt"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "The text describes a single man playing a drum while sitting on people's shoulders, with a flag and buildings in the background. The image, however, depicts a large crowd celebrating Holi, with many people covered in colored powder, and no single identifiable primary subject playing a drum in the described manner."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The image does not show the described composition of a single man on shoulders playing a drum. Instead, it shows a dense crowd where such specific arrangements are not discernible."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not contain any of the specific elements mentioned in the text, such as the described man's attire, the drum's details, the Indian flag, or the Hindi script on buildings."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "The image is a photograph, which aligns with the text's style indicator, but the subject matter and details are entirely different."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image fails to capture the core semantic intent of the text, which was to depict a specific scene of a man playing a drum on people's shoulders."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 6,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter5.jpg",
+      "text_iter6.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary and secondary subjects described in the text, including the man's attire, the drum, the crowd, and the Indian flag."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately represents the compositional elements described, such as the man sitting on shoulders, holding drumsticks above his head, and the crowd surrounding him with raised hands."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all details mentioned in the text without adding any significant unrequested elements. The description of the setting, colors, textures, and mood is fully represented."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with soft, diffused lighting, matching the 'Style indicators' section of the text description."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully conveys the celebratory, joyous, and energetic mood of a cultural festival as described in the text, successfully fulfilling the core intent of the prompt."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 6,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter6.jpg",
+      "text_iter6.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the described primary subject (a man with a beard, orange turban, yellow shirt, white pants, playing a drum on people's shoulders) and all secondary objects (crowd, drum, Indian flag, background buildings)."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately depicts the man sitting on the shoulders of the crowd and playing the drum, with his hand raised, matching the described composition and action."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text description, such as the man's attire, the drum with tassels, the crowd, the flag, and the background buildings, without adding unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph, and the description accurately notes the soft, diffused lighting and slightly hazy atmosphere, consistent with the photographic style."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the celebratory, joyous, and energetic mood described, with the central figure performing and the crowd participating, fulfilling the core intent of the detailed description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 7,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter7.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The text describes a single male subject, whereas the image depicts a large crowd of people celebrating with colored powder. The primary subject in the text is not present in the image."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "There is no correspondence in the compositional elements as the core subject and action described in the text (a male sitting on shoulders playing a drum) are absent in the image, which shows a general crowd scene."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image contains none of the specific details mentioned in the text, such as the described attire, pose, or specific objects like the drum and Indian flag in relation to the described subject. The image is completely different in content."
+    },
+    "stylistic_congruence": {
+      "score": 1.0,
+      "reason": "The text describes a photographic style, and the image is indeed a photograph. However, this is the only shared stylistic element as the content and composition are entirely unrelated."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image does not fulfill the semantic intent of the text prompt at all, as it depicts a completely different scene and subject matter. The prompt describes a specific individual and action, while the image shows a general festive crowd."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 7,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter6.jpg",
+      "text_iter7.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary subjects (man, drum, crowd, flag) and secondary objects (signage, phones) described in the text."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The description accurately details the subject's pose (sitting on shoulders, holding drum and sticks) and the placement of the flag, crowd, and background elements."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image aligns precisely with the text's description of the subject's attire, accessories, the drum's details (tassels), and the overall scene without any significant additions or omissions."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text correctly identifies the image as photographic and describes the lighting, perspective, and depth cues consistent with a photograph, matching the visual style."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the detailed textual description, successfully conveying the vibrant, celebratory atmosphere of a cultural event with a central performer and an engaged crowd."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 7,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter7.jpg",
+      "text_iter7.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly depicts all the primary and secondary subjects mentioned in the text, including the main subject's appearance, attire, and actions, as well as the drum, crowd, and Indian flag."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image aligns well with the described composition, placing the main subject centrally, while the crowd and background elements create the described perspective and depth. The camera angle is also as described."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image is a complete and faithful representation of the detailed text description, including all specified elements and their attributes without adding extraneous details."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph, matching the 'photographic' style indicator in the text description."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully fulfills the overall semantic intent of the text description by providing a highly accurate and detailed visual representation of the described scene and its celebratory atmosphere."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 8,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter8.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The text describes a single man, likely Sikh, sitting on shoulders, playing a dhol, with Indian flags and smartphones in the background. The image shows a large crowd of people covered in colored powder, with one person in the center holding drumsticks, but no drums, flags, or smartphones are visible. The primary subject's identity, clothing, and actions are not accurately represented."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The text describes a man sitting on the shoulders of others, holding drumsticks and a dhol. The image shows a crowded scene with colored powder, and a figure in the center holding drumsticks, but the dhol is not present, nor is the sitting pose clearly depicted. The described actions and objects are not accurately aligned."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image completely fails to include or accurately depict key elements mentioned in the text, such as the dhol, Indian flags, smartphones, and the specific attire and pose of the primary subject. Instead, it shows a general Holi festival scene with colored powder."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with a detailed, realistic style, matching the 'Photographic' style indicator in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image does not fulfill the core semantic intent of the text, which was to depict a specific scene of a man with a dhol, drumsticks, flags, and smartphones in a particular pose. The image is a generic representation of a Holi festival, missing all specific details."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 8,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter7.jpg",
+      "text_iter8.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the key elements described in the text: a man of Indian descent, a Sikh turban, beard, orange sash, yellow tunic, white trousers, drumsticks, a dhol, a crowd with colored powder, Indian flags, and smartphones."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The text describes the man sitting atop the shoulders of others, legs dangling, and raising both arms with drumsticks. The image accurately depicts this pose and arrangement within the crowd. The slight deviation is that the prompt does not specify the man is holding the drum, which is visible."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "The image is highly faithful to the description, including all major elements. The prompt does not mention the drum being strapped to the man's chest, which is a minor detail added by the image, but it does not detract from the overall accuracy."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text explicitly states 'The image is a photograph, likely taken with a standard lens.' The image provided is indeed a photograph with realistic textures and colors, matching the described style."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "The image successfully conveys the overall intent of the text, depicting a vibrant scene of celebration with a central figure playing a drum amidst a joyful crowd, consistent with the description of a Holi festival."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 8,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter8.jpg",
+      "text_iter8.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary subjects, secondary objects, and setting elements described in the text, including the man's appearance, pose, attire, the drum, the crowd, the flags, and the urban street environment."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately represents the described composition: the man is centered and sitting atop others, with arms raised, holding drumsticks, surrounded by a dense crowd, and Indian flags in the background."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all described details and does not introduce any significant unrequested elements, faithfully representing the text's description."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image aligns perfectly with the 'photographic' style indicator mentioned in the text, displaying realistic textures, lighting, and details."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully realizes the semantic intent of the text, which is to provide a detailed visual representation of a joyous celebration with a central figure playing a drum in a crowded Indian street."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 9,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter9.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The provided image does not contain a Sikh man with a black beard and orange turban, nor is there a clear depiction of drumsticks, a barrel-shaped drum, smartphones, or Indian flags. The image shows a crowd celebrating Holi with colored powders, which is entirely different from the described scene."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "As the core content is missing, there can be no compositional alignment. The image does not show any specific relationships, actions, or spatial arrangements as described in the text."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image includes a crowd and colored powders, which are not mentioned in the text. Conversely, all the primary and secondary subjects described in the text are absent from the image."
+    },
+    "stylistic_congruence": {
+      "score": 1.0,
+      "reason": "The text describes a photograph with specific lighting and focus, while the image is a photograph. However, the subject matter and overall style of the celebration shown in the image do not align with the described scene."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to represent the described scene of a Sikh man with a drum in a street festival. The semantic intent of depicting the specific subject and scenario is entirely unmet."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 9,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter8.jpg",
+      "text_iter9.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The text description accurately captures all the key visual elements present in the image, including the primary subject (Sikh man with drum and drumsticks), secondary subjects (crowd, flags, buildings), and overall scene setting."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The text correctly identifies the primary subject's central position, the low-angle perspective, and the tight framing that emphasizes the main subject and surrounding crowd."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The text includes all significant details from the image without introducing any extraneous or unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text correctly identifies the image as a photograph with standard lens characteristics and mentions the soft lighting, aligning with the visual evidence."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The text provides a comprehensive and accurate interpretation of the image, capturing its content, composition, style, and celebratory mood, thus fulfilling the implied intent of describing the visual input."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 9,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter9.jpg",
+      "text_iter9.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the described subjects: a Sikh man with an orange turban and beard, holding drumsticks above a drum, surrounded by a crowd with Indian flags in a street."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image matches the description of the primary subject sitting on someone's shoulders, holding drumsticks high, with the drum on his lap, all within a dense street scene."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all details mentioned in the text, such as the specific clothing, the drum, the drumsticks, the crowd, the flags, and the street setting, without adding extraneous elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with soft, diffused lighting, matching the textual description of its style and lack of filters."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully conveys the celebratory and joyous atmosphere described in the text, fulfilling the overall intent of depicting a cultural festival scene with a central drummer."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 10,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter10.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The image depicts a vibrant Holi festival celebration with people covered in colored powder, not a Sikh man with specific clothing and drumsticks as described in the text."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The image does not contain the primary subject described (a Sikh man on shoulders with drumsticks) nor the secondary objects like Indian flags or buildings with Hindi signs. The composition is entirely different."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "None of the details from the text, such as the bearded Sikh man, his clothing, the drum, the garland, or the specific background elements, are present in the image."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both the text and image describe a photograph, but the content and style of the photography are completely different. The text implies a documentary or street photography style of a specific individual, while the image is a more artistic and abstract representation of a festival."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to capture the subject, actions, setting, and mood described in the text. The core semantic intent of depicting a specific individual in a particular action is not met."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 10,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter9.jpg",
+      "text_iter10.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The text describes a Sikh man with an orange turban and beard, playing a dhol drum with drumsticks, surrounded by a crowd and Indian flags in an urban street setting. The image accurately depicts all these elements, including the man's attire, the drum, the drumsticks, the crowd with varied turbans, and the Indian flags and buildings in the background."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The description places the primary subject 'seated atop another person's shoulders' and holding drumsticks 'aloft', which is precisely how he is depicted. The surrounding crowd, flags, and buildings are also composed as described."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the elements detailed in the text: the primary subject's attire and accessories, the drum, the drumsticks, the crowd, their turbans, the Indian flags, and the urban background with signage. No significant unrequested elements are added."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text explicitly states the image is a photograph and notes its high resolution and documentary/street photography style, which perfectly matches the visual characteristics of the provided image."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the described scene of a celebratory street event with a central figure playing a drum amidst a crowd, fulfilling the complete semantic intent of the detailed textual description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 10,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter10.jpg",
+      "text_iter10.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches all the primary and secondary subjects described in the text, including the man, his attire, the drum, the drumsticks, the crowd, the flags, and the buildings."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately reflects the described composition, with the main subject centrally placed, on someone's shoulders, holding drumsticks aloft, and the crowd and urban setting surrounding him."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the elements mentioned in the text and does not appear to add any significant unrequested details. The description is a faithful representation of the visual content."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with high resolution, detailed textures, and a documentary/street photography feel, exactly as indicated by the 'Style indicators' in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the essence of the text description, conveying a celebratory and lively mood with a focus on the central figure in a street procession."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 11,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter11.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image shows a crowded street scene with many people, some holding flags, and a central figure with a drum, aligning with the text's description of subjects and secondary objects."
+    },
+    "compositional_alignment": {
+      "score": 2.0,
+      "reason": "The text describes a Sikh man being carried on shoulders, holding drumsticks, smiling, and wearing specific clothing (orange turban, yellow shirt, garland). The image shows a person with a drum and some celebratory elements, but the details of the primary subject (Sikh man, turban color, shirt color, garland, drumsticks, being carried on shoulders) and their expression (smiling) are not clearly identifiable or present as described."
+    },
+    "fidelity_completeness": {
+      "score": 4.0,
+      "reason": "The text details a specific primary subject with particular clothing and actions, and also mentions Indian flags and buildings with Indian script. While the image has flags and hints at buildings, the specific details of the primary subject's attire, the drumsticks, and the 'Indian script' on buildings are either absent or not discernible. The image also depicts a festival with colored powder, which is not mentioned in the text."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with a vibrant, lively atmosphere, which is consistent with a photographic style for capturing a celebratory event."
+    },
+    "overall_semantic_intent": {
+      "score": 3.0,
+      "reason": "While the image captures a celebratory crowd scene with elements like flags and a drum, it fundamentally fails to represent the described primary subject and his specific actions and attire, thus missing the core intent of the prompt."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 11,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter10.jpg",
+      "text_iter11.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The text provides a detailed description of the image, including the primary subject's identity, appearance, and pose, the secondary objects like the drum and crowd, the setting, color palette, composition, and mood. The image matches all these elements perfectly."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The text accurately describes the composition, noting the central and elevated placement of the primary subject, the surrounding crowd, and the camera angle. The image aligns perfectly with this compositional description."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The text is a comprehensive and accurate description of the image. It captures all significant details and elements present in the photograph without introducing any extraneous information or misinterpretations."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text correctly identifies the image as a photograph and mentions potential photographic techniques, aligning perfectly with the visual evidence in the image."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The text perfectly captures the semantic intent of the image, which is to depict a celebratory scene of a Sikh man playing a drum while being carried by a crowd, with Indian flags present, conveying joy and cultural pride."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 11,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter11.jpg",
+      "text_iter11.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts all the key elements described in the text, including the Sikh man with a drum, his attire, the crowd, the flags, and the street setting."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image perfectly aligns with the compositional description, showing the primary subject elevated on shoulders, holding drumsticks, with a drum in front, surrounded by a crowd and flags."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text, such as the specific colors of the clothing, the garland, the drumsticks, and the presence of Indian flags and buildings, without adding any unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text correctly identifies the image as a photograph, and the image's visual characteristics are consistent with photographic representation."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the celebratory and communal atmosphere described in the text, fulfilling the overall semantic intent of presenting a vibrant street scene with a central performer."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 12,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter12.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The text describes a single Sikh man playing a drum, while the image depicts a large crowd celebrating Holi with colored powder, with no single prominent figure clearly identifiable as the primary subject. The details about the man's beard, clothing, and specific actions are absent in the image."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The described composition focuses on a single man with a drum and specific objects like Indian flags and buildings in a street. The image, however, shows a densely packed crowd in action, with colored powder everywhere, and no clear central figure matching the description. The camera angle and framing described do not match the image's overall chaotic yet vibrant scene."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not contain any of the specific details mentioned in the text, such as the Sikh man's beard, his orange turban, yellow shirt, flower garland, or drumsticks. Instead, it shows a crowd covered in colored powder, with no identifiable individual matching the description."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "Both the text and the image suggest a photographic style. The image is indeed a photograph with a realistic portrayal of people and colors."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The core intent of the text was to describe a specific individual engaged in an activity within a particular setting. The image, while a photograph, depicts a completely different scene and subject matter, failing to capture the essence of the provided description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 12,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter11.jpg",
+      "text_iter12.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary and secondary subjects mentioned in the text, including the Sikh man, drum, crowd, and flags."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately reflects the described composition, with the main subject centrally located, the crowd dense and surrounding him, and flags present."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all details mentioned in the text and does not add any significant unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is accurately described as photographic, with details about lighting, perspective, and textures matching the visual evidence."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the festive and celebratory atmosphere described in the text, accurately portraying the cultural event."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 12,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter12.jpg",
+      "text_iter12.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly depicts all the primary subjects (Sikh man with beard, orange turban, yellow shirt, flower garland, drumsticks, drum) and secondary elements (crowd, Indian flags, buildings) described in the text."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately reflects the described composition: the man is centrally placed, holding drumsticks in the air, with a drum in front, a crowd surrounding him, and Indian flags present in a street setting with buildings."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text and does not add any significant unrequested elements. The description is thorough and accurate to the visual content."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text describes the image as 'photographic' and mentions a 'telephoto lens,' which aligns perfectly with the visual evidence of a photograph with compressed depth and a clear, detailed rendering."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the intent of the text, which is to provide a comprehensive and accurate description of a vibrant street scene featuring a Sikh man playing a drum amidst a celebratory crowd."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 13,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter13.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.5,
+      "reason": "The provided text describes a Sikh man playing a drum with specific attire and a joyous expression, surrounded by a crowd and Indian flags. The image, however, depicts a crowd celebrating Holi, with no identifiable Sikh man, drum, or Indian flags. The core subjects and activities described in the text are entirely absent from the image."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "As the primary subjects and actions described in the text are not present in the image, there is no basis for compositional alignment. The spatial relationships, gestures, and overall scene described in the text are completely different from what is shown in the image."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not include any of the specific details mentioned in the text, such as the Sikh man's attire, the drum, the drumsticks, the garland, or the Indian flags. Conversely, the image includes elements (Holi powder, a festive crowd) not mentioned in the text."
+    },
+    "stylistic_congruence": {
+      "score": 5.0,
+      "reason": "The text indicates a 'photographic' style with a 'standard' lens. The image is indeed a photograph. However, the stylistic congruence is only partial because the image's content and mood (a vibrant Holi festival) do not align with the described scene (a potentially patriotic event with a lone musician)."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to capture the semantic intent of the text. The text's intent was to describe and depict a specific scene involving a Sikh musician and his immediate surroundings, whereas the image portrays a different cultural event entirely."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 13,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter12.jpg",
+      "text_iter13.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the text description, including the central figure (Sikh man with yellow kurta and orange turban), the drum, the drumsticks, the flower garland, the joyful expression, the surrounding crowd, the Indian flags, and the urban street setting."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately represents the composition described, with the main subject slightly off-center, holding drumsticks high, and the crowd and flags forming the background, creating depth and dynamism."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text and does not introduce any significant unrequested elements. It is a faithful representation of the detailed description."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is described as photographic with a standard lens, which aligns perfectly with the style indicators and textures/materials described in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the described scene of a celebratory event with a central figure playing a drum amidst a crowd and flags, fulfilling the overall semantic intent of the detailed description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 13,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter13.jpg",
+      "text_iter13.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary subjects described in the text, including the Sikh man with his specific attire, beard, flower garland, drum, and drumsticks, as well as the surrounding crowd and Indian flags."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image's composition accurately reflects the text's description of the central figure holding drumsticks high in a celebratory gesture, with the drum slung across his chest, and the crowd surrounding him."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details mentioned in the text without introducing any significant unrequested elements. All described subjects and their attributes are present."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is photographic and realistic, matching the 'photographic' style indicator mentioned in the text description."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the semantic intent of the text description, successfully conveying a celebratory, joyful, and culturally proud scene centered around a Sikh man drumming in a street procession."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 14,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter14.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.5,
+      "reason": "The text describes a single man playing a drum with a white beard and specific clothing, surrounded by Indian flags. The image, however, depicts a crowded festival with many people, vibrant colors from powdered dyes, and no clear focal subject matching the description. The man with the drum and flags is absent."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The text specifies a central figure, drum, and Indian flags. The image does not contain these elements in any discernible way. The composition is a broad view of a crowd, not focused on a single individual with specific items."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not include any of the specific details mentioned in the text, such as the man's white beard, orange turban, yellow kurta, drum, garland, or Indian flags. It also depicts a scene (Holi festival with colored powders) entirely different from the described street scene with flags."
+    },
+    "stylistic_congruence": {
+      "score": 4.0,
+      "reason": "While the image is photographic in nature, its style is characterized by the explosion of colored powders and a festive, chaotic atmosphere, which is vastly different from the described 'natural and unedited quality' of a street scene with diffused lighting and specific cultural elements like flags and a drum player."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to capture the described subject matter and intent of the text, which was to depict a specific man playing a drum in a particular setting. Instead, it shows a different cultural event entirely."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 14,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter13.jpg",
+      "text_iter14.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary subjects and secondary objects mentioned in the text, including the man, his beard, turban, yellow kurta, drum, garland, crowd, and Indian flags."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image aligns well with the described composition, with the man as the central focal point, the drum and garland prominently displayed, and the crowd and buildings creating depth. The camera angle and framing are also consistent with the description."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all details described in the text without adding any significant unrequested elements. The description is exhaustive and the image matches it precisely."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image accurately reflects the 'photographic' style indicated in the text, with natural lighting and unedited quality."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully fulfills the semantic intent of the text, which is to provide a detailed and accurate visual representation of the described scene, conveying a festive and joyful mood."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 14,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter14.jpg",
+      "text_iter14.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts all the primary subjects and secondary objects described in the text: a man with a white beard and orange turban playing sticks, a drum, a marigold garland, a crowd, and Indian flags."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The man is centered and the image captures him from the chest up, as described. The crowd and flags are in the background, establishing the scene as requested. The camera angle is also as described."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "The image includes all requested elements and details. No significant unrequested elements are added, though the precise time of day is subjective."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with natural, unedited qualities, perfectly matching the 'photographic' style indicator in the description."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "The image successfully conveys the festive and joyful atmosphere of a cultural celebration in India, aligning perfectly with the detailed description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 15,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter15.txt"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "The text prompt describes a single older man with specific attire and actions, playing a drum. The image, however, depicts a large crowd of people celebrating Holi, with many individuals covered in colored powder, and no single discernible subject matching the detailed description of the man."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The image does not align compositionally with the text. The text focuses on a single central figure with specific items (drumsticks, drum), while the image shows a dense crowd with no clear focal point that matches the described subject."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image is entirely inconsistent with the details provided in the text prompt, as it shows a completely different scene and subjects."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "The image is photographic in nature, which aligns with the style indicator in the text. However, the text doesn't specify a particular style for the scene itself (e.g., 'Holi celebration'), and the overall content mismatch makes this score lower."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to capture the semantic intent of the text prompt, which was to depict a specific man playing a drum in a particular setting. The image shows a Holi festival, which is entirely unrelated."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 15,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter14.jpg",
+      "text_iter15.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the essential elements described in the text: the older man with a white beard and turban, the drum, the drumsticks, the crowd, and the Indian flags."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The man is centrally located with arms raised, holding drumsticks, and the drum is visible as described. The composition aligns well with the detailed description, with the crowd and flags in the background."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "The image includes all the details mentioned in the text, such as the specific clothing (orange turban, shirt, garland, scarf), the red mark on the forehead, and the outdoor urban setting with buildings."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text explicitly states the image is photographic, and the image itself is a high-quality photograph with good lighting, depth of field, and realistic textures, matching the described style."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully conveys the joyful and celebratory mood of a festive event, precisely as detailed in the text. All aspects of the description are met."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 15,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter15.jpg",
+      "text_iter15.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary and secondary subjects described in the text, including the man's appearance, pose, expression, the drum, drumsticks, crowd, flags, and buildings."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image's composition accurately reflects the description, with the man centrally located in the foreground, arms raised holding drumsticks, and the crowd and background elements positioned as detailed."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details specified in the text without introducing any significant unrequested elements. Every described feature is present and accurate."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text describes the image as photographic with a shallow depth of field, which perfectly matches the visual style of the provided image."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully fulfills the overall semantic intent of the text, which is to provide a detailed and accurate visual representation of the described scene and its atmosphere."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 16,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter16.txt"
+    ],
+    "content_correspondence": {
+      "score": 2.0,
+      "reason": "The text describes a group of men in saffron robes and turbans, with a central figure holding sticks and a man with a drum. The image, however, depicts a celebration with people covered in colored powder, which is characteristic of the Holi festival, and no saffron robes, turbans, sticks, or a drum are visible."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The image shows a crowd engaged in a color festival, with no clear central figure, procession, temple, or specific items like drums or sticks as described in the text. The composition is entirely different."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image contains none of the specific elements mentioned in the text, such as saffron robes, turbans, beards, flower garlands, wooden sticks, Indian flags, or a temple structure. It also adds elements not described, such as colored powder."
+    },
+    "stylistic_congruence": {
+      "score": 3.0,
+      "reason": "The text describes a 'photographic' style, and the image is indeed a photograph. However, the subject matter and overall aesthetic are vastly different from what the text describes."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to capture the essence and specific details of the described scene. The intended subject matter and cultural event are entirely different."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 16,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter15.jpg",
+      "text_iter16.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the text description, including the primary subjects (men in saffron robes and turbans, central older man with white beard, tilak, flower garland, and sticks), secondary objects (Indian flags, various drums), and the scene setting (crowded street in India with buildings and a temple)."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image's composition aligns precisely with the text's description, showing the central figure framed closely, other subjects flanking him, and the street leading to a background temple, all captured from a medium shot slightly below eye level."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the elements detailed in the text description, such as the specific attire, the types of objects, and the background details, without adding any unrequested significant elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph, exactly matching the 'photographic' style indicator mentioned in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully fulfills the overall semantic intent of the text, which is to provide a detailed and accurate visual representation of a celebratory procession in India, captured photographically with specific attention to the central figure and surrounding elements."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 16,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter16.jpg",
+      "text_iter16.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary subjects and secondary objects mentioned in the text: a group of men in saffron robes and turbans, a central figure with a white beard and flower garland, Indian flags, and drums."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The composition accurately reflects the description, with the central figure prominently placed and flanked by others. The crowd and street setting provide depth, though the exact 'medium shot, positioned slightly below eye level' is a subjective interpretation that is closely matched."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the details described in the text without adding any significant unrequested elements. The description is a comprehensive and accurate representation of the visual content."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text explicitly states 'Style Indicators: Photographic,' and the image is indeed a photograph, matching this stylistic requirement."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the semantic intent of the text, which is to provide a detailed description of a celebratory procession in India featuring men in traditional attire."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 17,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter17.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The provided text prompt describes a scene of Indian men in saffron clothing participating in a procession with drums, flags, and a central figure holding sticks. The image, however, depicts a Holi festival celebration with people covered in colored powders, not the specific elements described in the text."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The image does not align compositionally with the text's description of a procession, specific clothing colors, drums, sticks, flags, or a gate. The arrangement of people and actions in the image is entirely different from what the text details."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not contain any of the specific objects or details mentioned in the text, such as saffron clothing, Indian flags, drums as described, wooden sticks, or a white stone gate. It also introduces elements not requested, like colored powders."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "The image is photographic in style, which aligns with the text's indication of a 'photographic' style. However, the subject matter and composition are completely incongruent."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The text describes a specific religious or cultural procession, while the image depicts a Holi festival celebration. The core semantic intent of the prompt is not captured by the image."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 17,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter16.jpg",
+      "text_iter17.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly depicts the subjects and elements described in the text, including the men in orange, the drums, the sticks, the Indian flags, and the gate."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image aligns precisely with the described composition, with the central figure prominently placed, the drums on either side, and the flags and gate creating depth in the background."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image is a complete and faithful representation of the text description, including all mentioned details without adding extraneous elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image matches the 'photographic' style indicator described in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully captures the essence of a religious or cultural procession in India, fulfilling all aspects of the text description."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 17,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter17.jpg",
+      "text_iter17.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The text prompt accurately and thoroughly describes all the key subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood depicted in the image."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The text's description of the composition, including the camera angle, framing, perspective, depth cues, and object placement, perfectly matches the visual evidence in the image."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The text provides a comprehensive and complete description of the image without adding any extraneous or unrequested elements. All details mentioned in the text are present in the image."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text correctly identifies the image's style as 'photographic' and notes the lack of evident digital alteration, which aligns perfectly with the visual appearance of the image."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The text prompt fully captures and conveys the semantic intent of the image, which is to document a religious or cultural procession with specific details about the participants, their attire, and the surrounding environment."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 18,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter18.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The provided text describes a religious procession with men in saffron clothing, Indian flags, a shrine, and a gateway. The image, however, depicts a scene of people celebrating Holi with colored powders, with no religious procession, saffron clothing, flags, shrine, or gateways visible."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The described composition of a procession with specific elements like flags and a shrine does not align with the image's composition, which shows a crowd engaged in throwing colored powder."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not include any of the specific objects or scene details mentioned in the text, such as saffron clothing, Indian flags, a religious shrine, or an arched gateway. Instead, it shows people covered in colored powders."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a realistic photograph, which aligns with the stylistic indicator in the text, though the content is entirely different."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to capture the semantic intent of the text, which describes a religious procession. The image depicts a Holi celebration with colored powders, which is a fundamentally different event."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 18,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter17.jpg",
+      "text_iter18.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts all the primary subjects and secondary objects mentioned in the text, including the procession of men in saffron, Indian flags, a religious shrine, and a drum."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image composition is very well aligned with the description, capturing the procession moving through a gateway with the main subject centrally placed, leading the group and raising batons. The medium angle and deep perspective are also noted."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "The image is highly faithful to the detailed description, including the clothing, the number of men, their appearance, the religious shrine, flags, and the drum. The text does not mention a specific number of batons or a flower garland for the leader, but these are minor additions that do not detract significantly."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the style indicators mentioned in the text, described as a realistic, documentary-style photograph with no filters."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the essence and intent of the detailed description, conveying a celebratory, spiritual, and reverent procession through a city street, accurately reflecting the described mood, colors, and scene setting."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 18,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter18.jpg",
+      "text_iter18.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image accurately depicts all the primary subjects and secondary objects described in the text, including the group of men in saffron, the main subject with a beard and batons, Indian flags, a religious shrine, and a drum."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image is well-aligned with the textual description of the composition, showing the procession moving through a gateway with the main subject centered and the flags and shrine contributing to a balanced feel. The angle is described as medium, slightly below eye-level, which is consistent with the image."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image faithfully includes all the details mentioned in the text, such as the saffron clothing, the specific actions of the main subject, and the presence of various objects like flags and a drum, without introducing significant unrequested elements."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a realistic photograph with no filters, perfectly matching the 'realistic and documentary' style indicators mentioned in the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image successfully fulfills the core semantic intent of the text by visually representing the described religious procession with high accuracy in content, composition, and style."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 19,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter19.txt"
+    ],
+    "content_correspondence": {
+      "score": 1.0,
+      "reason": "The image depicts a vibrant celebration with people covered in colored powder, likely representing Holi. The text, however, describes a religious procession with men in saffron robes, a decorated palanquin, and Indian flags, which are not present in the image."
+    },
+    "compositional_alignment": {
+      "score": 1.0,
+      "reason": "The text describes a procession with specific elements like saffron robes, a palanquin, and flags. The image shows a completely different scene with people throwing colored powder, and none of the described compositional elements are present."
+    },
+    "fidelity_completeness": {
+      "score": 1.0,
+      "reason": "The image does not contain any of the subjects or details mentioned in the text description. Instead, it shows a celebration with colored powders and different attire."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "Both the text and the image describe a photograph, and the visual style of the image is consistent with a photograph."
+    },
+    "overall_semantic_intent": {
+      "score": 1.0,
+      "reason": "The image completely fails to capture the semantic intent of the text, which describes a religious procession with specific cultural and religious markers. The image depicts a festival of colors (Holi), which is entirely different."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 19,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter18.jpg",
+      "text_iter19.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly captures all the primary subjects and secondary objects described in the text: the group of men in saffron, the lead man with the beard and sticks, the religious palanquin, the Indian flags, the drum, and the archway."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The image accurately renders the composition described, with the procession moving towards the camera, the lead man as the focal point, flags on the sides, and the archway framing the scene."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all elements detailed in the text and does not introduce any significant unrequested elements. The description is comprehensive and matches the visual information precisely."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text describes the image as a 'photograph' with a 'natural, unedited shot, with no obvious filters,' which perfectly aligns with the visual style and quality of the provided image."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully embodies the semantic intent of the text, which is to provide a detailed and accurate visual representation of a religious procession, including its subjects, setting, composition, and atmosphere."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 19,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter19.jpg",
+      "text_iter19.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The text description accurately and comprehensively covers all the main subjects and secondary objects present in the image, including the men in saffron robes, the central figure with a beard and garland, the golden palanquin, Indian flags, the drum, and the archway. The setting and lighting details also align."
+    },
+    "compositional_alignment": {
+      "score": 10.0,
+      "reason": "The description correctly identifies the camera angle, framing, perspective, and object placement, accurately reflecting how the elements are arranged in the image, such as the central focus on the bearded man and the flanking flags and palanquin."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The description includes all significant details visible in the image without introducing extraneous elements or misrepresenting any aspect of the scene. It captures the nuances of the clothing, expressions, and the ornate details of the palanquin."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The text accurately identifies the image as a 'photograph' with 'natural, unedited' characteristics, aligning perfectly with the visual style of the provided image."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The detailed description successfully captures the essence and intent of the image, conveying the event as a 'reverent and festive' religious procession with a 'peaceful, communal atmosphere' and 'tradition and devotion'."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 20,
+    "anchor": "original",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "input.jpg",
+      "text_iter20.txt"
+    ],
+    "content_correspondence": {
+      "score": -1.0,
+      "reason": "Rating failed"
+    },
+    "compositional_alignment": {
+      "score": -1.0,
+      "reason": "Rating failed"
+    },
+    "fidelity_completeness": {
+      "score": -1.0,
+      "reason": "Rating failed"
+    },
+    "stylistic_congruence": {
+      "score": -1.0,
+      "reason": "Rating failed"
+    },
+    "overall_semantic_intent": {
+      "score": -1.0,
+      "reason": "Rating failed"
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 20,
+    "anchor": "previous",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter19.jpg",
+      "text_iter20.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the textual description, including the large group of men in orange robes, the golden palanquin, Indian flags, the drum, and the arched gateway with text."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The image aligns well with the compositional description, showing the men as the primary focus, the palanquin as a secondary element, and the street setting with converging perspective. The camera angle is at eye level as described."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The image includes all the elements mentioned in the description without any significant additions or omissions."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The image is a photograph with natural lighting and detail, exactly as described in the 'Style indicators' section of the text."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The image fully captures the essence of the described scene, conveying a solemn religious procession in an urban Indian setting, fulfilling all aspects of the text's intent."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 20,
+    "anchor": "same-step",
+    "comparison_type": "image-text",
+    "comparison_items": [
+      "image_iter20.jpg",
+      "text_iter20.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "The image perfectly matches the description, detailing a group of men in orange robes, a golden palanquin, Indian flags, a drum player, and an arched gateway in an urban street setting."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The composition is well-aligned with the description, with the men as the primary focus in the foreground, the palanquin as a secondary element, and the urban street with an arched gateway as the backdrop, creating depth."
+    },
+    "fidelity_completeness": {
+      "score": 10.0,
+      "reason": "The description is comprehensive and includes all visible elements in the image without any extraneous details."
+    },
+    "stylistic_congruence": {
+      "score": 10.0,
+      "reason": "The description accurately identifies the image as a natural, un-stylized photograph, matching the 'style indicators' section of the analysis."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The detailed description effectively captures the essence of the image, conveying the solemn, religious, and cultural atmosphere of the procession on an Indian city street."
+    }
+  }
+]

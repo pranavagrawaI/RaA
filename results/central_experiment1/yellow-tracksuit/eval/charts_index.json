@@ -1,0 +1,12 @@
+{
+  "item_id": "yellow-tracksuit",
+  "charts": [
+    "chart_image-image_original.png",
+    "chart_image-image_previous.png",
+    "chart_text-text_previous.png",
+    "chart_image-text_same-step.png",
+    "chart_image-text_original.png",
+    "chart_image-text_previous.png",
+    "chart_text-image_previous.png"
+  ]
+}

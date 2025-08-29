@@ -1,0 +1,572 @@
+[
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 2,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter2.txt",
+      "text_iter1.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a crowd celebrating Holi, focusing on people covered in colored powder and a central figure playing a drum. Text 2 mentions a 'ceremonial staff or weapon' not present in Text 1."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts structure their descriptions similarly, starting with primary subjects, then secondary objects, setting, color, composition, style, textures, and mood. However, Text 1 places the drummer to the left, while Text 2 places him in the foreground left, and mentions a staff/weapon in the middle ground right."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Text 1 provides more specific details about the drummer's attire (yellow shirt, turban) and the drum type ('dhol'), and mentions specific colors of powder in the air. Text 2 is less specific on these points but adds a detail about a potential staff/weapon and discusses lighting and perspective more thoroughly."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use a formal, descriptive, and analytical style, employing bullet points and similar categories (Primary Subject, Secondary Objects, etc.) to detail the image content."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of an image depicting the Holi festival, covering similar aspects of content, composition, and atmosphere."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 3,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter3.txt",
+      "text_iter2.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe an image of a man playing a drum in a crowd covered in powder during a festival, likely Holi. They both mention the man's clothing, the crowd's state, the drum, buildings, and trees. Text 1 focuses more on the man's Indian descent and specific clothing colors, while Text 2 identifies the festival as Holi and notes different powder colors in the air."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, describing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 places the man in the center and describes the crowd surrounding him, while Text 2 places him slightly off-center to the left, which aligns with its compositional description. The detail about powder colors differs in placement and specific shades."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Text 1 provides more specific details about the man's appearance (Indian descent, beard, specific clothing colors like orange turban and yellow shirt) and the drum's appearance (brown, metal hoops, tassels). Text 2 is more general in some aspects (e.g., 'colorful turban', 'yellow shirt') but adds information about other people wearing turbans of different colors and specifically identifies the festival as Holi. Text 2 also mentions clouds of colored powder in the air with specific colors not mentioned in Text 1."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a descriptive and analytical style, characteristic of image analysis. They use clear, objective language to detail visual elements. The formatting with headings and bullet points is very similar, contributing to a high degree of stylistic congruence."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a visual scene, focusing on its key elements, atmosphere, and technical aspects. Despite minor differences in emphasis and specific details, the core intent to convey the content and mood of the image is identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 4,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter4.txt",
+      "text_iter3.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a man playing a drum) and secondary elements (crowd, drum details, buildings, powder, outdoor setting, festive mood). Text 1 includes a few more minor details like a flag and specific building colors, but the core content is highly similar."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The order of elements within these sections is largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides a slightly more comprehensive description, including specific details like the man's 'bearded' appearance, the drum's 'carvings' and 'tassels,' and the 'Hindi' language on billboards. Text 2 is a good description but omits some of these finer points."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts employ a formal, descriptive, and objective tone. They use similar vocabulary for describing visual elements and maintain a consistent, detailed approach to image analysis."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to provide a detailed and analytical description of the same image, focusing on its visual elements, composition, and atmosphere. Their intent is virtually identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 5,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter5.txt",
+      "text_iter4.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same core elements: a man playing a drum, a crowd covered in colored powder, buildings in the background, and an Indian flag. Minor differences exist in the description of the man's expression and the drum's details."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The compositional elements are described similarly, with the man as the central figure, the crowd filling the lower portions, and background elements. Text 1 mentions a low camera angle, while Text 2 says eye-level to slightly below, which is a very minor difference."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions. Text 1 is slightly more comprehensive in listing secondary objects and describing textures, while Text 2 provides more specific details about the man's expression and the drum's carvings."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "The style is very similar, with both texts using a structured, descriptive format, categorizing information under headings like 'Primary subject(s)', 'Scene setting', and 'Color palette'. The language is objective and detailed."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts aim to provide a thorough, detailed description of a single image, capturing its visual elements, setting, mood, and composition. They convey the same essential message about the image's content."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 6,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter6.txt",
+      "text_iter5.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject: a man in an orange turban and yellow shirt, sitting on a crowd's shoulders, playing a drum with a tassel, with an Indian flag and Hindi signs in the background. Text 1 specifically mentions a 'wooden drum,' while Text 2 identifies it as a 'Dhol drum,' a minor detail difference."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1's composition section is more granular, breaking down camera angle, framing, perspective, object placement, and focus separately, whereas Text 2 groups some of these aspects."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides slightly more detailed information, particularly in the 'Composition' section (breaking down perspective, object placement, focus) and mentions 'colorful powder (Holi)' earlier in the scene setting. Text 2 is a comprehensive description but is marginally less detailed in certain sub-categories."
+    },
+    "stylistic_congruence": {
+      "score": 9.2,
+      "reason": "Both texts share a very similar formal, descriptive, and objective style, appropriate for image analysis. The tone and diction are highly consistent, using technical terms for composition and visual elements."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to convey a detailed and objective description of a photograph depicting a man celebrating Holi, playing a drum, atop a crowd. Their core message and purpose are nearly identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 7,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter7.txt",
+      "text_iter6.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (Indian male with beard, turban, kurta) and secondary elements (drum, crowd with colored powder, Indian flag, Hindi signage). Text 1 includes more specific details about the drum bands, gold bracelet, and tassels on the drum, which are less detailed in Text 2."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 breaks down 'Composition' into more granular sub-points (Camera Angle, Framing, Perspective, etc.), while Text 2 integrates some of these into broader points."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 is slightly more detailed, providing counts for primary subjects and more granular descriptions of the drum, crowd, and composition elements. Text 2 is a good summary but omits some specific details present in Text 1."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a formal, descriptive, and objective tone. The language used is similar, focusing on detailed observations of visual elements."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts clearly intend to provide a comprehensive and detailed description of the same image, covering all major visual aspects from subject matter to mood."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 8,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter8.txt",
+      "text_iter7.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a man in Indian attire holding drumsticks and a drum) and secondary elements like a crowd, colored powder, Indian flags, and smartphones. Text 1 mentions a dhol specifically, while Text 2 describes a drum with tassels, which is consistent."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts follow a similar descriptive structure, starting with the primary subject and then moving to secondary objects and scene setting. However, Text 1's 'Composition' section is more detailed about framing and perspective compared to Text 2, which includes depth cues."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Text 1 is slightly more comprehensive in describing the subject's pose (legs dangling, raising both arms) and the context (streets lined with buildings, Hindi signage). Text 2 adds specific details like a gold bracelet and describes the drum's construction more granularly, while Text 1 mentions a possible Sikh identity due to the turban."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use a formal, descriptive, and objective tone, employing clear headings and bullet points to organize information. The vocabulary and sentence structure are very similar, making the styles highly congruent."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a detailed, objective, and comprehensive description of a photograph, capturing the essence of a vibrant cultural celebration. Their primary purpose and the core message conveyed about the image are virtually identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 9,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter9.txt",
+      "text_iter8.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same core elements: a Sikh man with an orange turban, a drum, drumsticks, a crowd with colored powder, Indian flags, and an outdoor street setting, likely during a festival. Text 2 specifies the drum as a 'dhol' and mentions 'colorful tassels' which are not in Text 1."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a very similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style indicators, textures, and mood. The order of presentation of these elements is nearly identical."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions of an image. Text 2 provides slightly more specific details such as the drum being a 'dhol', the tassels on the drum, and the colors of the flags. Text 1 mentions the man sitting atop someone's shoulders, while Text 2 mentions he is sitting atop the shoulders of others, which is a subtle difference in completeness regarding the support."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts are descriptive and objective in tone. Text 1 uses slightly more evocative language in its 'Composition' and 'Mood or atmosphere' sections ('position of prominence', 'draws immediate attention', 'lively and energetic atmosphere'). Text 2 is more clinical in its descriptions (e.g., 'Object Placement: The man is centered in the frame, making him the focal point.')."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive, objective description of a photograph, conveying the same visual information and the celebratory, joyous mood of the scene."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 10,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter10.txt",
+      "text_iter9.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (Sikh man with turban and drumsticks) and secondary elements like the crowd, flags, and street setting. Text 1 mentions the man's complexion as dark, while Text 2 calls him fair-skinned, which is a minor discrepancy in a specific detail."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. However, Text 1's compositional description includes more specifics on camera angle and perspective (eye-level, elevated, depth) compared to Text 2's (slightly low angle, tight framing, moderate depth of field)."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both texts provide detailed descriptions. Text 1 is slightly more comprehensive in detailing the man's clothing colors (light yellow shirt, white trousers), the drum's appearance (two-headed), and the background signage. Text 2 adds details about color powder on crowd faces and the drum's shape (barrel-shaped)."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a descriptive, objective, and analytical style, suitable for image analysis. The tone is similar, focusing on factual reporting of visual elements."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a thorough and detailed description of an image, covering its visual elements, context, and atmosphere. The core message and purpose of describing the image are identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 11,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter11.txt",
+      "text_iter10.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject: a Sikh man in orange turban and yellow shirt, holding drumsticks, smiling, and being carried on shoulders in a crowded street with Indian flags and buildings. Secondary objects like the drum, crowd, flags, buildings, and phone are also consistent."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The order of information within these categories is largely aligned."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions. Text 1 provides slightly more specific detail on the count of the primary subject and the camera angle, while Text 2 adds specifics like 'two-headed drum (dhol)', 'white trousers', 'dhol', 'Hindi script', and 'smoke in the air'."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts employ a formal, descriptive, and objective tone. The sentence structures are similar, focusing on clear and detailed observations of the image content."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts have the identical intent: to provide a comprehensive and detailed description of a photograph, covering all visual aspects from subject matter to mood."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 12,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter12.txt",
+      "text_iter11.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (Sikh man with orange turban and yellow shirt, holding drumsticks, smiling), the secondary objects (drum, crowd, Indian flags, buildings), and the general scene setting (outdoor, crowded street with diffused lighting)."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "While both describe the central figure and surrounding elements, Text 1 places the man centrally and notes a slightly low camera angle for prominence. Text 2 notes an eye-level or slightly below camera angle and describes the man as being carried on shoulders, which is not explicitly mentioned in Text 1. Text 2 also mentions a hand holding a smartphone, which is not in Text 1."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both texts are detailed descriptions. Text 1 mentions the man holding drumsticks in the air, while Text 2 mentions him holding them and implies they are being used to play the drum. Text 2 includes an additional detail of a smartphone being held up in the crowd, which is absent in Text 1. Text 1 also goes into more detail on textures like metal hardware."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a formal, descriptive, and analytical tone, using similar categorization (Primary Subject, Secondary Objects, Scene Setting, etc.) and vocabulary for describing visual elements."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed textual description of a specific image, focusing on the visual elements, mood, and context."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 13,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter13.txt",
+      "text_iter12.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject: a Sikh man with a yellow kurta and orange turban, holding drumsticks, with a drum and a crowd in an outdoor Indian street setting with flags. Text 2 omits the man's white beard and the celebratory gesture with the drumsticks, and also describes his shirt as yellow instead of kurta. The detail about the drum being slung across his chest is also missing in text 2."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, setting, color, composition, style, textures, and mood. However, Text 1 provides a more detailed breakdown within sections (e.g., multiple bullet points for Primary Subject(s) vs. Text 2's single list) and the ordering of elements within sections differs slightly (e.g., secondary objects are detailed before or after the primary subject's gesture)."
+    },
+    "fidelity_completeness": {
+      "score": 7.8,
+      "reason": "Text 1 is more comprehensive, providing more specific details such as the man's white beard, the celebratory gesture with the drumsticks, the drum being slung across his chest, and more granular observations about the background buildings and lighting. Text 2 is a good summary but misses some of these finer points."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a formal, descriptive, and analytical tone, using similar objective language to detail visual elements. The structure of their descriptions is also very similar, indicating a shared intent for detailed visual reporting."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a thorough and objective description of a photograph depicting a festive scene in India featuring a Sikh man with a drum. Despite minor differences in detail and emphasis, the core message and purpose of describing the visual content are aligned."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 14,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter14.txt",
+      "text_iter13.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a South Asian man in traditional attire holding drumsticks), secondary objects (drum, garland, crowd, Indian flags), scene setting (outdoor street in India), color palette, composition, style indicators, textures, and mood. Text 1 provides slightly more detail on the types of buildings and perspective, while Text 2 specifies the type of drum (dhol) and mentions signs in a local language."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a very similar compositional structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood in a logical order. Text 1 places the man slightly more centrally, while Text 2 notes him as slightly off-center, which is a minor difference in descriptive focus rather than overall structure."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 is slightly more detailed in some areas, such as describing the man's features (eyes, smile), the drum's wrapping, the crowd's colors, specific building details, lighting (diffused/overcast), camera angle (slightly up), and perspective (compressed). Text 2 provides specific details like 'Sikh man,' 'dhol,' 'men and women in crowd,' 'black and maroon turbans,' and 'signs in local language.' Overall, both are detailed descriptions, but Text 1 captures a few more visual nuances."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts employ a formal, descriptive, and objective tone. The language used is detailed and analytical, typical of image description. The structure and vocabulary are very similar, indicating a high degree of stylistic congruence."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed visual description of the same image. They convey the same essential message about the scene, the central figure, the atmosphere, and the cultural context."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 15,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter15.txt",
+      "text_iter14.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.2,
+      "reason": "Both texts describe a similar primary subject: an older Indian man with a white beard and orange turban, holding drumsticks and a drum. They also mention secondary elements like a crowd, Indian flags, and buildings. However, Text 1 mentions a red mark on the forehead and a floral garland, while Text 2 mentions a yellow kurta and marigold garland, indicating slight variations in observed details."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style indicators, textures, and mood. However, the order and grouping of some elements differ slightly (e.g., drumsticks are mentioned with the man in Text 1, but with the drum in Text 2's secondary objects). Text 1 also includes more detailed compositional elements like camera angle, framing, and perspective."
+    },
+    "fidelity_completeness": {
+      "score": 7.8,
+      "reason": "Text 1 provides more detailed descriptions for several elements, such as the specific count of subjects, the exact pose with arms raised, the type of lighting, and more granular compositional details (e.g., depth of field, focal length). Text 2 is a good description but lacks some of the specificity found in Text 1."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a highly descriptive, objective, and detailed style, characteristic of image analysis. The language is formal and uses precise terminology for visual elements, creating a strong stylistic congruence."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and objective description of a visual image, focusing on the subject, setting, composition, and mood. Their core purpose of image interpretation is identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 16,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter16.txt",
+      "text_iter15.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same central figure: an older man in saffron robes with a beard, holding drumsticks and a drum, smiling joyfully in a crowded Indian street with flags. The secondary objects and scene setting are also largely consistent."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, starting with primary subjects, then secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1's 'Composition' section is more detailed on camera angle and framing. Text 2's 'Composition' has slightly different details on camera angle and framing."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Text 1 provides more granular detail in its breakdown, such as distinguishing between the central figure and flanking men, and mentioning the tilak explicitly in the primary subject description. Text 2, while detailed, is slightly less granular in its initial subject breakdown and includes details like the type of drum, which Text 1 does not. Text 1 also includes more detail on the background buildings and the crowd's clothing in the primary subject description."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a formal, descriptive, and analytical tone. They use similar vocabulary for describing visual elements and structure their descriptions logically. The use of bullet points and bolded categories contributes to a comparable feel."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of an image, covering its subjects, objects, setting, colors, composition, style, textures, and mood. Their core intent to convey the visual information of the same scene is nearly identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 17,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter17.txt",
+      "text_iter16.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a procession of Indian men in saffron clothing, featuring a central figure with a beard and sticks, drums, Indian flags, and an urban street setting with buildings and a gate. The core subjects and elements are highly consistent."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts structure the description similarly, starting with primary subjects, then secondary objects, scene setting, color palette, composition, style, textures, and mood. The placement of key figures and objects is also similarly described."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts provide detailed descriptions. Text 1 is slightly more granular, detailing the number of men, specific colors of flowers, and discussing depth cues and perspective more explicitly. Text 2 is a comprehensive summary but omits a few minor details like the specific number of men or the exact flower colors mentioned in Text 1."
+    },
+    "stylistic_congruence": {
+      "score": 9.8,
+      "reason": "Both texts employ a formal, descriptive, and analytical style, using clear headings and objective language to detail an image. The tone and diction are highly similar."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts clearly intend to provide a comprehensive and objective description of the same visual content, focusing on subjects, objects, setting, composition, and mood. The overall purpose and message are identical."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 18,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter18.txt",
+      "text_iter17.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a procession of men in saffron clothing, with a central figure holding sticks, accompanied by Indian flags, drums, and a shrine, all taking place on a city street with a prominent gateway. The core elements are consistent."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 uses more descriptive sub-sections like 'Style indicators' and 'Textures & materials' more granularly, while Text 2 integrates some of these under broader headings."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both texts provide detailed descriptions. Text 1 offers slightly more specific counts (25-30 men), mentions the location as a 'city street' and explicitly states 'daytime', whereas Text 2 mentions 'urban environment' and 'midday or early afternoon'. Text 1 also includes a more detailed breakdown of textures."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a descriptive, analytical, and objective tone, typical of image analysis. The language is formal and detailed in both, although Text 1 uses slightly more varied vocabulary and sentence structure."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts have the same intent: to provide a comprehensive and objective description of a visual image depicting a religious procession. They aim to convey all salient visual information."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 19,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter19.txt",
+      "text_iter18.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same scene: a religious procession with men in saffron robes, a central figure with a beard holding sticks, Indian flags, a palanquin/shrine, and a drum, passing through an archway."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. However, Text 1's compositional breakdown is more granular and systematic, especially in camera angle, framing, perspective, and object placement."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide a detailed description, covering similar aspects of the image. Text 1 is slightly more comprehensive in its compositional analysis (e.g., depth cues) and stylistic indicators (lens type), while Text 2 includes some details like 'mustaches' and 'rosaries' not explicitly in Text 1's primary subject description, though implied."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a descriptive, objective, and analytical tone suitable for image description. The diction and sentence structure are similar, aiming for clarity and detail."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a thorough and objective description of a photograph depicting a religious procession, capturing the key visual elements, atmosphere, and details."
+    }
+  },
+  {
+    "item_id": "Holi-Festival-of-Colors",
+    "step": 20,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter20.txt",
+      "text_iter19.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same scene: a religious procession in India with men in orange robes, a golden palanquin, Indian flags, and an archway. Minor differences exist in the exact count of men or specific details about their actions."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both descriptions follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The ordering of these elements is largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions. Text 1 mentions 'poles' held by some men, while Text 2 specifically identifies 'wooden sticks' held by a central figure. Text 2 also notes 'wires and cables' and 'floral garland' more distinctly. Both are comprehensive but vary slightly in granular details."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "The writing style in both texts is formal, objective, and descriptive, characteristic of an image analysis or detailed caption. The tone and diction are very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts clearly intend to provide a thorough and accurate description of the same visual content, conveying the same scene and its elements to the reader."
+    }
+  }
+]

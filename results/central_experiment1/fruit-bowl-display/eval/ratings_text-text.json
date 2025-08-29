@@ -1,0 +1,572 @@
+[
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 2,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter2.txt",
+      "text_iter1.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a similar scene: a bowl of assorted fruits (apples, pear, orange, grapes) placed on a woven placemat on a wooden table, with a chair in the background. Minor differences exist in the exact count or description of fruits and the material of the bowl (wooden vs. ceramic), but the core subjects are highly consistent."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, starting with the primary subject (fruit bowl), moving to secondary objects (placemat, table, chair), and then discussing scene setting, color palette, composition, style, textures, and mood. The order of elements and focus points are largely aligned."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both texts provide detailed descriptions. Text 1 is slightly more granular in breaking down the composition elements and listing specific fruit details. Text 2 offers a slightly broader description of the chair and mentions a 'subtle green hue' in the grapes, adding a minor detail not present in Text 1. Overall, they are very similar in completeness."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts adopt a descriptive and objective tone, typical of image analysis. They use similar vocabulary related to visual elements (color, texture, composition, lighting). However, Text 1's use of bullet points within sections and its more systematic breakdown of 'Style indicators' and 'Textures & materials' as separate categories gives it a slightly more formal and analytical feel compared to Text 2's slightly more narrative flow."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts have the identical semantic intent: to provide a comprehensive, detailed, and objective description of a still-life image featuring a bowl of fruit."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 3,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter3.txt",
+      "text_iter2.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.7,
+      "reason": "Both texts describe the same primary subject (a wooden bowl with assorted fruits) and secondary objects (placemat, chair, table, wall), with very similar lists of fruits and environmental details."
+    },
+    "compositional_alignment": {
+      "score": 9.3,
+      "reason": "The overall structure is consistent, detailing primary subjects, secondary objects, setting, color, composition, style, textures, and mood. The order of elements is largely the same."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide very detailed descriptions. Text 1 includes an 'indoor' setting and 'diffused lighting' which are implied in Text 2, and Text 2 details 'studio or controlled conditions' which are inferred in Text 1. The level of detail is very similar."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts use a formal, descriptive, and objective tone, employing similar headings and bullet-point structures for clarity. The diction is highly comparable."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to provide an exhaustive, detailed, and objective description of a visual scene, focusing on the elements within the image and their arrangement."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 4,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter4.txt",
+      "text_iter3.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subjects (apples, oranges, pear, grapes) and secondary objects (bowl, placemat, chair, table) in a similar arrangement. Text 1 is slightly more detailed on the specific number and placement of each fruit type, and the background elements."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure: primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 provides more granular detail within these sections, such as specific camera angle descriptions and depth cues."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Text 1 is more detailed, specifically listing the number of each fruit and providing a more extensive breakdown of composition elements like 'Depth Cues' and 'Object Placement'. Text 2 summarizes some of these details."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts use a similar descriptive and objective style, typical of image analysis. Text 1 uses bullet points more extensively for listing elements, while Text 2 uses more paragraph-like descriptions within its categories. Text 2 also specifies 'photorealistic rendering' which is a slightly different interpretation of style than Text 1's 'Photographic'."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a still-life image featuring fruit in a bowl, conveying the same overall visual information and atmosphere."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 5,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter5.txt",
+      "text_iter4.txt"
+    ],
+    "content_correspondence": {
+      "score": 7.5,
+      "reason": "Both texts describe a still life featuring apples, pears, oranges, and grapes in a wooden bowl on a placemat, with a chair in the background. However, the number and specific colors/types of fruits differ (Text 1: 2 red apples, 2 pears, 2 oranges, grapes; Text 2: 2 red apples, 1 yellow apple, 4 oranges, 1 pear, grapes). Text 2 also notes one apple being partially obscured."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The specific descriptions of camera angle and object placement vary slightly, but the overall organization is very similar."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both texts are detailed descriptions. Text 1 provides slightly more granular detail on fruit imperfections, specific wood grain, and lighting nuances ('overcast day or indirect indoor light'). Text 2 is also detailed but slightly less specific in some areas, while adding details like one apple obscuring another."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a descriptive, analytical, and objective tone, using similar vocabulary for materials, colors, and composition (e.g., 'photorealistic', 'wooden bowl', 'placemat', 'soft and diffused lighting'). The overall feel is very consistent."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a still life image, focusing on the arrangement and characteristics of the fruit and its surroundings. The core message and purpose of describing the visual content are nearly identical."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 6,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter6.txt",
+      "text_iter5.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subjects (various fruits, wooden bowl, placemat, chair, table) and secondary objects, with very similar details about their appearance and arrangement."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both texts follow a similar compositional structure, discussing primary subjects, secondary objects, scene setting, color palette, composition, style indicators, textures, and mood, in a comparable order."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide a detailed description. Text 1 is slightly more comprehensive by explicitly mentioning the 'over Sowing' nature of the bowl, the specific stem detail for apples, and more nuanced descriptions of fruit textures (e.g., 'bumpy, textured surface' for oranges). Text 2 offers a slightly more concise description of some elements."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a highly descriptive and analytical style, using similar vocabulary and sentence structures to detail visual elements. The tone is consistent, focusing on objective observation."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "The fundamental intent of both texts is identical: to provide a detailed, objective, and analytical description of a still-life image featuring a bowl of fruit."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 7,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter7.txt",
+      "text_iter6.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subjects (apples, pears, oranges, grapes) and secondary objects (wooden bowl, placemat, chair, table) in a still life composition."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Text 1 describes the camera angle as eye-level, while Text 2 states it is slightly elevated. The overall arrangement of objects is similar, but the precise camera perspective differs."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts are highly detailed and describe most elements with similar specificity. Text 1 provides a slightly more granular breakdown of individual fruit characteristics within the primary subject section."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use a very similar, descriptive, and objective prose style, breaking down the image into distinct categories like primary subjects, secondary objects, setting, color, composition, style, textures, and mood."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a still life image featuring a fruit bowl, chairs, and a table, effectively conveying the visual information through words."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 8,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter8.txt",
+      "text_iter7.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subjects (apples, pears, oranges, grapes) and secondary objects (wooden bowl, placemat, chair, table) in a very similar arrangement. Text 1 mentions three pears while Text 2 mentions two, which is a minor discrepancy."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure: primary subjects with details, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1's 'Composition' section is more detailed regarding camera angle and perspective than Text 2's."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts provide detailed descriptions. Text 1 includes a more granular breakdown of fruit placement within the bowl and mentions a 'wooden table' and 'wooden chair' with more detail on their design. Text 2 provides slightly more specific variety suggestions for the fruit (Gala/Fuji apples, Bartlett pears)."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a descriptive, analytical, and objective tone. The language used is similar in its detail and formal nature, aiming to provide a comprehensive visual analysis."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts have the identical intent: to provide a thorough and detailed description of a still-life image featuring a bowl of fruit."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 9,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter9.txt",
+      "text_iter8.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a bowl of fruit) and secondary objects (bowl, placemat, chair, table, background wall). The types and colors of fruit are consistent, though the exact count of pears differs slightly (2 vs 3)."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The ordering of elements within these categories is largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions. Text 1 provides slightly more granular detail on the specific placement and appearance of individual fruits within the bowl (e.g., 'front left of the bowl', 'stem visible'). Text 2 lists 3 pears while Text 1 lists 2, a minor discrepancy in completeness."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a highly descriptive, objective, and analytical tone, typical of image analysis. The language used is formal and uses similar terminology (e.g., 'primary subject(s)', 'secondary objects', 'color palette', 'composition')."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a visual image, focusing on the objects, their arrangement, the setting, and the overall mood. The core message and purpose are virtually identical."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 10,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter10.txt",
+      "text_iter9.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subjects (a bowl of fruits: apples, pears, oranges, grapes) and secondary objects (wooden bowl, chair, placemat, table), with a similar indoor setting and lighting."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, setting, color palette, composition, style, textures, and mood. The arrangement of elements within the frame is also similarly described."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides a slightly more detailed breakdown of fruit counts (e.g., 'Three oranges') and specific placement ('front left'), while Text 2 is comprehensive but occasionally less precise with counts (e.g., 'two oranges' versus Text 1's 'three'). Text 2 also mentions 'green from the grape stems and pear stems' which is not explicitly in Text 1."
+    },
+    "stylistic_congruence": {
+      "score": 9.8,
+      "reason": "Both texts adopt a highly descriptive, analytical, and detailed style. The tone is objective and informative, using similar vocabulary for describing textures, lighting, and composition."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to provide a thorough and objective description of a photograph, detailing its visual elements, composition, and overall mood with remarkable similarity."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 11,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter11.txt",
+      "text_iter10.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a similar scene featuring a wooden bowl filled with apples, pears, oranges, and grapes, placed on a placemat on a table, with a chair visible in the background. Text 1 mentions two apples and two pears, while Text 2 mentions one apple and two pears, which is a minor discrepancy in quantity. Text 1 also explicitly mentions one apple outside the bowl, which is not clearly stated in Text 2."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects (fruit), secondary objects, scene setting, color palette, composition, style, textures, and mood. The order of elements is largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides slightly more detail, such as distinguishing between the apple inside and outside the bowl, and noting subtle blemishes on one apple. Text 2 is more concise in its descriptions of the fruit quantities and specific details like apple blemishes."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a descriptive and objective tone. The language used is formal and detailed, aiming to accurately represent the visual elements of an image. Minor variations exist in phrasing, but the overall style is very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts clearly intend to provide a comprehensive and detailed description of the same visual scene, focusing on the arrangement and appearance of fruit in a bowl within a domestic setting."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 12,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter12.txt",
+      "text_iter11.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a still life featuring apples, pears, oranges, and grapes in a wooden bowl on a table, with a chair and gray background. Text 1 mentions two red apples and two yellow pears, while Text 2 mentions two red apples, two yellow pears, three oranges, and purple grapes. The primary subjects and setting are consistent, with minor discrepancies in the exact count and color of some fruits."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The arrangement of elements like the bowl, fruits, chair, and background is consistently described."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides a slightly more detailed breakdown of specific fruit counts and camera angles (eye-level vs. slightly elevated eye-level). Text 2 is very thorough but omits some details like the placemat's texture or the specific camera angle's implication (depth of field)."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use a formal, descriptive, and objective tone. They employ similar vocabulary for describing textures, lighting, and composition (e.g., 'glossy surface,' 'diffused lighting,' 'wooden bowl'). The formatting with bolded headings is also consistent."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of the same still life image, covering all visual aspects from the subjects to the mood and style. Their intent is to accurately represent the visual content of a photograph."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 13,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter13.txt",
+      "text_iter12.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a still life of fruit (oranges, pears, apples, grapes) in a wooden bowl on a table, with a chair in the background and a neutral wall. Text 2 mentions yellow pears while Text 1 states light green pears, a minor discrepancy in color."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "Text 1 describes a slightly low camera angle, while Text 2 states an eye-level, straight-on view. Text 1 mentions medium close-up framing, while Text 2 notes tight framing. Object placement details also differ slightly (e.g., apples on left/grapes on right in Text 1 vs. more generalized placement in Text 2)."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide very detailed descriptions. Text 1 is slightly more thorough in its breakdown of composition (camera angle, framing, perspective, depth cues, object placement) and style indicators. Text 2 provides a few more specific details about the individual fruits' appearance (e.g., stems, skin texture)."
+    },
+    "stylistic_congruence": {
+      "score": 9.8,
+      "reason": "Both texts use a highly similar, descriptive, and objective style. They both categorize information logically with headings and bullet points, focusing on factual details of the image."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts have the identical intent: to provide a detailed, structured description of a still life image featuring various fruits, a wooden bowl, and a domestic setting."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 14,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter14.txt",
+      "text_iter13.txt"
+    ],
+    "content_correspondence": {
+      "score": 8.5,
+      "reason": "Both texts describe a still life featuring oranges, apples, pears, and grapes, along with a wooden bowl, chair, tablecloth, and table. However, Text 1 mentions three oranges while Text 2 mentions four. Text 1 places one orange independently, while Text 2 implies all oranges are within the bowl."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, setting, color, composition, style, textures, and mood. However, there are differences in the specific placement of items (e.g., single orange in Text 1 vs. implied all in bowl in Text 2) and the camera angle (Text 1: slightly elevated, Text 2: slightly low)."
+    },
+    "fidelity_completeness": {
+      "score": 8.0,
+      "reason": "Both texts are detailed descriptions. Text 1 provides more specific details about the nuances of the fruit's appearance (e.g., 'tiny dimples', 'subtle variations in shading') and describes the chair's back as 'slatted'. Text 2 also provides details but in slightly fewer descriptive terms, and mentions the grapes are 'small, round'."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a formal, descriptive, and analytical tone, characteristic of image analysis or cataloging. The language used is objective and focused on visual details. Text 1 is slightly more descriptive in its adjectives."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts have the identical intent of providing a comprehensive, detailed description of a still life image, focusing on the objects, their arrangement, and the overall visual presentation and mood."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 15,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter15.txt",
+      "text_iter14.txt"
+    ],
+    "content_correspondence": {
+      "score": 8.5,
+      "reason": "Both texts describe a still life featuring fruits (oranges, apples, pears, grapes) in a bowl on a table, with a chair in the background. Text 2 includes a tablecloth, which is not mentioned in Text 1. Text 1 also details the color of the pears as yellow, while Text 2 describes them as pale green."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, setting, color palette, composition, style, textures, and mood. However, the specific placement and counts of fruits differ slightly, affecting the direct alignment of compositional details."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Text 1 provides a count for all mentioned fruits and describes the chair's wood grain. Text 2 mentions a tablecloth, details the chair's slatted back, and specifies the pears' color as pale green, making it slightly more detailed in some areas. Conversely, Text 1 details the texture of orange peels more specifically and mentions an orange on the table, which Text 2 also does, but Text 1 also mentions an apple on the table to the right of the bowl while Text 2 mentions an apple to the right of the single orange."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a descriptive, analytical, and objective tone suitable for image analysis. The language used is precise and focused on visual details."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a still-life image featuring fruit, conveying the same core message about the visual content and its arrangement."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 16,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter16.txt",
+      "text_iter15.txt"
+    ],
+    "content_correspondence": {
+      "score": 7.5,
+      "reason": "Both texts describe a still life with fruit, primarily oranges, apples, and pears, arranged in and around a wooden bowl on a wooden table. However, the number of each fruit type differs (Text 1 mentions 4 oranges, 1 apple, 2 pears; Text 2 mentions 5 oranges, 2 apples, 2 pears), and Text 2 explicitly mentions a chair in the background, which is only vaguely alluded to in Text 1."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts follow a similar structure, describing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The arrangement of fruits is described similarly, with a bowl as a central element and other fruits on the table, although the exact placement details vary slightly."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both texts are detailed descriptions. Text 1 provides a slightly more granular breakdown of object placement (e.g., 'one is lying on the table in front of the bowl', 'nestled in the wooden bowl among the oranges and pear', 'rests beside it, right outside of the bowl') and lighting ('suggests a window as the primary light source', 'appears to be natural light'). Text 2's details about the tabletop texture ('possibly linen or canvas, with a subtle weave pattern') are not present in Text 1."
+    },
+    "stylistic_congruence": {
+      "score": 6.5,
+      "reason": "Both texts are descriptive and analytical, adopting a formal tone for image analysis. However, Text 1's phrasing is slightly more direct and less interpretive ('They are vibrant orange, with a rough, textured peel'), while Text 2 includes more interpretive language about the materials and lighting ('judging by the lighting and textures', 'possibly midday due to the soft and ambient lighting')."
+    },
+    "overall_semantic_intent": {
+      "score": 8.5,
+      "reason": "Both texts aim to provide a comprehensive, detailed visual description of a still life featuring fruit. Despite minor differences in the count of specific fruits and some descriptive details, the core intent of conveying the visual elements, composition, and mood of the image is consistent."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 17,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter17.txt",
+      "text_iter16.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.2,
+      "reason": "Both texts describe a still life scene with the same primary fruits (oranges, apple, pear, grapes, plum) and secondary objects (wooden bowl, wooden chair, table, wall). Text 2 omits the plum and changes the number of pears mentioned."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 is slightly more detailed in its compositional breakdown."
+    },
+    "fidelity_completeness": {
+      "score": 8.8,
+      "reason": "Text 1 provides a more complete list of the fruits, including a plum which Text 2 omits. Text 2 also miscounts the pears, stating two when Text 1 and the likely source image describe one. Otherwise, the level of detail is comparable."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a descriptive and analytical tone, using clear and objective language to describe visual elements. The structure and vocabulary are very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 9.6,
+      "reason": "Both texts clearly aim to provide a comprehensive and detailed description of a still life image featuring fruit, aiming for accuracy and clarity in visual representation."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 18,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter18.txt",
+      "text_iter17.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a still life featuring apples, oranges, a pear, grapes, and plums, along with secondary objects like a wooden bowl, chair, and table. Text 2 has slightly more oranges and only one plum, whereas Text 1 has more variety in the number of some fruits."
+    },
+    "compositional_alignment": {
+      "score": 7.5,
+      "reason": "Both texts describe the fruit arrangement, wooden bowl, chair, and table. However, Text 1 places the pear to the right of the bowl and grapes/plums in front of the bowl, while Text 2 places the pear in the bowl and grapes/plums on the table near the oranges. The framing and camera angles also differ, with Text 1 being slightly above and tightly framed, and Text 2 being a medium shot from eye-level."
+    },
+    "fidelity_completeness": {
+      "score": 7.0,
+      "reason": "Both texts are detailed descriptions. Text 1 provides slightly more specific counts for some fruits (e.g., three oranges vs. five) and mentions the chair partially obscuring the bowl. Text 2 elaborates more on the textures and materials of the fruit and wood."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts use a descriptive, objective tone and similar section headings. The language is generally formal and detailed, though Text 2 uses slightly more evocative adjectives like 'bumpy textured skin' and 'almost perfectly spherical'."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to provide a comprehensive and accurate description of a still life image featuring fruit on a table. The core message and purpose are highly aligned, despite minor differences in specific details and compositional descriptions."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 19,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter19.txt",
+      "text_iter18.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.0,
+      "reason": "Both texts describe a still life composition featuring apples, oranges, a pear, grapes, and plums arranged in a wooden bowl on a table, with a wooden chair in the background. Text 1 mentions four oranges while Text 2 mentions three, and Text 1 mentions two plums while Text 2 mentions three, accounting for the slight discrepancy."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts describe a similar arrangement with the bowl as a central element. Text 1 places the pear to the right of the bowl and grapes next to it, while Text 2 places the pear to the right and the grapes and plums in front. The overall composition is very similar, with minor differences in the placement of foreground fruits."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both texts are very detailed descriptions of an image. Text 1 provides a more granular breakdown of primary subjects and secondary objects, and includes more specific details about textures and materials for each fruit type. Text 2 is also comprehensive but slightly less detailed in its breakdown."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts adopt a descriptive and analytical style, cataloging the elements of an image. The tone is objective and detailed in both cases, with a similar structure using bullet points and headings."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to provide a thorough and objective description of a still life image, detailing the subjects, setting, composition, and style. The core message and purpose of conveying visual information are identical."
+    }
+  },
+  {
+    "item_id": "fruit-bowl-display",
+    "step": 20,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter20.txt",
+      "text_iter19.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same core subjects: oranges, apples, plums, grapes, a pear, a wooden bowl, and a chair, with a similar indoor setting and lighting. Minor differences in the count of some fruits are present (e.g., three vs. four oranges, two vs. four apples)."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "The overall composition described is very similar, with the bowl as a central focal point and other elements arranged around it. Both mention the chair in the background and the table as the surface. The order of description varies slightly, but the key elements and their placement are consistent."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide a highly detailed description of the image. Text 1 is slightly more organized by explicitly labeling 'Primary Subject(s)', 'Secondary Objects', etc., while Text 2 integrates these categories more fluidly within its paragraphs. The level of detail in describing textures, colors, and lighting is comparable."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts use descriptive language suitable for image analysis. Text 1 is more structured with bullet points and clear headings. Text 2 uses more prose-like paragraphs with embedded bulleted lists for color palette and textures. The overall tone is objective and descriptive in both, but the formatting and sentence structure show some difference."
+    },
+    "overall_semantic_intent": {
+      "score": 9.8,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of a still life image featuring a variety of fruits on a table with a chair in the background. Their core message and purpose are virtually identical."
+    }
+  }
+]

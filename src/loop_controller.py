@@ -48,11 +48,11 @@ class LoopController:
                 existing_meta = json.load(f)
         except (FileNotFoundError, ValueError, json.JSONDecodeError):
             existing_meta = {}
-        
+
         # Update with current item's progress
         existing_meta[stem] = record
         self.meta[stem] = record  # Keep local copy in sync
-        
+
         # Save the complete metadata
         self.root_om.write_json(existing_meta, "metadata.json")
 

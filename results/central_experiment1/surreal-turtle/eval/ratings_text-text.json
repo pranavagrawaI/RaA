@@ -1,0 +1,572 @@
+[
+  {
+    "item_id": "surreal-turtle",
+    "step": 2,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter2.txt",
+      "text_iter1.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a turtle with roses in its shell) and secondary elements like an ocean wave and a beach. Text 1 mentions a transparent shell, while Text 2 specifies a glass-like dome, which is a minor difference in description."
+    },
+    "compositional_alignment": {
+      "score": 8.0,
+      "reason": "Both texts place the turtle in the foreground moving towards the ocean, with the wave in the background. However, Text 1 describes the turtle as slightly to the right of center, while Text 2 places it on the left side of the frame, indicating a difference in object placement."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Text 1 provides more detail on the turtle's color (blue-gray), expression (neutral), and lists secondary objects and scene settings separately. Text 2 offers a wider framing (wide shot vs. medium shot) and more specific lighting conditions (late afternoon/early morning) and textural details. Both are detailed but focus on slightly different aspects."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts use a descriptive and objective tone, breaking down the image into similar categories (primary subject, secondary objects, setting, composition, etc.). The language is detailed and analytical in both."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to provide a comprehensive, analytical description of a surreal image featuring a turtle with a rose garden in its shell, set against a beach and ocean backdrop. The core message and purpose of describing the visual content are consistent."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 3,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter3.txt",
+      "text_iter2.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a blue-gray turtle with a shell covered in pink roses, walking on a sandy beach with a breaking wave in the background. Text 1 provides more descriptive adjectives for the roses and the turtle's skin."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 is slightly more narrative in its composition description."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 is more detailed, providing richer descriptions of the turtle's expression, the roses' texture, the wave's cresting motion, and subtle lighting details like 'soft, golden tones'. Text 2 is more concise and bullet-pointed in its details."
+    },
+    "stylistic_congruence": {
+      "score": 7.0,
+      "reason": "Both texts are descriptive and objective, but Text 1 uses more evocative language ('surreal, decorative appearance,' 'inquisitive,' 'velvety') and longer sentences, creating a slightly more literary feel. Text 2 is more direct and uses bullet points extensively."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive description of the same fantastical image, conveying its key elements, mood, and stylistic qualities. The core message about the surreal turtle on the beach is identical."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 4,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter4.txt",
+      "text_iter3.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the exact same image content, including the primary subject (a sea turtle with roses on its shell), secondary objects (ocean wave, sand), scene setting, color palette, composition, style indicators, textures, and mood. All key details are present in both descriptions."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both texts follow a very similar structure, breaking down the image description into categories such as Primary Subject, Secondary Objects, Scene Setting, Color Palette, Composition, Style Indicators, Textures & Materials, and Mood or Atmosphere. The order and content within these categories are highly aligned."
+    },
+    "fidelity_completeness": {
+      "score": 9.8,
+      "reason": "Both texts are highly detailed and comprehensive descriptions of the image. There are very minor differences in phrasing and the exact number of supporting details provided within each category, but they convey the same overall level of information and completeness."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts adopt a descriptive and analytical tone, typical of image analysis. While Text 1 uses slightly more technical terms like 'composite' and 'overcast or diffuse', and Text 2 mentions 'photorealistic style, possibly achieved through digital rendering or photo manipulation' and 'dreamy or fantastical quality,' the overall style and vocabulary are very similar and professional."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The ultimate goal of both texts is identical: to provide a thorough and detailed description of a specific image, capturing all its visual elements, stylistic qualities, and emotional impact. Both texts succeed in this purpose comprehensively."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 5,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter5.txt",
+      "text_iter4.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the identical image: a sea turtle with roses on its shell, walking on a beach with a breaking wave in the background. All key elements and their attributes are present in both descriptions."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a very similar structure, describing the primary subject, secondary objects, setting, color palette, composition, style, textures, and mood in a comparable order. Text 1's composition section is more detailed about layering."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both texts provide very detailed descriptions. Text 1 includes slightly more specific details about the number of roses and the texture of the turtle's skin and shell. Text 2 mentions the lighting being overcast, which Text 1 implies with 'diffused'."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use formal, descriptive language appropriate for image analysis. The tone is objective and informative. While there are minor differences in word choice, the overall style and feel are very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts have the exact same semantic intent: to provide a comprehensive and detailed description of a specific image, covering all its visual and atmospheric aspects."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 6,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter6.txt",
+      "text_iter5.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a sea turtle with roses on its shell, a breaking wave, and a beach setting. Minor differences exist in the exact number of roses and the turtle's coloration, but the core elements are identical."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "Both texts follow a similar structure (subjects, setting, colors, composition, style, mood). However, Text 1 describes a low-angle shot with the turtle slightly off-center to the right, while Text 2 describes an eye-level shot with the turtle slightly off-center to the left. The framing and perspective descriptions also differ."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts provide very detailed descriptions. Text 1 includes more granular detail on the turtle's skin texture and a wider range of color descriptors. Text 2 is slightly more concise in some areas but covers all essential aspects."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a formal, descriptive, and analytical tone, characteristic of image analysis. The diction and sentence structure are consistent, focusing on objective observation."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of the same surreal image, conveying its visual elements, artistic choices, and overall mood."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 7,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter7.txt",
+      "text_iter6.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a sea turtle with roses on its shell), secondary objects (wave, ocean, beach), scene setting (sunny beach), color palette, textures, and overall mood. Text 1 provides slightly more granular detail on specific features like scale patterns and lighting direction."
+    },
+    "compositional_alignment": {
+      "score": 7.0,
+      "reason": "Both texts describe the turtle as the central focus and the wave as a backdrop. However, Text 1 states an 'eye-level perspective' with the turtle slightly to the right, while Text 2 states a 'low angle' making the turtle appear larger and positioned slightly off-center to the right. This is a notable difference in how the scene is framed and presented."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions. Text 1 is slightly more comprehensive in its breakdown, explicitly listing 'Style Indicators,' 'Textures & Materials,' and 'Mood or Atmosphere' as separate categories, and providing more specific details within 'Primary Subject(s)' and 'Color Palette' (e.g., scale patterns, spots of orange, foam cresting)."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both texts adopt a formal, descriptive, and analytical tone suitable for image analysis. The sentence structures are largely similar, focusing on clear and precise language to convey visual information. Text 1's use of bullet points for sub-categories is a minor structural difference."
+    },
+    "overall_semantic_intent": {
+      "score": 9.0,
+      "reason": "Both texts aim to provide a thorough and detailed description of the same image, conveying the visual elements, setting, and mood. Despite minor differences in compositional framing and level of detail in certain aspects, the essential message and purpose of describing the image are identical."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 8,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter8.txt",
+      "text_iter7.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the same primary subject (a sea turtle crawling on a beach) and secondary subjects (roses on its shell, ocean waves in the background) with identical details."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "The overall structure is very similar, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood, though Text 1 categorizes composition elements slightly differently."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide highly detailed descriptions. Text 1 offers a bit more detail on the turtle's markings and the composition's perspective, while Text 2 provides a potential species identification ('Green Sea Turtle') and more specific lighting direction."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use a formal, descriptive, and analytical tone, employing similar vocabulary and sentence structure to describe visual elements. The primary difference is the slightly more specific terminology in Text 2 for some elements like species and lighting."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts share the exact same intent: to provide a comprehensive and detailed description of a visually presented image featuring a sea turtle adorned with roses."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 9,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter9.txt",
+      "text_iter8.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the identical scene: a sea turtle with pink roses on its shell on a sandy beach with the ocean and sky in the background."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. Minor differences in the order of some elements exist but the overall flow is consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions of the same image. Text 1 provides slightly more granular detail in areas like the geometric patterns on the flippers and the 'circular arrangement' of roses, while Text 2 offers more descriptive terms for the turtle's skin tones and markings."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "The style and tone of both descriptions are very similar. Both are objective, detailed, and analytical, using descriptive language to convey visual information. There are minor variations in specific word choices but the overall feel is highly consistent."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts have the exact same semantic intent: to provide a comprehensive and detailed description of a specific image featuring a sea turtle adorned with roses."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 10,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter10.txt",
+      "text_iter9.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a sea turtle with roses) and secondary elements (beach, ocean, sky), though with minor variations in detail and descriptive language."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, starting with the primary subject, then secondary objects, scene setting, color palette, composition, style, textures, and mood. The core compositional elements described are consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Both texts are detailed descriptions. Text 1 provides slightly more specific details on the turtle's coloration (plastron, head) and composition (camera angle, depth cues, object placement) compared to Text 2, which is a good but slightly less granular description."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts employ a descriptive, objective, and analytical style, using similar vocabulary to describe visual elements. The tone in both is informative and detailed."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts have the identical intent: to provide a comprehensive and detailed description of the same visual image, conveying its key elements, composition, and mood."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 11,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter11.txt",
+      "text_iter10.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a sea turtle with roses on its shell) and secondary elements (beach, ocean, sky) with very similar details about appearance, pose, and setting."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1 provides slightly more granular detail on composition aspects like 'object placement' and 'perspective'."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 is slightly more comprehensive, providing more specific details on compositional elements such as camera angle, framing, perspective, depth cues, and object placement. Text 2 is a good summary but lacks some of these finer points."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use a formal, descriptive, and objective tone. The language is clear and detailed, focusing on factual descriptions of visual elements. The structure and organization are very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a thorough and detailed description of an image featuring a sea turtle adorned with roses on a beach, intending to convey the visual content and atmosphere accurately."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 12,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter12.txt",
+      "text_iter11.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a sea turtle on a beach with a crown of roses, with similar details about the environment, colors, and composition. Text 2 omits some specific details like the turtle's specific species identification and the exact camera angle being eye-level."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing the primary subject, secondary objects, scene setting, color palette, composition, style, textures, and mood. The order and hierarchy of information are largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Text 1 provides more specific details, such as the turtle's likely species (Green Sea Turtle), the specific texture of the turtle's skin, and mentions the camera angle is eye-level. Text 2 is slightly less detailed in these specific areas, though it elaborates on the sand being 'slightly dampened'."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts use a formal, descriptive, and analytical style suitable for image descriptions. The language is precise and objective, although Text 1 uses slightly more evocative adjectives in places (e.g., 'idyllic and peaceful')."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of the same visual scene, capturing its key elements, mood, and aesthetic qualities."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 13,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter13.txt",
+      "text_iter12.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe a single sea turtle with a crown of pink roses on its shell, situated on a beach with the ocean and sky in the background. The core subjects, objects, and setting are nearly identical."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both descriptions follow a similar structure, starting with the primary subject (turtle), then secondary objects (roses, beach, ocean, sky), scene setting, color palette, composition, style, textures, and mood. The order and emphasis are largely consistent."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide a highly detailed description. Text 1 includes more granular details about the turtle's appearance (e.g., 'reticulated pattern', specific color hues on head) and composition (e.g., 'depth cues', 'object placement'), while Text 2 offers slightly different details on the turtle's shell color ('reddish-brown') and texture ('slightly glossy surface', 'leathery texture'). They are comparable in overall detail."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts adopt a descriptive and analytical tone, characteristic of image descriptions. The language is formal and objective. While there are minor differences in specific vocabulary choices (e.g., 'reticulated pattern' vs. 'dark, irregular shapes'), the overall style and purpose are very similar."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to convey a comprehensive and detailed understanding of the visual content of an image featuring a sea turtle adorned with roses on a beach. The essential message and purpose are the same."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 14,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter14.txt",
+      "text_iter13.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the exact same image content: a sea turtle wearing a crown of roses on a beach with the ocean and sky in the background."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both texts follow a very similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. The order of sub-points within sections is also highly aligned."
+    },
+    "fidelity_completeness": {
+      "score": 9.2,
+      "reason": "Both texts provide a highly detailed and comprehensive description of the image. Text 2 offers slightly more specific details, such as identifying the potential species of the turtle and elaborating on color gradients and depth cues."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "The styles are very similar; both are formal, descriptive, and analytical. Text 2 uses slightly more technical terminology (e.g., 'reticulated pattern,' 'depth cues') and bullet points within its descriptions, leading to a minor difference in presentation."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The essential message and purpose of both texts are identical: to provide a thorough and accurate description of a specific image."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 15,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter15.txt",
+      "text_iter14.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the same image content, focusing on a sea turtle adorned with pink roses on a beach with the ocean and sky in the background."
+    },
+    "compositional_alignment": {
+      "score": 9.5,
+      "reason": "Both texts follow a similar compositional structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood, with very similar observations within each category."
+    },
+    "fidelity_completeness": {
+      "score": 9.0,
+      "reason": "Both texts provide highly detailed descriptions. Text 1 is slightly more specific in quantifying the roses (20-25) and noting a 'small dark figure' in the background, which Text 2 omits."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "The style of both texts is very similar; both are formal, objective, and descriptive, employing similar headings and vocabulary to detail an image."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts have the identical intent: to provide a comprehensive and detailed description of a specific image, covering all visual and atmospheric aspects."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 16,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter16.txt",
+      "text_iter15.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.8,
+      "reason": "Both texts describe the same primary subject: a sea turtle with roses on its shell on a beach. They also mention the same secondary object (a person in the water) and similar scene setting details (beach, ocean, sky, lighting)."
+    },
+    "compositional_alignment": {
+      "score": 8.5,
+      "reason": "Both texts follow a similar structure, describing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. However, Text 1 mentions the turtle's expression as 'serene and neutral' and its flippers as 'splayed out symmetrically', while Text 2 describes the expression as 'neutral' and the pose as 'calm and centered', with a more specific count of roses (20-25) and a slightly different take on the composition ('medium shot taken from a slightly low angle' vs. 'close-up shot taken at eye level')."
+    },
+    "fidelity_completeness": {
+      "score": 7.5,
+      "reason": "Text 1 provides a more detailed description of the turtle's shell as 'mottled brown and green' and its flippers creating a 'symmetrical pose'. It also specifies the person in the background as a 'dark shape'. Text 2 offers more specifics on the rose count, the type of turtle (green sea turtle), and describes the wave crests. Text 1 is slightly more complete in describing the turtle's physical appearance and pose."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts use descriptive and detailed language appropriate for image descriptions. The tone is objective and informative in both, with a focus on visual elements and atmosphere."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to convey the visual content and emotional atmosphere of an image featuring a sea turtle adorned with roses on a beach. The core message and purpose of describing the image are virtually identical."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 17,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter17.txt",
+      "text_iter16.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a sea turtle with roses on its shell), secondary objects (a distant swimmer), scene setting (tropical beach, sunny day), color palette, composition, style (photographic), textures, and mood (peaceful, whimsical)."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both descriptions follow a similar structure, starting with the primary subject, then secondary objects, scene setting, color, composition, style, textures, and mood. The arrangement of elements within the scene (turtle centered, swimmer in background) is also consistent."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 provides slightly more detail on the turtle's species ('Green Sea Turtle'), specific coloration details ('browns and tans with darker, almost black markings', 'yellow-tan base'), and the pose ('head-on, facing the viewer', 'flippers are extended slightly'). Text 2 is a good, but slightly less granular, description."
+    },
+    "stylistic_congruence": {
+      "score": 9.5,
+      "reason": "Both texts are descriptive and objective in tone, using similar vocabulary and sentence structures to convey the visual information of an image. They both use bullet points or headings for clarity."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "Both texts have the identical intent: to provide a comprehensive and detailed description of a specific image, covering all visual aspects from subject matter to mood."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 18,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter18.txt",
+      "text_iter17.txt"
+    ],
+    "content_correspondence": {
+      "score": 10.0,
+      "reason": "Both texts describe the exact same image, detailing the central sea turtle with roses on its shell, the background human swimmer, the beach, ocean, and sky. All key elements are present in both descriptions."
+    },
+    "compositional_alignment": {
+      "score": 9.8,
+      "reason": "The compositional elements are described in a very similar order and manner in both texts, focusing on the turtle's central placement, the low camera angle, and the wide shot that includes the background elements."
+    },
+    "fidelity_completeness": {
+      "score": 9.5,
+      "reason": "Both texts provide a comprehensive and detailed description of the image. Text 2 offers slightly more specific details, such as identifying the turtle as a Green Sea Turtle and describing its expression, but the overall level of detail is very high in both."
+    },
+    "stylistic_congruence": {
+      "score": 9.0,
+      "reason": "Both texts adopt a descriptive and analytical style, typical of image analysis. The language is formal and objective, with similar formatting for categories like 'Primary Subject(s)' and 'Scene Setting'."
+    },
+    "overall_semantic_intent": {
+      "score": 10.0,
+      "reason": "The semantic intent of both texts is identical: to provide a thorough and detailed description of a specific image, covering its subjects, composition, setting, and mood."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 19,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter19.txt",
+      "text_iter18.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same primary subject (a Green Sea Turtle), its appearance, pose, and secondary elements like pink roses on its shell, a swimmer in the background, a beach setting, and the sky. Text 1 includes slightly more detail on growth rings and specific colorations of the turtle's markings."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, starting with the primary subject, then secondary objects, scene setting, color palette, composition, style indicators, textures, and mood. Text 1 separates composition into more granular sub-points."
+    },
+    "fidelity_completeness": {
+      "score": 8.5,
+      "reason": "Text 1 is slightly more detailed, mentioning specific elements like 'growth rings,' 'leathery and textured skin,' and breaking down 'composition' into more specific sub-categories (camera angle, framing, perspective, depth cues, object placement). Text 2 is a very thorough summary but lacks some of the finer distinctions of Text 1."
+    },
+    "stylistic_congruence": {
+      "score": 8.0,
+      "reason": "Both texts are descriptive and informative, aiming for a detailed and objective account of an image. The language is formal and uses similar terminology for image analysis (e.g., 'primary subject,' 'carapace,' 'composition,' 'depth of field'). Text 1 is marginally more structured with bullet points under each category."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts clearly intend to provide a comprehensive, detailed, and analytical description of the same visual image, covering all key aspects from subject matter to mood."
+    }
+  },
+  {
+    "item_id": "surreal-turtle",
+    "step": 20,
+    "anchor": "previous",
+    "comparison_type": "text-text",
+    "comparison_items": [
+      "text_iter20.txt",
+      "text_iter19.txt"
+    ],
+    "content_correspondence": {
+      "score": 9.5,
+      "reason": "Both texts describe the same core elements: a sea turtle on a beach with roses on its shell, with background elements of the ocean, sky, and distant human figures. Text 1 mentions multiple figures while Text 2 mentions a single swimmer, a minor difference in detail."
+    },
+    "compositional_alignment": {
+      "score": 9.0,
+      "reason": "Both texts follow a similar structure, detailing primary subjects, secondary objects, scene setting, color palette, composition, style, textures, and mood. Text 1's composition mentions a low angle, while Text 2 mentions eye-level slightly lower, which is a subtle difference in interpretation."
+    },
+    "fidelity_completeness": {
+      "score": 9.2,
+      "reason": "Both texts are highly detailed descriptions. Text 1 provides slightly more nuance on the turtle's appearance and the number of figures, while Text 2 elaborates more on the depth of field and depth cues in its composition section."
+    },
+    "stylistic_congruence": {
+      "score": 8.5,
+      "reason": "Both texts use a descriptive and formal style suitable for image analysis. Text 1 uses more varied sentence structures and descriptive adjectives ('squarely in the center', 'visual contrast', 'slightly humorous/whimsical touch'), while Text 2 is more direct and categorizes elements explicitly ('Identity:', 'Count:', 'Appearance:')."
+    },
+    "overall_semantic_intent": {
+      "score": 9.5,
+      "reason": "Both texts aim to provide a comprehensive and detailed description of an image, capturing its visual elements, mood, and composition. The core message and purpose of describing the image are identical."
+    }
+  }
+]
