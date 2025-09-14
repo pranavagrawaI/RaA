@@ -2,8 +2,6 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-> ⚠️ **Work in Progress:** This project is under active development.
-
 **RaA** is a framework to evaluate information fidelity in iterative multimodal transformations. It assesses how well AI models preserve semantic content as data "loops" between different modalities, quantifying drift and degeneration.
 
 **➡️ View the Full Documentation in [`/docs`](./docs/01_introduction.md)**
