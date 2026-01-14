@@ -287,13 +287,13 @@ class LoopController:
                 except (PermissionError, OSError) as e:
                     print(f"Warning: Could not remove existing file {dst}: {e}")
                     return
-
+        #Try symlink first(linux/macOS)
         try:
             os.symlink(os.path.abspath(src), dst_path)
             return
-        except (AttributeError, NotImplementedError, OSError) as e:
-            if isinstance(e, OSError) and e.errno not in (errno.EEXIST, errno.EPERM):
-                raise
+        #Windows or restricted Environment , then fallback to copy
+        except (AttributeError, NotImplementedError, OSError):
+            pass
 
         max_retries = 2
         for attempt in range(max_retries):
